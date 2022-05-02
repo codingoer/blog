@@ -8,7 +8,7 @@ on:
 jobs:
   pages:
     runs-on: ubuntu-latest
-    name: A job to deploy blog.
+    name: A job to deploy blog
     steps:
       - name: Checkout
       - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
         id: deploy
         uses: sma11black/hexo-action@v1.0.3
         with:
-          github_token: ${{ secrets.DEPLOY_KEY }}
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
           user_name: codingoer
           user_email: codingoer@163.com
           publish_dir: ./public
