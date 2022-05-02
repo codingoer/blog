@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="NexT User Docs – Third-party Service Integration – External Libraries">
+<meta property="og:type" content="website">
+<meta property="og:title" content="External Libraries">
+<meta property="og:url" content="https://www.codingoer.top/docs/third-party-services/external-libraries.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="NexT User Docs – Third-party Service Integration – External Libraries">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-01T15:26:08.311Z">
+<meta property="article:modified_time" content="2022-03-31T23:27:24.000Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="Java,spring,spring boot,spring cloud">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.codingoer.top/docs/third-party-services/external-libraries">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/docs/third-party-services/external-libraries.html","path":"docs/third-party-services/external-libraries.html","title":"External Libraries"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>External Libraries | Java技术分享
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PJAX"><span class="nav-number">1.</span> <span class="nav-text">PJAX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fancybox"><span class="nav-number">2.</span> <span class="nav-text">Fancybox</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Medium-Zoom"><span class="nav-number">3.</span> <span class="nav-text">Medium Zoom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lazyload"><span class="nav-number">4.</span> <span class="nav-text">Lazyload</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pangu-Autospace"><span class="nav-number">5.</span> <span class="nav-text">Pangu Autospace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quicklink"><span class="nav-number">6.</span> <span class="nav-text">Quicklink</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation-Effect"><span class="nav-number">7.</span> <span class="nav-text">Animation Effect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Progress-Bar"><span class="nav-number">8.</span> <span class="nav-text">Progress Bar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Canvas-Ribbon"><span class="nav-number">9.</span> <span class="nav-text">Canvas Ribbon</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-getting-started"><a href="/blog/docs/getting-started/" rel="section"><i class="fa fa-flag fa-fw"></i>Getting Started</a></li>
+
+
+      
+  <li class="menu-item menu-item-theme-settings"><a href="/blog/docs/theme-settings/" rel="section"><i class="fa fa-star fa-fw"></i>Theme Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-third-party-services"><a href="/blog/docs/third-party-services/" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>Third Party Services</a></li>
+
+
+      
+  <li class="menu-item menu-item-tag-plugins"><a href="/blog/docs/tag-plugins/" rel="section"><i class="fa fa-rocket fa-fw"></i>Tag Plugins</a></li>
+
+
+      
+  <li class="menu-item menu-item-advanced-settings"><a href="/blog/docs/advanced-settings/" rel="section"><i class="fa fa-cog fa-fw"></i>Advanced Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-troubleshooting"><a href="/blog/docs/troubleshooting.html" rel="section"><i class="fa fa-life-ring fa-fw"></i>Troubleshooting</a></li>
+
+
+    </ul>
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-math-equations"><a href="/blog/docs/third-party-services/math-equations.html" rel="section"><i class="fa fa-square-root-alt fa-fw"></i>Math Equations</a></li>
+
+
+      
+  <li class="menu-item menu-item-comment-systems"><a href="/blog/docs/third-party-services/comments.html" rel="section"><i class="fa fa-comment-alt fa-fw"></i>Comment Systems</a></li>
+
+
+      
+  <li class="menu-item menu-item-post-widgets"><a href="/blog/docs/third-party-services/post-widgets.html" rel="section"><i class="fa fa-gift fa-fw"></i>Post Widgets</a></li>
+
+
+      
+  <li class="menu-item menu-item-statistics-and-analytics"><a href="/blog/docs/third-party-services/statistics-and-analytics.html" rel="section"><i class="fa fa-chart-pie fa-fw"></i>Statistics and Analytics</a></li>
+
+
+      
+  <li class="menu-item menu-item-search-services"><a href="/blog/docs/third-party-services/search-services.html" rel="section"><i class="fab fa-algolia fa-fw"></i>Search Services</a></li>
+
+
+      
+  <li class="menu-item menu-item-chat-services"><a href="/blog/docs/third-party-services/chat-services.html" rel="section"><i class="fa fa-comments fa-fw"></i>Chat Services</a></li>
+
+
+      
+  <li class="menu-item menu-item-external-libraries"><a href="/blog/docs/third-party-services/external-libraries.html" rel="section"><i class="fa fa-lightbulb fa-fw"></i>External Libraries</a></li>
+
+
+    </ul>
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">External Libraries
+</h1>
+
+<div class="post-meta-container">
+    <div class="post-description">NexT User Docs – Third-party Service Integration – External Libraries</div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/docs/">DOCS</a></li>
+            <li><a href="/blog/docs/third-party-services/">THIRD PARTY SERVICES</a></li>
+            <li>EXTERNAL LIBRARIES</li>
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h3 id="PJAX"><a href="#PJAX" class="headerlink" title="PJAX"></a>PJAX</h3><p><a target="_blank" rel="noopener" href="https://github.com/MoOx/pjax">Pjax</a> is a standalone JavaScript module that uses AJAX (XmlHttpRequest) and <code>pushState()</code> to deliver a fast browsing experience.</p>
+<p>It allows you to completely transform the user experience of standard websites (server-side generated or static ones) to make users feel like they are browsing an app, especially for those with low bandwidth connections.</p>
+<div class="note warning"><p>Please use the absolute path of the image or <a target="_blank" rel="noopener" href="https://hexo.io/docs/tag-plugins#Include-Assets">Hexo asset_img tag</a> in your posts, otherwise the images may fail to load during Pjax refresh.</p>
+</div>
+
+<p>You can enable it by setting value <code>pjax</code> to <code>true</code> in <mark class="label primary">NexT config file</mark>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Easily enable fast Ajax navigation on your website.</span></span><br><span class="line"><span class="comment"># For more information: https://github.com/next-theme/pjax</span></span><br><span class="line"><span class="attr">pjax:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fancybox"><a href="#Fancybox" class="headerlink" title="Fancybox"></a>Fancybox</h3><p>NexT supports the fancybox plugin, which is a jQuery lightbox script for displaying images, videos and more. Touch enabled, responsive and fully customizable.</p>
+<p>You can enable it by setting value <code>fancybox</code> to <code>true</code> in <mark class="label primary">NexT config file</mark>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">fancybox:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Medium-Zoom"><a href="#Medium-Zoom" class="headerlink" title="Medium Zoom"></a>Medium Zoom</h3><p><a target="_blank" rel="noopener" href="https://github.com/francoischalifour/medium-zoom">Medium Zoom</a> is a JavaScript library for zooming images like Medium.</p>
+<p>You can enable it by setting value <code>mediumzoom</code> to <code>true</code> in <mark class="label primary">NexT config file</mark>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># A JavaScript library for zooming images like Medium.</span></span><br><span class="line"><span class="attr">mediumzoom:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<div class="note warning"><p>Do not enable both <code>fancybox</code> and <code>mediumzoom</code>.</p>
+</div>
+
+<h3 id="Lazyload"><a href="#Lazyload" class="headerlink" title="Lazyload"></a>Lazyload</h3><p><a target="_blank" rel="noopener" href="https://github.com/ApoorvSaxena/lozad.js">Lozad.js</a> is a lazy loader plugin in modern vanilla JavaScript. It delays loading of images in long web pages. Images outside of viewport will not be loaded before user scrolls to them. This is opposite of image preloading.</p>
+<p>You can enable it by setting value <code>lazyload</code> to <code>true</code> in <mark class="label primary">NexT config file</mark>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Vanilla JavaScript plugin for lazyloading images.</span></span><br><span class="line"><span class="attr">lazyload:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>Then run the following command in <mark class="label info">site root dir</mark> to ensure that <code>lazyload</code> can be enabled or disabled correctly:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pangu-Autospace"><a href="#Pangu-Autospace" class="headerlink" title="Pangu Autospace"></a>Pangu Autospace</h3><p><a target="_blank" rel="noopener" href="https://github.com/vinta/pangu.js">pangu.js</a> will automatically insert a blank space between all the Chinese characters and the hexagonal English numeric symbols on the page.</p>
+<p>You can enable it by setting value <code>pangu</code> to <code>true</code> in <mark class="label primary">NexT config file</mark>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Pangu Support</span></span><br><span class="line"><span class="attr">pangu:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Quicklink"><a href="#Quicklink" class="headerlink" title="Quicklink"></a>Quicklink</h3><p><a target="_blank" rel="noopener" href="https://github.com/GoogleChromeLabs/quicklink">Quicklink</a> is a JavaScript plugin that faster subsequent page-loads by prefetching in-viewport links during idle time. Chrome, Firefox, Edge are supported without polyfills.</p>
+<p>You can enable it by setting value <code>quicklink.enable</code> to <code>true</code> in <mark class="label primary">NexT config file</mark>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">...</span></span><br><span class="line"><span class="attr">quicklink:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">home:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">archive:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">delay:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">timeout:</span> <span class="number">3000</span></span><br><span class="line">  <span class="attr">priority:</span> <span class="literal">true</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Animation-Effect"><a href="#Animation-Effect" class="headerlink" title="Animation Effect"></a>Animation Effect</h3><p>NexT enables animation effect by default which is supported by Anime.js and Animate.css, so it will wait for JavaScript loaded to show content.<br>If you need speed you can set the value of <code>motion.enable</code> to <code>false</code> to disable it.</p>
+<p>Edit <mark class="label primary">NexT config file</mark> and set the needed values under the <code>motion</code> to fit your demand. You can preview all Transition variants here: <a target="_blank" rel="noopener" href="https://theme-next.js.org/animate/">NexT Animation Effect Preview</a>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use Animate.css to animate everything.</span></span><br><span class="line"><span class="comment"># For more information: https://animate.style</span></span><br><span class="line"><span class="attr">motion:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">async:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="comment"># All available Transition variants: https://theme-next.js.org/animate/</span></span><br><span class="line">    <span class="attr">post_block:</span> <span class="string">fadeIn</span></span><br><span class="line">    <span class="attr">post_header:</span> <span class="string">fadeInDown</span></span><br><span class="line">    <span class="attr">post_body:</span> <span class="string">fadeInDown</span></span><br><span class="line">    <span class="attr">coll_header:</span> <span class="string">fadeInLeft</span></span><br><span class="line">    <span class="comment"># Only for Pisces | Gemini.</span></span><br><span class="line">    <span class="attr">sidebar:</span> <span class="string">fadeInUp</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Progress-Bar"><a href="#Progress-Bar" class="headerlink" title="Progress Bar"></a>Progress Bar</h3><p>Pace will automatically monitor your Ajax requests, event loop lag, document ready state and elements on your page to decide on the progress.</p>
+<div class="tabs" id="pace"><ul class="nav-tabs"><li class="tab active"><a href="#pace-1"><code>pace</code></a></li><li class="tab"><a href="#pace-2"><code>color</code></a></li><li class="tab"><a href="#pace-3"><code>theme</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="pace-1"><p>You can enable it by setting value <code>pace.enable</code> to <code>true</code> in <mark class="label primary">NexT config file</mark>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pace:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="pace-2"><p>You can change the color of progress bar by setting value <code>pace.color</code> in <mark class="label primary">NexT config file</mark>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pace:</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">orange</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="pace-3"><p>Pace includes a bunch of <a target="_blank" rel="noopener" href="https://codebyzach.github.io/pace/">themes</a> to get you started. By default NexT uses <code>minimal</code> theme (pace-theme-minimal). You can configure it by editing values in <code>pace.theme</code> section in <mark class="label primary">NexT config file</mark>.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pace:</span></span><br><span class="line">  <span class="attr">theme:</span> <span class="string">minimal</span></span><br></pre></td></tr></table></figure></div></div></div>
+
+<h3 id="Canvas-Ribbon"><a href="#Canvas-Ribbon" class="headerlink" title="Canvas Ribbon"></a>Canvas Ribbon</h3><p><a target="_blank" rel="noopener" href="https://github.com/hustcc/ribbon.js">canvas-ribbon.js</a> is a ribbon backgroud of website draw on canvas.</p>
+<p>You can enable it by setting value <code>canvas_ribbon</code> to <code>true</code> in <mark class="label primary">NexT config file</mark>. You can also configure the ribbon setting by editing values in <code>canvas_ribbon</code> section:</p>
+<ul>
+<li>size: The width of the ribbon.</li>
+<li>alpha: The transparency of the ribbon.</li>
+<li>zIndex: The display level of the ribbon.</li>
+</ul>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">canvas_ribbon:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">size:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">alpha:</span> <span class="number">0.6</span></span><br><span class="line">  <span class="attr">zIndex:</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/docs/">DOCS</a></li>
+            <li><a href="/blog/docs/third-party-services/">THIRD PARTY SERVICES</a></li>
+            <li>EXTERNAL LIBRARIES</li>
+  </ul>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

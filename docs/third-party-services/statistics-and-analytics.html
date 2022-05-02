@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="NexT User Docs – Third-party Service Integration – Statistics and Analytics">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Statistics and Analytics">
+<meta property="og:url" content="https://www.codingoer.top/docs/third-party-services/statistics-and-analytics.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="NexT User Docs – Third-party Service Integration – Statistics and Analytics">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.codingoer.top/blog/images/next/analytics-baidu-id.png">
+<meta property="og:image" content="https://www.codingoer.top/blog/images/next/valine-1.png">
+<meta property="og:image" content="https://www.codingoer.top/blog/images/next/valine-2.png">
+<meta property="og:image" content="https://www.codingoer.top/blog/images/next/firebase.png">
+<meta property="article:published_time" content="2022-05-02T08:22:44.332Z">
+<meta property="article:modified_time" content="2022-05-02T08:22:44.332Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="Java,spring,spring boot,spring cloud">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.codingoer.top/blog/images/next/analytics-baidu-id.png">
+
+
+<link rel="canonical" href="https://www.codingoer.top/docs/third-party-services/statistics-and-analytics">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/docs/third-party-services/statistics-and-analytics.html","path":"docs/third-party-services/statistics-and-analytics.html","title":"Statistics and Analytics"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Statistics and Analytics | Java技术分享
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Analytics-Tools"><span class="nav-number">1.</span> <span class="nav-text">Analytics Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Google-Analytics"><span class="nav-number">1.1.</span> <span class="nav-text">Google Analytics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Baidu-Analytics-China"><span class="nav-number">1.2.</span> <span class="nav-text">Baidu Analytics (China)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Growingio-Analytics"><span class="nav-number">1.3.</span> <span class="nav-text">Growingio Analytics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cloudflare-Web-Analytics"><span class="nav-number">1.4.</span> <span class="nav-text">Cloudflare Web Analytics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Microsoft-Clarity-Analytics"><span class="nav-number">1.5.</span> <span class="nav-text">Microsoft Clarity Analytics</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Counting-Tools"><span class="nav-number">2.</span> <span class="nav-text">Counting Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LeanCloud-China"><span class="nav-number">2.1.</span> <span class="nav-text">LeanCloud (China)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Firebase"><span class="nav-number">2.2.</span> <span class="nav-text">Firebase</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Busuanzi-Counting-China"><span class="nav-number">2.3.</span> <span class="nav-text">Busuanzi Counting (China)</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-getting-started"><a href="/blog/docs/getting-started/" rel="section"><i class="fa fa-flag fa-fw"></i>Getting Started</a></li>
+
+
+      
+  <li class="menu-item menu-item-theme-settings"><a href="/blog/docs/theme-settings/" rel="section"><i class="fa fa-star fa-fw"></i>Theme Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-third-party-services"><a href="/blog/docs/third-party-services/" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>Third Party Services</a></li>
+
+
+      
+  <li class="menu-item menu-item-tag-plugins"><a href="/blog/docs/tag-plugins/" rel="section"><i class="fa fa-rocket fa-fw"></i>Tag Plugins</a></li>
+
+
+      
+  <li class="menu-item menu-item-advanced-settings"><a href="/blog/docs/advanced-settings/" rel="section"><i class="fa fa-cog fa-fw"></i>Advanced Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-troubleshooting"><a href="/blog/docs/troubleshooting.html" rel="section"><i class="fa fa-life-ring fa-fw"></i>Troubleshooting</a></li>
+
+
+    </ul>
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-math-equations"><a href="/blog/docs/third-party-services/math-equations.html" rel="section"><i class="fa fa-square-root-alt fa-fw"></i>Math Equations</a></li>
+
+
+      
+  <li class="menu-item menu-item-comment-systems"><a href="/blog/docs/third-party-services/comments.html" rel="section"><i class="fa fa-comment-alt fa-fw"></i>Comment Systems</a></li>
+
+
+      
+  <li class="menu-item menu-item-post-widgets"><a href="/blog/docs/third-party-services/post-widgets.html" rel="section"><i class="fa fa-gift fa-fw"></i>Post Widgets</a></li>
+
+
+      
+  <li class="menu-item menu-item-statistics-and-analytics"><a href="/blog/docs/third-party-services/statistics-and-analytics.html" rel="section"><i class="fa fa-chart-pie fa-fw"></i>Statistics and Analytics</a></li>
+
+
+      
+  <li class="menu-item menu-item-search-services"><a href="/blog/docs/third-party-services/search-services.html" rel="section"><i class="fab fa-algolia fa-fw"></i>Search Services</a></li>
+
+
+      
+  <li class="menu-item menu-item-chat-services"><a href="/blog/docs/third-party-services/chat-services.html" rel="section"><i class="fa fa-comments fa-fw"></i>Chat Services</a></li>
+
+
+      
+  <li class="menu-item menu-item-external-libraries"><a href="/blog/docs/third-party-services/external-libraries.html" rel="section"><i class="fa fa-lightbulb fa-fw"></i>External Libraries</a></li>
+
+
+    </ul>
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Statistics and Analytics
+</h1>
+
+<div class="post-meta-container">
+    <div class="post-description">NexT User Docs – Third-party Service Integration – Statistics and Analytics</div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/docs/">DOCS</a></li>
+            <li><a href="/blog/docs/third-party-services/">THIRD PARTY SERVICES</a></li>
+            <li>STATISTICS AND ANALYTICS</li>
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <div class="note warning"><p>NexT will not send record to analytics service provider as long as the page’s host name does not match <code>url</code> option set in <mark class="label info">Hexo config file</mark>. This will prevent local debugging from polluting analytics. Make sure you have configured <code>url</code> correctly, otherwise these statistics tools may not work as expected.</p>
+</div>
+
+<h3 id="Analytics-Tools"><a href="#Analytics-Tools" class="headerlink" title="Analytics Tools"></a>Analytics Tools</h3><h4 id="Google-Analytics"><a href="#Google-Analytics" class="headerlink" title="Google Analytics"></a>Google Analytics</h4><ol>
+<li><p>Create an account and log into <a target="_blank" rel="noopener" href="https://analytics.google.com/">Google Analytics</a>. <a target="_blank" rel="noopener" href="https://support.google.com/analytics/?hl=en#topic=3544906">More detailed documentation</a></p>
+</li>
+<li><p>Edit <mark class="label primary">NexT config file</mark> and fill <code>tracking_id</code> under section <code>google_analytics</code> with your Google track ID. Google track ID always starts with <code>UA-</code>.</p>
+ <figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Google Analytics</span></span><br><span class="line"><span class="attr">google_analytics:</span></span><br><span class="line">  <span class="attr">tracking_id:</span> <span class="string">UA-XXXXXXXX-X</span></span><br><span class="line">  <span class="attr">only_pageview:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>When field <code>only_pageview</code> is set to true, NexT will only send <code>pageview</code> event to Google Analytics.<br>The benefit of using this instead of <code>only_pageview: false</code> is reduce a external script on your site, which will give you better performance but no complete analytics function.</p>
+</li>
+</ol>
+<h4 id="Baidu-Analytics-China"><a href="#Baidu-Analytics-China" class="headerlink" title="Baidu Analytics (China)"></a>Baidu Analytics (China)</h4><div class="tabs" id="baidu-analytics"><ul class="nav-tabs"><li class="tab active"><a href="#baidu-analytics-1">Login →</a></li><li class="tab"><a href="#baidu-analytics-2">Script ID →</a></li><li class="tab"><a href="#baidu-analytics-3">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="baidu-analytics-1"><p>Login to <a target="_blank" rel="noopener" href="https://tongji.baidu.com/">Baidu Analytics</a> and locate to site code getting page.</p></div><div class="tab-pane" id="baidu-analytics-2"><p>Copy the script ID after <code>hm.js?</code>, like the following picture:<br><img src="/blog/images/next/analytics-baidu-id.png" alt="NexT Baidu Analytics"></p></div><div class="tab-pane" id="baidu-analytics-3"><p>Edit <mark class="label primary">NexT config file</mark> and change the value of <code>baidu_analytics</code> to your script ID.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Baidu Analytics ID</span></span><br><span class="line"><span class="attr">baidu_analytics:</span> <span class="string">your_id</span></span><br></pre></td></tr></table></figure></div></div></div>
+
+<h4 id="Growingio-Analytics"><a href="#Growingio-Analytics" class="headerlink" title="Growingio Analytics"></a>Growingio Analytics</h4><p>Official documentation: <a target="_blank" rel="noopener" href="https://docs.growingio.com/v3/developer-manual/sdkintegrated/web-js-sdk/latest-jssdk">https://docs.growingio.com/v3/developer-manual/sdkintegrated/web-js-sdk/latest-jssdk</a></p>
+<p>Edit <mark class="label primary">NexT config file</mark> and change the value of <code>growingio_analytics</code> to your project ID.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Growingio Analytics</span></span><br><span class="line"><span class="attr">growingio_analytics:</span> <span class="comment"># &lt;project_id&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Cloudflare-Web-Analytics"><a href="#Cloudflare-Web-Analytics" class="headerlink" title="Cloudflare Web Analytics"></a>Cloudflare Web Analytics</h4><p>Edit <mark class="label primary">NexT config file</mark> and change the value of <code>cloudflare_analytics</code> to your project ID.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Cloudflare Web Analytics</span></span><br><span class="line"><span class="attr">cloudflare_analytics:</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Microsoft-Clarity-Analytics"><a href="#Microsoft-Clarity-Analytics" class="headerlink" title="Microsoft Clarity Analytics"></a>Microsoft Clarity Analytics</h4><p>Edit <mark class="label primary">NexT config file</mark> and change the value of <code>clarity_analytics</code> to your project ID.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Microsoft Clarity Analytics</span></span><br><span class="line"><span class="comment"># See: https://clarity.microsoft.com/</span></span><br><span class="line"><span class="attr">clarity_analytics:</span> <span class="comment"># &lt;project_id&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Counting-Tools"><a href="#Counting-Tools" class="headerlink" title="Counting Tools"></a>Counting Tools</h3><h4 id="LeanCloud-China"><a href="#LeanCloud-China" class="headerlink" title="LeanCloud (China)"></a>LeanCloud (China)</h4><p>Adding article reading times counting to NexT theme. Documentation how to set the counter up and running safely aviable in <a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-leancloud-counter-security">hexo-leancloud-counter-security</a>.</p>
+<div class="tabs" id="leancloud-counter"><ul class="nav-tabs"><li class="tab active"><a href="#leancloud-counter-1">Get App Keys →</a></li><li class="tab"><a href="#leancloud-counter-2">Installation →</a></li><li class="tab"><a href="#leancloud-counter-3">Hexo Config →</a></li><li class="tab"><a href="#leancloud-counter-4">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="leancloud-counter-1"><ol>
+<li>Create an account or log in to <a target="_blank" rel="noopener" href="https://console.leancloud.app/login">LeanCloud</a>, and then click the button to create an application in <a target="_blank" rel="noopener" href="https://console.leancloud.app/apps">dashboard</a>.<br> <img src="/blog/images/next/valine-1.png" alt="LeanCloud"></li>
+<li>Go to the application you just created, select <code>Settings → App Keys</code> in the lower left corner, and you will see your APP ID and APP Key.<br> <img src="/blog/images/next/valine-2.png" alt="LeanCloud"></li>
+</ol></div><div class="tab-pane" id="leancloud-counter-2"><p>Install <code>hexo-leancloud-counter-security</code> by executing the following command in <mark class="label info">site root dir</mark>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-leancloud-counter-security</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leancloud-counter-3"><p>Edit <mark class="label info">Hexo config file</mark> and add following content:</p>
+<figure class="highlight yml"><figcaption><span>Hexo config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">leancloud_counter_security:</span></span><br><span class="line">  <span class="attr">enable_sync:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">app_id:</span> <span class="string">&lt;your</span> <span class="string">app</span> <span class="string">id&gt;</span></span><br><span class="line">  <span class="attr">app_key:</span> <span class="string">&lt;your</span> <span class="string">app</span> <span class="string">key&gt;</span></span><br><span class="line">  <span class="attr">username:</span> <span class="string">&lt;your</span> <span class="string">username&gt;</span> <span class="comment"># Will be asked while deploying if is left blank</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">&lt;your</span> <span class="string">password&gt;</span> <span class="comment"># Recommmended to be left blank. Will be asked while deploying if is left blank</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="leancloud-counter-4"><p>Edit <mark class="label primary">NexT config file</mark> and fill options under <code>leancloud_visitors</code> section.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Show number of visitors to each article.</span></span><br><span class="line"><span class="comment"># You can visit https://www.leancloud.cn get AppID and AppKey.</span></span><br><span class="line"><span class="attr">leancloud_visitors:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">app_id:</span> <span class="comment">#&lt;app_id&gt;</span></span><br><span class="line">  <span class="attr">app_key:</span> <span class="comment">#&lt;app_key&gt;</span></span><br><span class="line">  <span class="comment"># Required for apps from CN region</span></span><br><span class="line">  <span class="attr">server_url:</span> <span class="comment"># &lt;your server url&gt;</span></span><br><span class="line">  <span class="comment"># Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security</span></span><br><span class="line">  <span class="comment"># If you don&#x27;t care about security in lc counter and just want to use it directly</span></span><br><span class="line">  <span class="comment"># (without hexo-leancloud-counter-security plugin), set the `security` to `false`.</span></span><br><span class="line">  <span class="attr">security:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></div></div></div>
+
+<h4 id="Firebase"><a href="#Firebase" class="headerlink" title="Firebase"></a>Firebase</h4><p>Firebase Analytics provides the functionality of visitor statistics.</p>
+<div class="tabs" id="firestore"><ul class="nav-tabs"><li class="tab active"><a href="#firestore-1">Get apiKey & projectId →</a></li><li class="tab"><a href="#firestore-2">NexT Config</a></li></ul><div class="tab-content"><div class="tab-pane active" id="firestore-1"><p>Login to <a target="_blank" rel="noopener" href="https://console.firebase.google.com/u/0/">Firebase</a> to get apiKey and projectId. The Web API Key gets generated once you go into the “Authentication” section for the first time.</p>
+<p><img src="/blog/images/next/firebase.png" alt="Firebase"></p>
+<p><a target="_blank" rel="noopener" href="https://firebase.google.com/docs/firestore/">More detailed documentation</a></p></div><div class="tab-pane" id="firestore-2"><p>Edit <mark class="label primary">NexT config file</mark> and add or change <code>firestore</code> section:</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">firestore:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">collection:</span> <span class="string">articles</span> <span class="comment">#required, a string collection name to access firestore database</span></span><br><span class="line">  <span class="attr">apiKey:</span> <span class="comment">#required</span></span><br><span class="line">  <span class="attr">projectId:</span> <span class="comment">#required</span></span><br></pre></td></tr></table></figure></div></div></div>
+
+<h4 id="Busuanzi-Counting-China"><a href="#Busuanzi-Counting-China" class="headerlink" title="Busuanzi Counting (China)"></a>Busuanzi Counting (China)</h4><div class="tabs" id="busuanzi-counting"><ul class="nav-tabs"><li class="tab active"><a href="#busuanzi-counting-1">Global Settings →</a></li><li class="tab"><a href="#busuanzi-counting-2">Site UV Settings →</a></li><li class="tab"><a href="#busuanzi-counting-3">Site PV Settings →</a></li><li class="tab"><a href="#busuanzi-counting-4">Per-page PV Settings</a></li></ul><div class="tab-content"><div class="tab-pane active" id="busuanzi-counting-1"><p>Edit <code>busuanzi_count</code> option in <mark class="label primary">NexT config file</mark>.<br>When <code>enable: true</code>, global setting is enabled. If <code>total_visitors</code>, <code>total_views</code>, <code>post_views</code> are all <code>false</code>, Busuanzi only counts but never shows.</p></div><div class="tab-pane" id="busuanzi-counting-2"><p>When <code>total_visitors: true</code>, it will show site UV in footer. You can also use font-awesome by setting <code>total_visitors_icon</code> to the name of the icon.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line">  <span class="attr">total_visitors:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_visitors_icon:</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="busuanzi-counting-3"><p>When <code>total_views: true</code>, it will show site UV in footer. You can also use font-awesome by setting <code>total_views_icon</code> to the name of the icon.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line">  <span class="attr">total_views:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_views_icon:</span> <span class="string">fa</span> <span class="string">fa-eye</span></span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="busuanzi-counting-4"><p>When <code>post_views: true</code>, it will show page PV in post meta. You can also use font-awesome by setting <code>post_views_icon</code> to the name of the icon.</p>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line">  <span class="attr">post_views:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">post_views_icon:</span> <span class="string">far</span> <span class="string">fa-eye</span></span><br></pre></td></tr></table></figure></div></div></div>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/docs/">DOCS</a></li>
+            <li><a href="/blog/docs/third-party-services/">THIRD PARTY SERVICES</a></li>
+            <li>STATISTICS AND ANALYTICS</li>
+  </ul>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

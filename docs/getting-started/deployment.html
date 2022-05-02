@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="NexT User Docs – Starting to Use — Deployment">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Deployment">
+<meta property="og:url" content="https://www.codingoer.top/docs/getting-started/deployment.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="NexT User Docs – Starting to Use — Deployment">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-01T15:26:08.315Z">
+<meta property="article:modified_time" content="2022-03-31T23:27:24.000Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="Java,spring,spring boot,spring cloud">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.codingoer.top/docs/getting-started/deployment">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/docs/getting-started/deployment.html","path":"docs/getting-started/deployment.html","title":"Deployment"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deployment | Java技术分享
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-Deployment"><span class="nav-number">1.</span> <span class="nav-text">Local Deployment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Integration"><span class="nav-number">2.</span> <span class="nav-text">Continuous Integration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Netlify"><span class="nav-number">2.1.</span> <span class="nav-text">Netlify</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GitHub-Actions"><span class="nav-number">2.2.</span> <span class="nav-text">GitHub Actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Travis-CI"><span class="nav-number">2.3.</span> <span class="nav-text">Travis CI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gitlab-CI"><span class="nav-number">2.4.</span> <span class="nav-text">Gitlab CI</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-getting-started"><a href="/blog/docs/getting-started/" rel="section"><i class="fa fa-flag fa-fw"></i>Getting Started</a></li>
+
+
+      
+  <li class="menu-item menu-item-theme-settings"><a href="/blog/docs/theme-settings/" rel="section"><i class="fa fa-star fa-fw"></i>Theme Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-third-party-services"><a href="/blog/docs/third-party-services/" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>Third Party Services</a></li>
+
+
+      
+  <li class="menu-item menu-item-tag-plugins"><a href="/blog/docs/tag-plugins/" rel="section"><i class="fa fa-rocket fa-fw"></i>Tag Plugins</a></li>
+
+
+      
+  <li class="menu-item menu-item-advanced-settings"><a href="/blog/docs/advanced-settings/" rel="section"><i class="fa fa-cog fa-fw"></i>Advanced Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-troubleshooting"><a href="/blog/docs/troubleshooting.html" rel="section"><i class="fa fa-life-ring fa-fw"></i>Troubleshooting</a></li>
+
+
+    </ul>
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-installation"><a href="/blog/docs/getting-started/installation.html" rel="section"><i class="fa fa-download fa-fw"></i>Installation</a></li>
+
+
+      
+  <li class="menu-item menu-item-deployment"><a href="/blog/docs/getting-started/deployment.html" rel="section"><i class="fa fa-upload fa-fw"></i>Deployment</a></li>
+
+
+      
+  <li class="menu-item menu-item-configuration"><a href="/blog/docs/getting-started/configuration.html" rel="section"><i class="fa fa-wrench fa-fw"></i>Configuration</a></li>
+
+
+      
+  <li class="menu-item menu-item-upgrade"><a href="/blog/docs/getting-started/upgrade.html" rel="section"><i class="fa fa-history fa-fw"></i>Upgrade</a></li>
+
+
+    </ul>
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Deployment
+</h1>
+
+<div class="post-meta-container">
+    <div class="post-description">NexT User Docs – Starting to Use — Deployment</div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/docs/">DOCS</a></li>
+            <li><a href="/blog/docs/getting-started/">GETTING STARTED</a></li>
+            <li>DEPLOYMENT</li>
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h3 id="Local-Deployment"><a href="#Local-Deployment" class="headerlink" title="Local Deployment"></a>Local Deployment</h3><ol>
+<li>Modify files locally.</li>
+<li>Localization testing: <code>hexo clean &amp;&amp; hexo s</code>.</li>
+<li>Deployment: <code>hexo g -d</code>.</li>
+</ol>
+<h3 id="Continuous-Integration"><a href="#Continuous-Integration" class="headerlink" title="Continuous Integration"></a>Continuous Integration</h3><ul>
+<li>Edit the file directly online, effective immediately</li>
+<li>Automatic deployment, simultaneous deployment to multiple locations</li>
+</ul>
+<h4 id="Netlify"><a href="#Netlify" class="headerlink" title="Netlify"></a>Netlify</h4><p>Netlify is an all-in-one platform for automating modern web projects. Replace your hosting infrastructure, continuous integration, and deployment pipeline with a single workflow. Integrate dynamic functionality like serverless functions, user authentication, and form handling as your projects grow.</p>
+<p>Perhaps you have already found that this website is deployed on Netlify. Checkout <code>deploy.sh</code> and <code>netlify.toml</code> in <a target="_blank" rel="noopener" href="https://github.com/next-theme/theme-next-docs">theme-next-docs</a> repository for more information.</p>
+<h4 id="GitHub-Actions"><a href="#GitHub-Actions" class="headerlink" title="GitHub Actions"></a>GitHub Actions</h4><p>This Github Action automating Hexo deployment workflow, to allow you to leverage GitHub Actions to publish your Hexo site on Github Pages: <a target="_blank" rel="noopener" href="https://github.com/sma11black/hexo-action">hexo-action</a>.</p>
+<h4 id="Travis-CI"><a href="#Travis-CI" class="headerlink" title="Travis CI"></a>Travis CI</h4><p>Travis CI enables your team to test and ship your apps with confidence. It’s built for everyone and for projects and teams of all sizes, supporting over 20 different languages out of the box, including Javascript and Node.js, Ruby, PHP, Python, Mac&#x2F;iOS, as well as Docker, while giving you full control over the build environment to customize it to your own needs.</p>
+<div class="tabs" id="travis-ci"><ul class="nav-tabs"><li class="tab active"><a href="#travis-ci-1">Get permissions →</a></li><li class="tab"><a href="#travis-ci-2">Configure <code>.travis.yml</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="travis-ci-1"><p>There are two ways to obtain the necessary permissions for Travis CI. Deploy Key has the advantage of high security, while Access Token has the advantage of being more flexible.</p>
+<div class="tabs" id="get-permissions"><ul class="nav-tabs"><li class="tab active"><a href="#get-permissions-1">Access Token</a></li><li class="tab"><a href="#get-permissions-2">Deploy Key</a></li></ul><div class="tab-content"><div class="tab-pane active" id="get-permissions-1"><p>This method applies to a warehouse with a private Submodule</p>
+<ul>
+<li>Create an empty branch of <code>source</code> in the repository where the blog source is hosted.</li>
+<li>Get the Access Token: Settings → Developer settings → Personal access token → Generate new token. Set access rights according to the actual situation. It should be noted that the access token is only displayed once on this page, and it should be copied, otherwise it can only be regenerated.</li>
+<li>Use github account to log in to <a target="_blank" rel="noopener" href="https://travis-ci.com/">Travis CI website</a>. You can find the warehouses in the current github account, select the warehouses to be deployed, and then click setting. Fill in the personal access token generated by github and select the branch that the warehouse needs to be monitored by Travis.</li>
+</ul></div><div class="tab-pane" id="get-permissions-2"><p>Deploy key is a SSH key set in your repo to grant client read-only (as well as r&#x2F;w, if you want) access to your repo. This method is suitable for most public blog repositories and there are no private sub-modules in the repositories.</p>
+<ul>
+<li><p>Create an empty branch of <code>source</code> in the repository where the blog source is hosted.</p>
+</li>
+<li><p>Generate a ssh key</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -b 4096 -C &quot;&#123;email&#125;&quot; -f ~/.ssh/deploy_key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Add the deployment public key in your repo, and delete it</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm -f deploy_key.pub</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use the Travis command to encrypt private key, and add it to git</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ gem install travis</span><br><span class="line">$ travis login</span><br><span class="line">$ travis encrypt deploy_key</span><br><span class="line">$ rm -f deploy_key</span><br><span class="line">$ git add deploy_key.enc</span><br></pre></td></tr></table></figure></li>
+</ul></div></div></div></div><div class="tab-pane" id="travis-ci-2"><figure class="highlight yml"><figcaption><span>hexo/.travis.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dist:</span> <span class="string">trusty</span></span><br><span class="line"><span class="attr">sudo:</span> <span class="string">required</span></span><br><span class="line"></span><br><span class="line"><span class="attr">addons:</span></span><br><span class="line"> <span class="attr">ssh_known_hosts:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">github.com</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">git.coding.net</span></span><br><span class="line"> <span class="attr">apt:</span></span><br><span class="line">   <span class="attr">packages:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">nasm</span></span><br><span class="line"></span><br><span class="line"><span class="attr">env:</span></span><br><span class="line"> <span class="attr">global:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">TZ=Asia/Tokyo</span></span><br><span class="line"></span><br><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"><span class="attr">node_js:</span> <span class="string">node</span></span><br><span class="line"></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line"> <span class="attr">only:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="string">source</span></span><br><span class="line"></span><br><span class="line"><span class="attr">git:</span></span><br><span class="line"> <span class="attr">depth:</span> <span class="literal">false</span></span><br><span class="line"> <span class="attr">submodules:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">cache:</span></span><br><span class="line"> <span class="attr">apt:</span> <span class="literal">true</span></span><br><span class="line"> <span class="attr">npm:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_install:</span></span><br><span class="line"> <span class="comment"># Git Config</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">sed</span> <span class="string">-i</span> <span class="string">&#x27;s/git@github.com:/https:\/\/github.com\//&#x27;</span> <span class="string">.gitmodules</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">&quot;YOUR-GITHUB-NAME&quot;</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">&quot;YOUR-EMAIL&quot;</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># Restore last modified time</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">&quot;git ls-files -z | while read -d &#x27;&#x27; path; do touch -d \&quot;$(git log -1 --format=\&quot;@%ct\&quot; \&quot;$path\&quot;)\&quot; \&quot;$path\&quot;; done&quot;</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># Submodules</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">git</span> <span class="string">submodule</span> <span class="string">update</span> <span class="string">--recursive</span> <span class="string">--remote</span> <span class="string">--init</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># Deploy history</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">git</span> <span class="string">clone</span> <span class="string">--branch=master</span> <span class="string">--single-branch</span> <span class="string">YOUR-BLOG-REPO</span> <span class="string">.deploy_git</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># SSH Setup</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">openssl</span> <span class="string">aes-256-cbc</span> <span class="string">-K</span> <span class="string">$encrypted_693585a97b8c_key</span> <span class="string">-iv</span> <span class="string">$encrypted_693585a97b8c_iv</span> <span class="string">-in</span> <span class="string">deploy_key.enc</span> <span class="string">-out</span> <span class="string">deploy_key</span> <span class="string">-d</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">eval</span> <span class="string">&quot;$(ssh-agent -s)&quot;</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">chmod</span> <span class="number">600</span> <span class="string">./deploy_key</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">ssh-add</span> <span class="string">./deploy_key</span></span><br><span class="line"></span><br><span class="line"><span class="attr">install:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_script:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">clean</span></span><br><span class="line"> <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">g</span> <span class="string">-d</span></span><br></pre></td></tr></table></figure></div></div></div>
+
+<h4 id="Gitlab-CI"><a href="#Gitlab-CI" class="headerlink" title="Gitlab CI"></a>Gitlab CI</h4><p>GitLab offers a continuous integration service and pages service. If you add a <code>.gitlab-ci.yml</code> file to the root directory of your repository, and configure your GitLab project to use a Runner, then each commit or push, triggers your CI pipeline. The <code>.gitlab-ci.yml</code> file tells the GitLab runner what to do. By default it runs a pipeline with three stages: build, test, and deploy. You don’t need to use all three stages; stages with no jobs are simply ignored. And at the end, your websites will be published on GitLab Host automatically.</p>
+<ol>
+<li><p>Add <code>.gitlab-ci.yml</code> to the root directory of your repository, and configure it.</p>
+ <figure class="highlight yml"><figcaption><span>hexo/.gitlab-ci.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="string">node:lts</span></span><br><span class="line"></span><br><span class="line"><span class="attr">before_script:</span></span><br><span class="line">  <span class="comment"># Set TimeZone, eg: Asia/Shanghai</span></span><br><span class="line">  <span class="comment"># - export TZ=&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line">  <span class="comment"># Restore last modified time</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&quot;git ls-files -z | while read -d &#x27;&#x27; path; do touch -d \&quot;$(git log -1 --format=\&quot;@%ct\&quot; \&quot;$path\&quot;)\&quot; \&quot;$path\&quot;; done&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">pages:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">node_modules/</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">npx</span> <span class="string">hexo</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">public</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Upload <code>scaffolds</code>, <code>source</code>, <code>themes</code>, <code>.gitignore</code>, <code>.gitlab-ci.yml</code>, <code>_config.yml</code>, and <code>package.json</code> to <a target="_blank" rel="noopener" href="https://gitlab.com/">your Gitlab repository</a>.</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">$ ssh -T git@gitlab.com</span><br><span class="line">$ git remote add origin YOUR-GITLAB-REPO-SSH-LINK</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m &quot;COMMIT MESSAGE&quot;</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>Now, your static website is available at <code>https://yourname.gitlab.io/project</code> that is similar to GitHub. <a target="_blank" rel="noopener" href="https://gitlab.com/help/user/project/pages/index.md">More GitLab Pages config in here</a>.</p>
+<p>Of course, you can also pulish static website on GitHub Pages or others pages service. There are two ways to configure <code>.gitlab-ci.yml</code>:</p>
+<div class="tabs" id="gitlab-ci"><ul class="nav-tabs"><li class="tab active"><a href="#gitlab-ci-1"><code>HTTPS</code></a></li><li class="tab"><a href="#gitlab-ci-2"><code>SSH</code></a></li></ul><div class="tab-content"><div class="tab-pane active" id="gitlab-ci-1"><ul>
+<li><p>Get the Access Token: <code>Settings</code> → <code>Developer settings</code> → <code>Personal access token</code> → <code>Generate new token</code>. Set access rights according to the actual situation. It should be noted that the access token is only displayed once on this page, and it should be copied, otherwise it can only be regenerated.</p>
+</li>
+<li><p>Click <code>SETTINGS-CI/CD → Variables</code> in Gitlab, and defined access token as custom variable <code>GITHUB_ACCESS_TOKEN</code>. Or set <code>USERNAME</code> <code>PASSWORD</code> variable for coding repo.</p>
+</li>
+<li><p>Configure <code>.gitlab-ci.yml</code>: <strong>only add deploy stage at the end of this file</strong></p>
+  <figure class="highlight yml"><figcaption><span>hexo/.gitlab-ci.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">github:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">cd</span> <span class="string">./public</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">init</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">&quot;YOUR-USER-NAME&quot;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">&quot;YOUR-EMAIL&quot;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">add</span> <span class="string">.</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">commit</span> <span class="string">-m</span> <span class="string">&quot;gitlab-auto-deploy&quot;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">push</span> <span class="string">--force</span> <span class="string">--quiet</span> <span class="string">--set-upstream</span> <span class="string">https://$GITHUB_ACCESS_TOKEN@github.com/username/username.github.io.git</span> <span class="string">master</span> <span class="comment"># replace github_access_token</span></span><br><span class="line">  <span class="comment"># - git config http.postBuffer 524288000</span></span><br><span class="line">  <span class="comment"># - git push --force --quiet --set-upstream https://$USERNAME:$PASSWORD@git.coding.net/username/reponame.git master # replace username &amp; password, please escape the password</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></li>
+</ul></div><div class="tab-pane" id="gitlab-ci-2"><p>Deploy key is a SSH key set in your repo to grant client read-only (as well as r&#x2F;w, if you want) access to your repo. This method is suitable for most public blog repositories and there are no private sub-modules in the repositories.</p>
+<ul>
+<li><p>Generate a deploy key</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -b 4096 -C &quot;&#123;email&#125;&quot; -f ~/.ssh/deploy_key</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Click <code>SETTINGS-CI/CD → Variables</code> in Gitlab, copy the content of private key and defined it as custom variable <code>DEPLOY_PRIVATE_KEY</code>.</p>
+</li>
+<li><p>Configure <code>.gitlab-ci.yml</code>: <strong>only update script in <code>before_script</code></strong></p>
+  <figure class="highlight yml"><figcaption><span>hexo/.gitlab-ci.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">before_script:</span></span><br><span class="line">  <span class="comment"># Set TimeZone, eg: Asia/Shanghai</span></span><br><span class="line">  <span class="comment"># - export TZ=&#x27;Asia/Shanghai&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">&quot;YOUR-USER-NAME&quot;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">&quot;YOUR-EMAIL&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Restore last modified time</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&quot;git ls-files -z | while read -d &#x27;&#x27; path; do touch -d \&quot;$(git log -1 --format=\&quot;@%ct\&quot; \&quot;$path\&quot;)\&quot; \&quot;$path\&quot;; done&quot;</span></span><br><span class="line">  <span class="comment"># Install ssh-agent if not already installed, it is required by Docker.</span></span><br><span class="line">  <span class="comment"># (change apt-get to yum if you use a CentOS-based image)</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;which ssh-agent || ( apt-get update -y &amp;&amp; apt-get install openssh-client -y )&#x27;</span></span><br><span class="line">  <span class="comment"># Run ssh-agent (inside the build environment)</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">eval</span> <span class="string">$(ssh-agent</span> <span class="string">-s)</span></span><br><span class="line">  <span class="comment"># Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">ssh-add</span> <span class="string">&lt;(echo</span> <span class="string">&quot;$DEPLOY_PRIVATE_KEY&quot;</span><span class="string">)</span></span><br><span class="line">  <span class="comment"># For Docker builds disable host key checking. Be aware that by adding that</span></span><br><span class="line">  <span class="comment"># you are suspectible to man-in-the-middle attacks.</span></span><br><span class="line">  <span class="comment"># WARNING: Use this only with the Docker executor, if you use it with shell</span></span><br><span class="line">  <span class="comment"># you will overwrite your user&#x27;s SSH config.</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">mkdir</span> <span class="string">-p</span> <span class="string">~/.ssh</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">&#x27;[[ -f /.dockerenv ]] &amp;&amp; echo -e &quot;Host *\n\tStrictHostKeyChecking no\n\n&quot; &gt; ~/.ssh/config&#x27;</span></span><br><span class="line">  <span class="comment"># In order to properly check the server&#x27;s host key, assuming you created the</span></span><br><span class="line">  <span class="comment"># SSH_SERVER_HOSTKEYS variable previously, uncomment the following two lines</span></span><br><span class="line">  <span class="comment"># instead.</span></span><br><span class="line">  <span class="comment"># - mkdir -p ~/.ssh</span></span><br><span class="line">  <span class="comment"># - &#x27;[[ -f /.dockerenv ]] &amp;&amp; echo &quot;$SSH_SERVER_HOSTKEYS&quot; &gt; ~/.ssh/known_hosts&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Install pandoc, eg: v1.19.2.1</span></span><br><span class="line">  <span class="comment"># - wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb</span></span><br><span class="line">  <span class="comment"># - dpkg -i ./pandoc-1.19.2.1-1-amd64.deb</span></span><br><span class="line"></span><br><span class="line"><span class="attr">image:</span> <span class="string">node:lts</span></span><br><span class="line"></span><br><span class="line"><span class="attr">pages:</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">node_modules/</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">npx</span> <span class="string">hexo</span> <span class="string">deploy</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">public</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></li>
+</ul></div></div></div>
+
+<div class="note danger"><p>Variables are not masked, and their values can be shown in the job logs if explicitly asked to do so. So make sure gitlab pipelines can only be viewed by yourself.</p>
+</div>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/docs/">DOCS</a></li>
+            <li><a href="/blog/docs/getting-started/">GETTING STARTED</a></li>
+            <li>DEPLOYMENT</li>
+  </ul>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

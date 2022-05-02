@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="NexT User Docs – Starting to Use – Detailed Installation">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Installation">
+<meta property="og:url" content="https://www.codingoer.top/docs/getting-started/installation.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="NexT User Docs – Starting to Use – Detailed Installation">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-01T15:26:08.318Z">
+<meta property="article:modified_time" content="2022-03-31T23:27:24.000Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="Java,spring,spring boot,spring cloud">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.codingoer.top/docs/getting-started/installation">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/docs/getting-started/installation.html","path":"docs/getting-started/installation.html","title":"Installation"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Installation | Java技术分享
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Select-Version"><span class="nav-number">1.</span> <span class="nav-text">Select Version</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Get-NexT"><span class="nav-number">2.</span> <span class="nav-text">Get NexT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-npm"><span class="nav-number">2.1.</span> <span class="nav-text">Using npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-git"><span class="nav-number">2.2.</span> <span class="nav-text">Using git</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-It-Up"><span class="nav-number">3.</span> <span class="nav-text">Set It Up</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-getting-started"><a href="/blog/docs/getting-started/" rel="section"><i class="fa fa-flag fa-fw"></i>Getting Started</a></li>
+
+
+      
+  <li class="menu-item menu-item-theme-settings"><a href="/blog/docs/theme-settings/" rel="section"><i class="fa fa-star fa-fw"></i>Theme Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-third-party-services"><a href="/blog/docs/third-party-services/" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>Third Party Services</a></li>
+
+
+      
+  <li class="menu-item menu-item-tag-plugins"><a href="/blog/docs/tag-plugins/" rel="section"><i class="fa fa-rocket fa-fw"></i>Tag Plugins</a></li>
+
+
+      
+  <li class="menu-item menu-item-advanced-settings"><a href="/blog/docs/advanced-settings/" rel="section"><i class="fa fa-cog fa-fw"></i>Advanced Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-troubleshooting"><a href="/blog/docs/troubleshooting.html" rel="section"><i class="fa fa-life-ring fa-fw"></i>Troubleshooting</a></li>
+
+
+    </ul>
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-installation"><a href="/blog/docs/getting-started/installation.html" rel="section"><i class="fa fa-download fa-fw"></i>Installation</a></li>
+
+
+      
+  <li class="menu-item menu-item-deployment"><a href="/blog/docs/getting-started/deployment.html" rel="section"><i class="fa fa-upload fa-fw"></i>Deployment</a></li>
+
+
+      
+  <li class="menu-item menu-item-configuration"><a href="/blog/docs/getting-started/configuration.html" rel="section"><i class="fa fa-wrench fa-fw"></i>Configuration</a></li>
+
+
+      
+  <li class="menu-item menu-item-upgrade"><a href="/blog/docs/getting-started/upgrade.html" rel="section"><i class="fa fa-history fa-fw"></i>Upgrade</a></li>
+
+
+    </ul>
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Installation
+</h1>
+
+<div class="post-meta-container">
+    <div class="post-description">NexT User Docs – Starting to Use – Detailed Installation</div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/docs/">DOCS</a></li>
+            <li><a href="/blog/docs/getting-started/">GETTING STARTED</a></li>
+            <li>INSTALLATION</li>
+  </ul>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h3 id="Select-Version"><a href="#Select-Version" class="headerlink" title="Select Version"></a>Select Version</h3><p>A new version of NexT will be released every month. You can choose to install the latest version or choose a stable old version.</p>
+<div class="tabs" id="download-next"><ul class="nav-tabs"><li class="tab active"><a href="#download-next-1"><mark class="label success">Latest Master Branch</mark></a></li><li class="tab"><a href="#download-next-2">Latest Release Version</a></li><li class="tab"><a href="#download-next-3">Specific Release Version</a></li></ul><div class="tab-content"><div class="tab-pane active" id="download-next-1"><p><strong>Option 1: Download the <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next/archive/master.zip">Latest Master Branch</a></strong></p>
+<p>May be <strong>unstable</strong>, but includes <strong>latest features</strong>. At most cases useful and recommended for advanced users and for developers.</p></div><div class="tab-pane" id="download-next-2"><p><strong>Option 2: Download the <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next/releases/latest">Latest Release Version</a></strong></p>
+<p>At most cases <strong>stable</strong>. Recommended for beginners.</p></div><div class="tab-pane" id="download-next-3"><p><strong>Option 3: Download the <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next/releases">Specific Release Version</a></strong></p>
+<p>In rare cases useful, but not recommended.<br>You must define version. Let’s take <code>v8.0.0</code> as an example. Replace it with any version from <a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next/tags">tags list</a>.</p></div></div></div>
+
+<h3 id="Get-NexT"><a href="#Get-NexT" class="headerlink" title="Get NexT"></a>Get NexT</h3><p>There are <strong>2 recommended ways</strong> to download NexT: <code>npm</code> and <code>git</code>. You need to <strong>choose only one</strong> of them. Other installation methods, such as downloading and decompressing the theme source code in zip format from GitHub, are no longer recommended, because the installed theme is difficult to manage and upgrade.</p>
+<p>Change dir to <mark class="label info">site root directory</mark> in the command line first, and then continue with the following steps.</p>
+<h4 id="Using-npm"><a href="#Using-npm" class="headerlink" title="Using npm"></a>Using <code>npm</code></h4><p>If you’re using Hexo 5.0 or later, you can install <code>hexo-theme-next</code> through npm.</p>
+<div class="tabs" id="using-npm"><ul class="nav-tabs"><li class="tab active"><a href="#using-npm-1">Latest Release Version</a></li><li class="tab"><a href="#using-npm-2">Specific Release Version</a></li></ul><div class="tab-content"><div class="tab-pane active" id="using-npm-1"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-theme-next@latest</span><br></pre></td></tr></table></figure>
+
+<p>This variant will install the <strong>latest release version</strong>.</p></div><div class="tab-pane" id="using-npm-2"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-theme-next@8.0.0</span><br></pre></td></tr></table></figure>
+
+<p>This variant will install the <strong>specific release version</strong>.</p></div></div></div>
+
+<h4 id="Using-git"><a href="#Using-git" class="headerlink" title="Using git"></a>Using <code>git</code></h4><div class="tabs" id="using-git"><ul class="nav-tabs"><li class="tab active"><a href="#using-git-1">Latest Master Branch</a></li><li class="tab"><a href="#using-git-2">Specific Release Version</a></li></ul><div class="tab-content"><div class="tab-pane active" id="using-git-1"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>Or download via mirror on GitLab:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://gitlab.com/hexo-theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>This variant will install the <strong>whole repository</strong> (with <code>.git</code> directory inside).<br>And in any time you can update current version with git (instructions below) and switch to any tagged release or on latest master or any other branch.</p>
+<p>Get tags list:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/next</span><br><span class="line">$ git tag -l</span><br><span class="line">...</span><br><span class="line">v8.0.0-rc.1</span><br><span class="line">v8.0.0-rc.2</span><br><span class="line">v8.0.0-rc.3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>For example, you want to switch on <code>v8.0.0</code> tagged release version. Input the following command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout tags/v8.0.0</span><br><span class="line">Note: switching to <span class="string">&#x27;tags/v8.0.0&#x27;</span>.</span><br><span class="line">...</span><br><span class="line">HEAD is now at f27e45b Release v8.0.0</span><br></pre></td></tr></table></figure>
+
+<p>If you want to switch on latest release version without defining tag (optional)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout $(git describe --tags $(git rev-list --tags --max-count=1))</span><br></pre></td></tr></table></figure>
+
+<p>And if you want to switch back on master branch, input this command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="using-git-2"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --branch v8.0.0 https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>Or download via mirror on GitLab:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --branch v8.0.0 https://gitlab.com/hexo-theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>This variant will install the <strong>specific release version</strong> (with <code>.git</code> directory inside).<br>And in any time you can switch to any tagged release, but with limit to specific version.</p></div></div></div>
+
+<p>And if you see any error message during update (something like <strong>«Commit your changes or stash them before you can merge»</strong>), recommended to learn <a href="/docs/getting-started/configuration.html">Alternate Theme Config</a> feature. Howbeit, you can bypass update errors by <code>Commit</code>, <code>Stash</code> or <code>Discard</code> local changes. See <a target="_blank" rel="noopener" href="https://stackoverflow.com/a/15745424/5861495">here</a> how to do it.</p>
+<h3 id="Set-It-Up"><a href="#Set-It-Up" class="headerlink" title="Set It Up"></a>Set It Up</h3><p>When NexT download will complete, we must go back to previous guide and follow <a href="/docs/getting-started/#Enabling-NexT">Enabling NexT</a> instructions.</p>
+
+      </div>
+      
+      
+      
+    </div>
+  <ul class="breadcrumb">
+            <li><a href="/blog/docs/">DOCS</a></li>
+            <li><a href="/blog/docs/getting-started/">GETTING STARTED</a></li>
+            <li>INSTALLATION</li>
+  </ul>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

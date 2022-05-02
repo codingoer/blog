@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/blog/js/config.js"></script>
+
+    <meta name="description" content="NexT User Docs">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Documentation">
+<meta property="og:url" content="https://www.codingoer.top/docs/index.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="NexT User Docs">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.codingoer.top/blog/images/next/next-schemes.png">
+<meta property="og:image" content="https://www.codingoer.top/blog/images/next/next-schemes-dark.png">
+<meta property="og:image" content="https://www.codingoer.top/blog/images/next/en.png">
+<meta property="og:image" content="https://www.codingoer.top/blog/images/next/cn.png">
+<meta property="og:image" content="https://www.codingoer.top/blog/images/next/ru.png">
+<meta property="article:published_time" content="2018-02-10T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-05-02T07:39:38.800Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="Java,spring,spring boot,spring cloud">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.codingoer.top/blog/images/next/next-schemes.png">
+
+
+<link rel="canonical" href="https://www.codingoer.top/docs/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/docs/index.html","path":"docs/index.html","title":"Documentation"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Documentation | Java技术分享
+</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Elegant-and-Powerful-Theme-for-Hexo"><span class="nav-number">1.</span> <span class="nav-text">Elegant and Powerful Theme for Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Four-Schemes-in-One"><span class="nav-number">2.</span> <span class="nav-text">Four Schemes in One</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multilingual-Support"><span class="nav-number">3.</span> <span class="nav-text">Multilingual Support</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Code-Highlighting-Themes"><span class="nav-number">4.</span> <span class="nav-text">Code Highlighting Themes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Supported-Browsers"><span class="nav-number">5.</span> <span class="nav-text">Supported Browsers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Customize-Your-NexT"><span class="nav-number">6.</span> <span class="nav-text">Customize Your NexT</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner page posts-expand">
+    <ul class="sub-menu menu">
+      
+  <li class="menu-item menu-item-getting-started"><a href="/blog/docs/getting-started/" rel="section"><i class="fa fa-flag fa-fw"></i>Getting Started</a></li>
+
+
+      
+  <li class="menu-item menu-item-theme-settings"><a href="/blog/docs/theme-settings/" rel="section"><i class="fa fa-star fa-fw"></i>Theme Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-third-party-services"><a href="/blog/docs/third-party-services/" rel="section"><i class="fa fa-puzzle-piece fa-fw"></i>Third Party Services</a></li>
+
+
+      
+  <li class="menu-item menu-item-tag-plugins"><a href="/blog/docs/tag-plugins/" rel="section"><i class="fa fa-rocket fa-fw"></i>Tag Plugins</a></li>
+
+
+      
+  <li class="menu-item menu-item-advanced-settings"><a href="/blog/docs/advanced-settings/" rel="section"><i class="fa fa-cog fa-fw"></i>Advanced Settings</a></li>
+
+
+      
+  <li class="menu-item menu-item-troubleshooting"><a href="/blog/docs/troubleshooting.html" rel="section"><i class="fa fa-life-ring fa-fw"></i>Troubleshooting</a></li>
+
+
+    </ul>
+
+
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">Documentation
+</h1>
+
+<div class="post-meta-container">
+    <div class="post-description">NexT User Docs</div>
+</div>
+
+</header>
+
+      
+      
+      <div class="post-body">
+          <h3 id="Elegant-and-Powerful-Theme-for-Hexo"><a href="#Elegant-and-Powerful-Theme-for-Hexo" class="headerlink" title="Elegant and Powerful Theme for Hexo"></a>Elegant and Powerful Theme for Hexo</h3><p>Theme NexT has the following features:</p>
+<ul>
+<li>No jQuery.</li>
+<li>Support <a target="_blank" rel="noopener" href="https://caniuse.com/prefers-color-scheme">native dark mode</a>.</li>
+<li>Support Pjax to deliver a fast browsing experience.</li>
+<li>Integrated KaTeX and MathJax mathematical formula rendering.</li>
+<li>Integrated PDF.js and mermaid diagram.</li>
+<li>Support Disqus, Changyan, LiveRe, Gitalk, Utterances and Isso comment systems.</li>
+<li>Support a large number of third-party statistics and content sharing services.</li>
+<li>Easy to customize content or modify style.</li>
+</ul>
+<h3 id="Four-Schemes-in-One"><a href="#Four-Schemes-in-One" class="headerlink" title="Four Schemes in One"></a>Four Schemes in One</h3><p>By using different Schemes in NexT, you can simply change the style of your blog, and nearly all options can be used in all schemes.</p>
+<style>
+.image-comparison-container {
+    position: relative;
+}
+
+.image-comparison {
+    opacity: 1 !important;
+}
+
+@keyframes next-clip-path {
+    from {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+.image-comparison:last-of-type {
+    animation: next-clip-path 8s alternate ease-in-out infinite;
+    position: absolute;
+    top: 0;
+}
+</style>
+<div class="image-comparison-container">
+    <img class="image-comparison" src="/blog/images/next/next-schemes.png" alt="NexT Schemes">
+    <img class="image-comparison" src="/blog/images/next/next-schemes-dark.png" alt="NexT Schemes">
+</div>
+
+<h3 id="Multilingual-Support"><a href="#Multilingual-Support" class="headerlink" title="Multilingual Support"></a>Multilingual Support</h3><p>Thanks to the contribution of our users and developers, <a href="/docs/theme-settings/internationalization.html#Choosing-Language">NexT now supports over 20 languages</a>.</p>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="/blog/images/next/en.png" alt="English translation"></div></div><div class="group-picture-row"><div class="group-picture-column"><img src="/blog/images/next/cn.png" alt="Chinese translation"></div><div class="group-picture-column"><img src="/blog/images/next/ru.png" alt="Russian translation"></div></div></div>
+
+<h3 id="Code-Highlighting-Themes"><a href="#Code-Highlighting-Themes" class="headerlink" title="Code Highlighting Themes"></a>Code Highlighting Themes</h3><p>NexT uses code highlighting themes from the <a target="_blank" rel="noopener" href="https://highlightjs.org/">Highlight.js</a> and <a target="_blank" rel="noopener" href="https://prismjs.com/">Prism</a> package, and makes <a href="/docs/theme-settings/miscellaneous.html#Codeblock-Style">more than 300 themes</a> available to you.</p>
+<!-- Inspired by https://github.com/sindresorhus/css-in-readme-like-wat -->
+<table>
+<thead>
+<tr>
+<th align="center">Tomorrow</th>
+<th align="center">Tomorrow Night</th>
+<th align="center">Tomorrow Night Eighties</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">![Tomorrow][Tomorrow]</td>
+<td align="center">![Tomorrow Night][]</td>
+<td align="center">![Tomorrow Night Eighties][Tomorrow Night Eighties]</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">Tomorrow Night Blue</th>
+<th align="center">Tomorrow Night Bright</th>
+<th align="center">Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">![Tomorrow Night Blue][Tomorrow Night Blue]</td>
+<td align="center">![Tomorrow Night Bright][Tomorrow Night Bright]</td>
+<td align="center">![Default][Default]</td>
+</tr>
+</tbody></table>
+<h3 id="Supported-Browsers"><a href="#Supported-Browsers" class="headerlink" title="Supported Browsers"></a>Supported Browsers</h3><p>We design NexT to support the latest web browsers. We support the current versions of Chrome, Firefox, Safari, and Microsoft Edge. Many CSS3 and ES6 features are used in theme NexT, including CSS Variables, Destructuring assignment, Arrow functions and Spread operator.</p>
+<table>
+<thead>
+<tr>
+<th>Browser</th>
+<th>Supported versions</th>
+<th>Release date</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><i class="fab fa-internet-explorer fa-2x"></i> IE</td>
+<td>N&#x2F;A</td>
+<td>Oct 17, 2013</td>
+<td>N&#x2F;A</td>
+</tr>
+<tr>
+<td><i class="fab fa-edge fa-2x"></i> Edge</td>
+<td>79+</td>
+<td>Jan 15, 2020</td>
+<td><a target="_blank" rel="noopener" href="https://caniuse.com/mdn-javascript_functions_rest_parameters_destructuring">Destructuring rest parameters</a></td>
+</tr>
+<tr>
+<td><i class="fab fa-firefox-browser fa-2x"></i> Firefox</td>
+<td>52+</td>
+<td>Mar 7, 2017</td>
+<td>Destructuring rest parameters</td>
+</tr>
+<tr>
+<td><i class="fab fa-chrome fa-2x"></i> Chrome</td>
+<td>49+</td>
+<td>Mar 3, 2016</td>
+<td><a target="_blank" rel="noopener" href="https://caniuse.com/css-variables">CSS Variables</a></td>
+</tr>
+<tr>
+<td><i class="fab fa-safari fa-2x"></i> Safari</td>
+<td>10+</td>
+<td>Sep 20, 2016</td>
+<td><a target="_blank" rel="noopener" href="https://caniuse.com/arrow-functions">Arrow functions</a></td>
+</tr>
+<tr>
+<td><i class="fab fa-opera fa-2x"></i> Opera</td>
+<td>37+</td>
+<td>May 4, 2016</td>
+<td><a target="_blank" rel="noopener" href="https://caniuse.com/mdn-javascript_operators_spread_spread_in_arrays">Spread in array literals</a></td>
+</tr>
+</tbody></table>
+<p>Some other new Web APIs, such as <a target="_blank" rel="noopener" href="https://caniuse.com/intersectionobserver">IntersectionObserver</a> and <a target="_blank" rel="noopener" href="https://caniuse.com/fetch">Fetch API</a>, are used by NexT plugins. They are not core functions of NexT, so we have no plans to make them compatible with legacy browsers.</p>
+<p>In addition, <a target="_blank" rel="noopener" href="https://caniuse.com/css-sticky">CSS position: sticky</a> is used for sidebar positioning. On browsers that do not support this property, its fallback style <code>position: static</code> will be used.</p>
+<h3 id="Customize-Your-NexT"><a href="#Customize-Your-NexT" class="headerlink" title="Customize Your NexT"></a>Customize Your NexT</h3><p>NexT have flexible but simple options, and you can make your own blog with built-in third-party support. Now let’s <a href="/docs/getting-started/">get started</a>.</p>
+
+      </div>
+      
+      
+      
+    </div>
+
+    
+    
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/blog/js/comments.js"></script><script src="/blog/js/utils.js"></script><script src="/blog/js/motion.js"></script><script src="/blog/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
