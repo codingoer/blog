@@ -1,15 +1,25 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "lionel-java-blog",
+  "version": "1.0.0",
   "private": true,
+  "description": "Java blog using hexo",
+  "author": "lionel <codingoer@gmail.com>",
+  "repository": "codingoer/blog",
+  "homepage": "https://www.codingoer.top/blog",
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server"
   },
+  "keywords": [
+    "java",
+    "hexo",
+    "theme",
+    "next"
+  ],
   "hexo": {
-    "version": ""
+    "version": "6.1.0"
   },
   "dependencies": {
     "hexo": "^6.0.0",
