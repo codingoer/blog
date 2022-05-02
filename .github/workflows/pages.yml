@@ -8,8 +8,12 @@ on:
 jobs:
   pages:
     runs-on: ubuntu-latest
+    name: A job to deploy blog.
     steps:
+      - name: Checkout
       - uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
@@ -26,7 +30,13 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        id: deploy
+        uses: sma11black/hexo-action@v1.0.3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.DEPLOY_KEY }}
+          user_name: codingoer
+          user_email: codingoer@163.com
           publish_dir: ./public
+      - name: Get the output
+      run: |
+        echo "${{ steps.deploy.outputs.notify }}"
