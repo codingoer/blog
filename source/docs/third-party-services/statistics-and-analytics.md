@@ -33,7 +33,7 @@ Login to [Baidu Analytics](https://tongji.baidu.com) and locate to site code get
 
 <!-- tab Script ID → -->
 Copy the script ID after `hm.js?`, like the following picture:
-![NexT Baidu Analytics](/images/analytics-baidu-id.png)
+![NexT Baidu Analytics](/images/next/analytics-baidu-id.png)
 <!-- endtab -->
 
 <!-- tab NexT Config -->
@@ -85,9 +85,9 @@ Adding article reading times counting to NexT theme. Documentation how to set th
 {% tabs leanCloud-counter %}
 <!-- tab Get App Keys → -->
 1. Create an account or log in to [LeanCloud](https://console.leancloud.app/login), and then click the button to create an application in [dashboard](https://console.leancloud.app/apps).
-    ![LeanCloud](/images/valine-1.png)
+    ![LeanCloud](/images/next/valine-1.png)
 2. Go to the application you just created, select `Settings → App Keys` in the lower left corner, and you will see your APP ID and APP Key.
-    ![LeanCloud](/images/valine-2.png)
+    ![LeanCloud](/images/next/valine-2.png)
 <!-- endtab -->
 
 <!-- tab Installation → -->
@@ -139,7 +139,7 @@ Firebase Analytics provides the functionality of visitor statistics.
 <!-- tab Get apiKey & projectId → -->
 Login to [Firebase](https://console.firebase.google.com/u/0/) to get apiKey and projectId. The Web API Key gets generated once you go into the "Authentication" section for the first time.
 
-![Firebase](/images/firebase.png)
+![Firebase](/images/next/firebase.png)
 
 [More detailed documentation](https://firebase.google.com/docs/firestore/)
 <!-- endtab -->

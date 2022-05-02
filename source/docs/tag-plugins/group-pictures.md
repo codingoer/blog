@@ -24,8 +24,8 @@ or
     {% grouppicture 4-2 %}{% endgrouppicture %}
     ```
 
-![Group Picture Layout](/images/group-picture-1.png)
-![Group Picture Layout](/images/group-picture-2.png)
+![Group Picture Layout](/images/next/group-picture-1.png)
+![Group Picture Layout](/images/next/group-picture-2.png)
 
 {% note info %}
 It's recommended to use Group Pictures with [Fancybox](/docs/third-party-services/external-libraries.html#Fancybox) enabled.
@@ -35,32 +35,32 @@ It's recommended to use Group Pictures with [Fancybox](/docs/third-party-service
 
 ```jinja
 {% grouppicture 3-3 %}
-![](/images/next.svg)
-![](/images/next.svg)
-![](/images/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
 {% endgrouppicture %}
 ```
 
 {% grouppicture 3-3 %}
-![](/images/next.svg)
-![](/images/next.svg)
-![](/images/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
 {% endgrouppicture %}
 
 ```jinja
 {% gp 5-2 %}
-![](/images/next.svg)
-![](/images/next.svg)
-![](/images/next.svg)
-![](/images/next.svg)
-![](/images/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
 {% endgp %}
 ```
 
 {% gp 5-2 %}
-![](/images/next.svg)
-![](/images/next.svg)
-![](/images/next.svg)
-![](/images/next.svg)
-![](/images/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
+![](/images/next/next.svg)
 {% endgp %}

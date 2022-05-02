@@ -38,7 +38,7 @@ Sign up in [AddThis](https://www.addthis.com). You can use Google / Facebook / T
 
 <!-- tab AddThis ID → -->
 Get AddThis ID in this menu: `Profile Settings` → `General` → `ID`. See example on the picture below:
-![AddThis ID](/images/add-this-id.png)
+![AddThis ID](/images/next/add-this-id.png)
 <!-- endtab -->
 
 <!-- tab NexT Config -->

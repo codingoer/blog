@@ -21,16 +21,16 @@ Follow the steps described below to complete the installation of Algolia search.
 Register at [Algolia](https://www.algolia.com), you can log in directly using GitHub or Google Account. Upon Customer's initial sign-up for an Account, Customer will have a free, fourteen (14) day evaluation period (the «Evaluation Period») for the Algolia Services commencing on the Effective Date, subject to the limitations on Algolia's website. After that, Algolia offers a free, branded version for up to 10k records and 100k operations per month.
 
 If a tutorial pops up, you can skip it. Go straight to create an `Index` which will be used later.
-![Algolia Create Index](/images/algolia-1.png)
+![Algolia Create Index](/images/next/algolia-1.png)
 <!-- endtab -->
 
 <!-- tab Algolia Config → -->
 1. Go to the `API Keys` page and find your credentials. You will need the `Application ID` and the `Search-only API key` in the following sections. The `Admin API key` need to keep confidential. Never store your Admin API Key as `apiKey` in {% label info@Hexo config file %}: it would give full control of your Algolia index to others and you don't want to face the consequences.
-![Algolia API Keys](/images/algolia-2.png)
+![Algolia API Keys](/images/next/algolia-2.png)
 
 2. In the `API Keys` page, click the `All API Keys` button to switch to the corresponding tab. Then click the `New API Key` button to activate a pop-up box where you can setup authorizations and restrictions with a great level of precision. Enter `addObject`, `deleteObject`, `listIndexes`, `deleteIndex` features in ACL permissions that will be allowed for the given API key. And then click the `Create` button. Copy this newly created key to the clipboard, we call it a `High-privilege API key`.
-![Algolia API Keys 2](/images/algolia-3.png)
-![Algolia Configuring Records](/images/algolia-4.png)
+![Algolia API Keys 2](/images/next/algolia-3.png)
+![Algolia Configuring Records](/images/next/algolia-4.png)
 <!-- endtab -->
 
 <!-- tab Algolia Plugin → -->
@@ -63,7 +63,7 @@ $ hexo clean
 $ hexo algolia
 ```
 
-![Reload Index](/images/algolia-5.png)
+![Reload Index](/images/next/algolia-5.png)
 <!-- endtab -->
 <!-- tab Hexo Algoliasearch -->
 Install and configure [Hexo Algoliasearch](https://github.com/LouisBarranqueiro/hexo-algoliasearch) in your Hexo directory.
