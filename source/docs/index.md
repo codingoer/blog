@@ -28,9 +28,9 @@ By using different Schemes in NexT, you can simply change the style of your blog
 Thanks to the contribution of our users and developers, [NexT now supports over 20 languages](/docs/theme-settings/internationalization.html#Choosing-Language).
 
 {% gp 3-1 %}
-![English translation](/images/en.png)
-![Chinese translation](/images/cn.png)
-![Russian translation](/images/ru.png)
+![English translation](/images/next/en.png)
+![Chinese translation](/images/next/cn.png)
+![Russian translation](/images/next/ru.png)
 {% endgp %}
 
 ### Code Highlighting Themes
@@ -67,9 +67,9 @@ In addition, [CSS position: sticky](https://caniuse.com/css-sticky) is used for 
 
 NexT have flexible but simple options, and you can make your own blog with built-in third-party support. Now let's [get started](/docs/getting-started/).
 
-[Tomorrow]: /images/tomorrow.svg
-[Tomorrow Night]: /images/tomorrow-night.svg
-[Tomorrow Night Eighties]: /images/tomorrow-night-eighties.svg
-[Tomorrow Night Blue]: /images/tomorrow-night-blue.svg
-[Tomorrow Night Bright]: /images/tomorrow-night-bright.svg
-[Default]: /images/default.svg
+[Tomorrow]: /images/next/tomorrow.svg
+[Tomorrow Night]: /images/next/tomorrow-night.svg
+[Tomorrow Night Eighties]: /images/next/tomorrow-night-eighties.svg
+[Tomorrow Night Blue]: /images/next/tomorrow-night-blue.svg
+[Tomorrow Night Bright]: /images/next/tomorrow-night-bright.svg
+[Default]: /images/next/default.svg
