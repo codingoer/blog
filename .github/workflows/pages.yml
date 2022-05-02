@@ -37,7 +37,6 @@ jobs:
           user_name: codingoer
           user_email: codingoer@163.com
           publish_dir: ./public
-          target_branch: gh-pages
       - name: Get the output
         run: |
           echo "${{ steps.deploy.outputs.notify }}"
