@@ -104,5 +104,7 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/codingoer/blog
+  repo: git@github.com:codingoer/blog.git
   branch: gh-pages
+  name: codingoer
+  email: codingoer@163.com
