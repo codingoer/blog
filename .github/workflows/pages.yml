@@ -31,7 +31,7 @@ jobs:
         run: npm run build
       - name: Deploy
         id: deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: sma11black/hexo-action@v1.0.3
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY }}
           user_name: codingoer
