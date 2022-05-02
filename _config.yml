@@ -5,15 +5,16 @@
 # Site
 title: Java技术分享
 subtitle: 'Blog For Java'
-description: ''
+description: 'Java Technology'
 keywords: 'Java,spring,spring boot,spring cloud'
 author: Lionel
 language: en
-timezone: ''
+timezone: UTC
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://www.codingoer.top/blog
+url: https://www.codingoer.top
+root: /blog/
 permalink: :title/
 permalink_defaults:
 pretty_urls:
