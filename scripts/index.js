@@ -23,6 +23,6 @@ hexo.extend.tag.register('darkmode_preview', () => `<style>
 }
 </style>
 <div class="image-comparison-container">
-    <img class="image-comparison" src="/images/next/next-schemes.png" alt="NexT Schemes">
-    <img class="image-comparison" src="/images/next/next-schemes-dark.png" alt="NexT Schemes">
+    <img class="image-comparison" src="/blog/images/next/next-schemes.png" alt="NexT Schemes">
+    <img class="image-comparison" src="/blog/images/next/next-schemes-dark.png" alt="NexT Schemes">
 </div>`);
