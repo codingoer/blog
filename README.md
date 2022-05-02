@@ -7,3 +7,9 @@ A personal blog built with hexo，The theme uses NEXT.
 ```bash
 git clone https://github.com/next-theme/hexo-theme-next themes/next
 ```
+
+## DEV
+
+```bash
+lsof -i :4000
+```
