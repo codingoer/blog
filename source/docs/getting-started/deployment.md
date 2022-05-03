@@ -24,6 +24,58 @@ Perhaps you have already found that this website is deployed on Netlify. Checkou
 
 This Github Action automating Hexo deployment workflow, to allow you to leverage GitHub Actions to publish your Hexo site on Github Pages: [hexo-action](https://github.com/sma11black/hexo-action).
 
+some problems when using [hexo-action](https://github.com/sma11black/hexo-action) :
+
+{% note danger %}
+ Generate ssh key pair
+**You must not use passphase when creating ssh keys!!!**
+
+error: Please make sure you have the correct access rights
+
+see [issues-6](https://github.com/sma11black/hexo-action/issues/6)
+{% endnote %}
+
+{% note warning %}
+ Git repo config
+**Replacing the HTTPS URL with SSH URL!!!**
+
+error：fatal: could not read Username for 'https://github.com': No such device or address
+
+```yaml
+deploy:
+  type: git
+  repo: git@github.com:codingoer/blog.git
+  branch: gh-pages
+```
+
+see [issues-5](https://github.com/sma11black/hexo-action/issues/5)
+{% endnote %}
+
+{% note danger %}
+ Node version
+**Using correct node version, The version of the node at the time the package-lock.json was generated**
+
+error：fatal: hexo: not found
+
+npm WARN old lockfile The package-lock.json file was created with an old version of npm,
+
+```yaml
+  - name: Use Node.js 14.x
+    uses: actions/setup-node@v2
+    with:
+      node-version: '14'
+```
+{% endnote %}
+
+{% note info %}
+Github Repo Settings
+
+![Settings-Deploy-keys](https://image.codingoer.top/blog/20220503001743.png)
+
+![Settings-Deploy-keys](https://image.codingoer.top/blog/20220503013409.png)
+
+{% endnote %}
+
 #### Travis CI
 
 Travis CI enables your team to test and ship your apps with confidence. It's built for everyone and for projects and teams of all sizes, supporting over 20 different languages out of the box, including Javascript and Node.js, Ruby, PHP, Python, Mac/iOS, as well as Docker, while giving you full control over the build environment to customize it to your own needs.
