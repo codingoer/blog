@@ -28,8 +28,8 @@
 <meta property="og:site_name" content="Java技术分享">
 <meta property="og:description" content="NexT User Docs – Starting to Use – Internationalization">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-02T15:32:33.715Z">
-<meta property="article:modified_time" content="2022-05-02T15:32:33.715Z">
+<meta property="article:published_time" content="2022-05-03T07:17:00.447Z">
+<meta property="article:modified_time" content="2022-05-03T07:17:00.447Z">
 <meta property="article:author" content="Lionel">
 <meta property="article:tag" content="Java,spring,spring boot,spring cloud">
 <meta name="twitter:card" content="summary">
@@ -261,7 +261,7 @@
       
       <div class="post-body">
           <h3 id="Choosing-Language"><a href="#Choosing-Language" class="headerlink" title="Choosing Language"></a>Choosing Language</h3><p>Edit <mark class="label info">Hexo config file</mark>, set the value of <code>language</code> to the language you need. For example, English looks like this:</p>
-<figure class="highlight yml"><figcaption><span>Hexo config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">en</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><figcaption><span>Hexo config file</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">en</span></span><br></pre></td></tr></table></figure>
 
 <p>NexT now supports following languages:</p>
 <table>
@@ -392,20 +392,20 @@
 </div>
 
 <h3 id="Multilingual-Switcher"><a href="#Multilingual-Switcher" class="headerlink" title="Multilingual Switcher"></a>Multilingual Switcher</h3><p>Set multiple languages in <mark class="label info">Hexo config file</mark>, e.g.</p>
-<figure class="highlight yml"><figcaption><span>Hexo config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">en</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><figcaption><span>Hexo config file</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">language:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">en</span></span><br></pre></td></tr></table></figure>
 
 <p>Then turn on <code>language_switcher</code> in <mark class="label primary">NexT config file</mark>:</p>
-<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Show multilingual switcher in footer.</span></span><br><span class="line"><span class="attr">language_switcher:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><figcaption><span>NexT config file</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># Show multilingual switcher in footer.</span></span><br><span class="line"><span class="attr">language_switcher:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="Override-Default-Translations"><a href="#Override-Default-Translations" class="headerlink" title="Override Default Translations"></a>Override Default Translations</h3><p>If you would like to customize the default translation, you do not need to modify the translation files in the <code>languages</code> directory. You can override all translations using <a target="_blank" rel="noopener" href="https://hexo.io/docs/data-files">Data Files</a>.</p>
 <ol>
 <li><p>Creat a <code>languages.yml</code> in <code>source/_data</code>.</p>
 </li>
 <li><p>Insert following codes: (be careful about the two-space indent)</p>
- <figure class="highlight yml"><figcaption><span>languages.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># language</span></span><br><span class="line"><span class="attr">zh-CN:</span></span><br><span class="line">  <span class="comment"># items</span></span><br><span class="line">  <span class="attr">post:</span></span><br><span class="line">    <span class="attr">copyright:</span></span><br><span class="line">      <span class="comment"># the translation you perfer</span></span><br><span class="line">      <span class="attr">author:</span> <span class="string">本文博主</span></span><br><span class="line"><span class="attr">en:</span></span><br><span class="line">  <span class="attr">menu:</span></span><br><span class="line">    <span class="attr">schedule:</span> <span class="string">Calendar</span></span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight yml"><figcaption><span>languages.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># language</span></span><br><span class="line"><span class="attr">zh-CN:</span></span><br><span class="line">  <span class="comment"># items</span></span><br><span class="line">  <span class="attr">post:</span></span><br><span class="line">    <span class="attr">copyright:</span></span><br><span class="line">      <span class="comment"># the translation you perfer</span></span><br><span class="line">      <span class="attr">author:</span> <span class="string">本文博主</span></span><br><span class="line"><span class="attr">en:</span></span><br><span class="line">  <span class="attr">menu:</span></span><br><span class="line">    <span class="attr">schedule:</span> <span class="string">Calendar</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>This situation is also available for off-list items. For example, Next uses <a href="/docs/advanced-settings/injects.html">Theme Inject</a> to introduce the commments systems. You can rename the returned value in chinese as followed:</p>
-<figure class="highlight yml"><figcaption><span>languages.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># language</span></span><br><span class="line"><span class="attr">zh-CN:</span></span><br><span class="line">  <span class="comment"># items</span></span><br><span class="line">  <span class="attr">post:</span></span><br><span class="line">    <span class="attr">comments:</span></span><br><span class="line">      <span class="attr">disqus:</span> <span class="string">评论</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><figcaption><span>languages.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># language</span></span><br><span class="line"><span class="attr">zh-CN:</span></span><br><span class="line">  <span class="comment"># items</span></span><br><span class="line">  <span class="attr">post:</span></span><br><span class="line">    <span class="attr">comments:</span></span><br><span class="line">      <span class="attr">disqus:</span> <span class="string">评论</span></span><br></pre></td></tr></table></figure>
 
       </div>
       

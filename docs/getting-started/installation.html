@@ -28,8 +28,8 @@
 <meta property="og:site_name" content="Java技术分享">
 <meta property="og:description" content="NexT User Docs – Starting to Use – Detailed Installation">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-02T15:32:33.715Z">
-<meta property="article:modified_time" content="2022-05-02T15:32:33.715Z">
+<meta property="article:published_time" content="2022-05-03T07:17:00.443Z">
+<meta property="article:modified_time" content="2022-05-03T07:17:00.443Z">
 <meta property="article:author" content="Lionel">
 <meta property="article:tag" content="Java,spring,spring boot,spring cloud">
 <meta name="twitter:card" content="summary">
@@ -257,32 +257,32 @@
 <h3 id="Get-NexT"><a href="#Get-NexT" class="headerlink" title="Get NexT"></a>Get NexT</h3><p>There are <strong>2 recommended ways</strong> to download NexT: <code>npm</code> and <code>git</code>. You need to <strong>choose only one</strong> of them. Other installation methods, such as downloading and decompressing the theme source code in zip format from GitHub, are no longer recommended, because the installed theme is difficult to manage and upgrade.</p>
 <p>Change dir to <mark class="label info">site root directory</mark> in the command line first, and then continue with the following steps.</p>
 <h4 id="Using-npm"><a href="#Using-npm" class="headerlink" title="Using npm"></a>Using <code>npm</code></h4><p>If you’re using Hexo 5.0 or later, you can install <code>hexo-theme-next</code> through npm.</p>
-<div class="tabs" id="using-npm"><ul class="nav-tabs"><li class="tab active"><a href="#using-npm-1">Latest Release Version</a></li><li class="tab"><a href="#using-npm-2">Specific Release Version</a></li></ul><div class="tab-content"><div class="tab-pane active" id="using-npm-1"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-theme-next@latest</span><br></pre></td></tr></table></figure>
+<div class="tabs" id="using-npm"><ul class="nav-tabs"><li class="tab active"><a href="#using-npm-1">Latest Release Version</a></li><li class="tab"><a href="#using-npm-2">Specific Release Version</a></li></ul><div class="tab-content"><div class="tab-pane active" id="using-npm-1"><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-theme-next@latest</span><br></pre></td></tr></table></figure>
 
-<p>This variant will install the <strong>latest release version</strong>.</p></div><div class="tab-pane" id="using-npm-2"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-theme-next@8.0.0</span><br></pre></td></tr></table></figure>
+<p>This variant will install the <strong>latest release version</strong>.</p></div><div class="tab-pane" id="using-npm-2"><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-theme-next@8.0.0</span><br></pre></td></tr></table></figure>
 
 <p>This variant will install the <strong>specific release version</strong>.</p></div></div></div>
 
-<h4 id="Using-git"><a href="#Using-git" class="headerlink" title="Using git"></a>Using <code>git</code></h4><div class="tabs" id="using-git"><ul class="nav-tabs"><li class="tab active"><a href="#using-git-1">Latest Master Branch</a></li><li class="tab"><a href="#using-git-2">Specific Release Version</a></li></ul><div class="tab-content"><div class="tab-pane active" id="using-git-1"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<h4 id="Using-git"><a href="#Using-git" class="headerlink" title="Using git"></a>Using <code>git</code></h4><div class="tabs" id="using-git"><ul class="nav-tabs"><li class="tab active"><a href="#using-git-1">Latest Master Branch</a></li><li class="tab"><a href="#using-git-2">Specific Release Version</a></li></ul><div class="tab-content"><div class="tab-pane active" id="using-git-1"><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
 <p>Or download via mirror on GitLab:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://gitlab.com/hexo-theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://gitlab.com/hexo-theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
 <p>This variant will install the <strong>whole repository</strong> (with <code>.git</code> directory inside).<br>And in any time you can update current version with git (instructions below) and switch to any tagged release or on latest master or any other branch.</p>
 <p>Get tags list:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/next</span><br><span class="line">$ git tag -l</span><br><span class="line">...</span><br><span class="line">v8.0.0-rc.1</span><br><span class="line">v8.0.0-rc.2</span><br><span class="line">v8.0.0-rc.3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/next</span><br><span class="line">$ git tag -l</span><br><span class="line">...</span><br><span class="line">v8.0.0-rc.1</span><br><span class="line">v8.0.0-rc.2</span><br><span class="line">v8.0.0-rc.3</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <p>For example, you want to switch on <code>v8.0.0</code> tagged release version. Input the following command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout tags/v8.0.0</span><br><span class="line">Note: switching to <span class="string">&#x27;tags/v8.0.0&#x27;</span>.</span><br><span class="line">...</span><br><span class="line">HEAD is now at f27e45b Release v8.0.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout tags/v8.0.0</span><br><span class="line">Note: switching to <span class="string">&#x27;tags/v8.0.0&#x27;</span>.</span><br><span class="line">...</span><br><span class="line">HEAD is now at f27e45b Release v8.0.0</span><br></pre></td></tr></table></figure>
 
 <p>If you want to switch on latest release version without defining tag (optional)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout $(git describe --tags $(git rev-list --tags --max-count=1))</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout $(git describe --tags $(git rev-list --tags --max-count=1))</span><br></pre></td></tr></table></figure>
 
 <p>And if you want to switch back on master branch, input this command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="using-git-2"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --branch v8.0.0 https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout master</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="using-git-2"><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --branch v8.0.0 https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
 <p>Or download via mirror on GitLab:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --branch v8.0.0 https://gitlab.com/hexo-theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> --branch v8.0.0 https://gitlab.com/hexo-theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
 <p>This variant will install the <strong>specific release version</strong> (with <code>.git</code> directory inside).<br>And in any time you can switch to any tagged release, but with limit to specific version.</p></div></div></div>
 

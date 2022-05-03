@@ -28,8 +28,8 @@
 <meta property="og:site_name" content="Java技术分享">
 <meta property="og:description" content="NexT User Docs – NexT Supported Tags – Caniuse">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-02T15:32:33.715Z">
-<meta property="article:modified_time" content="2022-05-02T15:32:33.715Z">
+<meta property="article:published_time" content="2022-05-03T07:17:00.447Z">
+<meta property="article:modified_time" content="2022-05-03T07:17:00.447Z">
 <meta property="article:author" content="Lionel">
 <meta property="article:tag" content="Java,spring,spring boot,spring cloud">
 <meta name="twitter:card" content="summary">
@@ -268,28 +268,28 @@
       
       
       <div class="post-body">
-          <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><figure class="highlight jinja"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> feature @ [periods] %&#125;</span></span><br></pre></td></tr></table></figure>
+          <h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><figure class="highlight jinja"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> feature @ [periods] %&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>or</p>
-<figure class="highlight jinja"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">can</span> feature @ [periods] %&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jinja"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">can</span> feature @ [periods] %&#125;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><code>feature</code>   : Search for the feature you want on <a target="_blank" rel="noopener" href="https://caniuse.com/">https://caniuse.com</a>, then click on the hash sign to the left of the search result heading and you will get the unique name of this feature.</li>
 <li><code>[periods]</code> : <em>Optional parameter.</em> Select the browser versions to display. Supported values: <code>past_1</code>, <code>past_2</code>, <code>past_3</code>, <code>past_4</code>, <code>past_5</code>, <code>current</code>, <code>future_3</code>, <code>future_2</code>, <code>future_1</code>. If this value is empty, the default value <code>current</code> will be used.</li>
 </ul>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Caniuse-without-periods"><a href="#Caniuse-without-periods" class="headerlink" title="Caniuse without periods"></a>Caniuse without periods</h4><figure class="highlight jinja"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> fetch %&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><h4 id="Caniuse-without-periods"><a href="#Caniuse-without-periods" class="headerlink" title="Caniuse without periods"></a>Caniuse without periods</h4><figure class="highlight jinja"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> fetch %&#125;</span></span><br></pre></td></tr></table></figure>
 
 <iframe data-feature="fetch" src="https://caniuse.bitsofco.de/embed/index.html?feat=fetch&periods=current&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
-<h4 id="Caniuse-with-current-period"><a href="#Caniuse-with-current-period" class="headerlink" title="Caniuse with current period"></a>Caniuse with current period</h4><figure class="highlight jinja"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> sharedarraybuffer @ current %&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Caniuse-with-current-period"><a href="#Caniuse-with-current-period" class="headerlink" title="Caniuse with current period"></a>Caniuse with current period</h4><figure class="highlight jinja"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> sharedarraybuffer @ current %&#125;</span></span><br></pre></td></tr></table></figure>
 
 <iframe data-feature="sharedarraybuffer" src="https://caniuse.bitsofco.de/embed/index.html?feat=sharedarraybuffer&periods=current&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
-<h4 id="Caniuse-with-future-periods"><a href="#Caniuse-with-future-periods" class="headerlink" title="Caniuse with future periods"></a>Caniuse with future periods</h4><figure class="highlight jinja"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> loading-lazy-attr @ future_3,future_2,future_1 %&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Caniuse-with-future-periods"><a href="#Caniuse-with-future-periods" class="headerlink" title="Caniuse with future periods"></a>Caniuse with future periods</h4><figure class="highlight jinja"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> loading-lazy-attr @ future_3,future_2,future_1 %&#125;</span></span><br></pre></td></tr></table></figure>
 
 <iframe data-feature="loading-lazy-attr" src="https://caniuse.bitsofco.de/embed/index.html?feat=loading-lazy-attr&periods=future_3,future_2,future_1&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
-<h4 id="Caniuse-with-past-periods"><a href="#Caniuse-with-past-periods" class="headerlink" title="Caniuse with past periods"></a>Caniuse with past periods</h4><figure class="highlight jinja"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> link-rel-modulepreload @ past_1,past_2,past_3,past_4,past_5 %&#125;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Caniuse-with-past-periods"><a href="#Caniuse-with-past-periods" class="headerlink" title="Caniuse with past periods"></a>Caniuse with past periods</h4><figure class="highlight jinja"><table><tr><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name">caniuse</span> link-rel-modulepreload @ past_1,past_2,past_3,past_4,past_5 %&#125;</span></span><br></pre></td></tr></table></figure>
 
 <iframe data-feature="link-rel-modulepreload" src="https://caniuse.bitsofco.de/embed/index.html?feat=link-rel-modulepreload&periods=past_1,past_2,past_3,past_4,past_5&accessible-colours=false" frameborder="0" width="100%" height="400px"></iframe>
 
