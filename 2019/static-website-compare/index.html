@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/config.min.js"></script>
+
+    <meta name="description" content="前言最开始因为搭建博客，上网查阅了很多关于静态网站生成器的相关文章，后续自己又尝试了几款不同的静态网站生成器，并对其有了一定的了解。  我的博客是用Hexo搭建的 我的笔记本是用Vuepress搭建的 公司的笔记本是用Docsify搭建的  先截图看下 HexoVuepressDocsify  下面主要介绍下静态网站生成器，并主要说明我试过的这几个，做一下对比   什么是静态网站生成器 静态网站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态网站生成器对比">
+<meta property="og:url" content="https://www.codingoer.top/2019/static-website-compare/index.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="前言最开始因为搭建博客，上网查阅了很多关于静态网站生成器的相关文章，后续自己又尝试了几款不同的静态网站生成器，并对其有了一定的了解。  我的博客是用Hexo搭建的 我的笔记本是用Vuepress搭建的 公司的笔记本是用Docsify搭建的  先截图看下 HexoVuepressDocsify  下面主要介绍下静态网站生成器，并主要说明我试过的这几个，做一下对比   什么是静态网站生成器 静态网站">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205012356.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205012446.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205012525.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205012245.jpg">
+<meta property="article:published_time" content="2019-07-14T16:18:06.000Z">
+<meta property="article:modified_time" content="2023-02-04T17:42:50.048Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="SSG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.codingoer.top/blog/20230205012356.jpg">
+
+
+<link rel="canonical" href="https://www.codingoer.top/2019/static-website-compare/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/2019/static-website-compare/","path":"2019/static-website-compare/","title":"静态网站生成器对比"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>静态网站生成器对比 | Java技术分享</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">12</span></a></li><li class="menu-item menu-item-plugins"><a href="/blog/plugins/" rel="section"><i class="fa fa-flask fa-fw"></i>Plugins</a></li><li class="menu-item menu-item-website"><a href="https://www.codingoer.top/" rel="section"><i class="fa fa-house-laptop fa-fw"></i>Website</a></li><li class="menu-item menu-item-next-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Next Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">什么是静态网站生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E7%94%9F%E6%88%90%E5%99%A8%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text">静态网站生成器对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo"><span class="nav-number">3.1.</span> <span class="nav-text">Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vuepress"><span class="nav-number">3.2.</span> <span class="nav-text">Vuepress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docsify"><span class="nav-number">3.3.</span> <span class="nav-text">Docsify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%85%B1%E5%90%8C%E7%89%B9%E7%82%B9"><span class="nav-number">3.4.</span> <span class="nav-text">一些共同特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E9%80%82%E5%90%88%E4%BD%A0%E7%9A%84"><span class="nav-number">4.</span> <span class="nav-text">如何选择适合你的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/codingoer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.codingoer.top/2019/static-website-compare/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/java-3.svg">
+      <meta itemprop="name" content="Lionel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Java技术分享">
+      <meta itemprop="description" content="Java Technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="静态网站生成器对比 | Java技术分享">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          静态网站生成器对比
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-14 16:18:06" itemprop="dateCreated datePublished" datetime="2019-07-14T16:18:06Z">2019-07-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最开始因为<a href="/2019/06/28/about-my-blog/">搭建博客</a>，上网查阅了很多关于<mark class="label info">静态网站生成器</mark>的相关文章，后续自己又尝试了几款不同的静态网站生成器，并对其有了一定的了解。</p>
+<ul>
+<li>我的博客是用<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a>搭建的</li>
+<li>我的笔记本是用<a target="_blank" rel="noopener" href="https://vuepress.vuejs.org/">Vuepress</a>搭建的</li>
+<li>公司的笔记本是用<a target="_blank" rel="noopener" href="https://docsify.js.org/#/">Docsify</a>搭建的</li>
+</ul>
+<p>先截图看下</p>
+<div class="tabs" id="ssgs-example"><ul class="nav-tabs"><li class="tab active"><a href="#ssgs-example-1">Hexo</a></li><li class="tab"><a href="#ssgs-example-2">Vuepress</a></li><li class="tab"><a href="#ssgs-example-3">Docsify</a></li></ul><div class="tab-content"><div class="tab-pane active" id="ssgs-example-1"><img src="https://image.codingoer.top/blog/20230205012356.jpg" class=""></div><div class="tab-pane" id="ssgs-example-2"><img src="https://image.codingoer.top/blog/20230205012446.jpg" class=""></div><div class="tab-pane" id="ssgs-example-3"><img src="https://image.codingoer.top/blog/20230205012525.jpg" class=""></div></div></div>
+
+<div class="note primary no-icon"><p>下面主要介绍下静态网站生成器，并主要说明我试过的这几个，做一下对比</p>
+</div>
+
+<h2 id="什么是静态网站生成器"><a href="#什么是静态网站生成器" class="headerlink" title="什么是静态网站生成器"></a>什么是静态网站生成器</h2><blockquote>
+<p>静态网站 - static site<br><strong>静态网站</strong> 是包含html页面的集合</p>
+</blockquote>
+<blockquote>
+<p>静态网站生成器 - static site generator(SSG)<br><strong>静态网站生成器</strong> 使用原始数据（比如Markdown文件）和模板，产生Html页面的工具。</p>
+</blockquote>
+<p>我个人的理解，主要是将<mark class="label danger">markdown</mark>渲染成<code>html</code>页面，并根据<code>模板</code>生成一些静态页面。</p>
+<p>找了一张网络上的图片，很形象</p>
+<p><img src="https://image.codingoer.top/blog/20230205012245.jpg" alt="20230205012245"></p>
+<p>从图片上我们不难理解，将一些资源文件，这些文件包括<code>布局</code>,<code>javascript</code>,<code>css</code>,<code>image</code>,<code>md文件</code>等等，最终生成<code>html页面</code>.</p>
+<span id="more"></span>
+
+<h2 id="静态网站生成器对比"><a href="#静态网站生成器对比" class="headerlink" title="静态网站生成器对比"></a>静态网站生成器对比</h2><p>关于<mark class="label info">静态网站生成器</mark>的种类真的是太多太多了。耳熟能详的就有，<mark class="label info">Jekyll</mark>，<mark class="label info">Hugo</mark>，<mark class="label info">Hexo</mark>，<mark class="label info">Gatsby</mark>……..</p>
+<blockquote>
+<p>按照所基于语言划分</p>
+</blockquote>
+<ul>
+<li>基于React(JavaScript)的系列: <code>Gatsby</code> <code>Next.js</code></li>
+<li>基于VUE的(JavaScript)系列: <code>Vuepress</code> <code>Nuxt.js</code></li>
+<li>基于Ruby的系列: <code>JekkyII</code></li>
+<li>基于GoLang的系列: <code>Hugo</code></li>
+</ul>
+<blockquote>
+<p>按照目的划分</p>
+</blockquote>
+<ul>
+<li>博客或者小型个人网站：<code>Hexo</code>，<code>Gatsby</code></li>
+<li>文档：<code>GitBook</code>，<code>Vuepress</code></li>
+<li>商业网站：<code>Gatsby</code>，<code>Nuxt</code></li>
+</ul>
+<div class="note info"><p>下面对比我使用过的三个，<mark class="label success">Hexo</mark> VS <mark class="label success">Vuepress</mark> VS <mark class="label success">Docsify</mark></p>
+</div>
+
+<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><p>我的博客就是使用<mark class="label info">Hexo</mark>搭建的，总体来说，我觉得<mark class="label info">Hexo</mark>国内使用的人比较多，中文资料多，百度一搜问题，可以搜出来相关的问题。然后就是上手容易，照着文档上操作，遇到问题都可以解决。</p>
+<p>主题比较丰富，我Google了Top 10主题，每一个都看了。下面几个主题都是我比较喜欢的，也是排名比较靠前的。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">next</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ppoffice/hexo-theme-icarus">icarus</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/shenliyang/hexo-theme-snippet">snippet</a></li>
+</ul>
+<p>官网提供的插件也是比较多，但是我没有用，这里不多说了。</p>
+<div class="note danger no-icon"><p>缺点就是出现问题不好定位，错误信息不明显，也可能是我不会调试吧，毕竟前端不是很好</p>
+</div>
+
+<p>比如我在标题中输入了特殊符号<code>%</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 我是特殊符号%</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>hexo server</code>命令时会出现以下错误信息</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">ERROR</span> <span class="title class_">Render</span> <span class="variable constant_">HTML</span> <span class="attr">failed</span>: index.<span class="property">html</span></span><br><span class="line"><span class="title class_">TypeError</span>: <span class="title class_">Cannot</span> read property <span class="string">&#x27;replace&#x27;</span> <span class="keyword">of</span> <span class="literal">null</span></span><br><span class="line">    at <span class="title class_">Hexo</span>.<span class="property">externalLinkFilter</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/hexo/lib/plugins/filter/after_render/external_link.<span class="property">js</span>:<span class="number">22</span>:<span class="number">15</span>)</span><br><span class="line">    at <span class="title class_">Hexo</span>.<span class="property">tryCatcher</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/util.<span class="property">js</span>:<span class="number">16</span>:<span class="number">23</span>)</span><br><span class="line">    at <span class="title class_">Hexo</span>.&lt;anonymous&gt; (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/method.<span class="property">js</span>:<span class="number">15</span>:<span class="number">34</span>)</span><br><span class="line">    at <span class="title class_">Promise</span>.<span class="property">each</span>.<span class="property">filter</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/hexo/lib/extend/filter.<span class="property">js</span>:<span class="number">62</span>:<span class="number">52</span>)</span><br><span class="line">    at tryCatcher (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/util.<span class="property">js</span>:<span class="number">16</span>:<span class="number">23</span>)</span><br><span class="line">    at <span class="title class_">Object</span>.<span class="property">gotValue</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/reduce.<span class="property">js</span>:<span class="number">166</span>:<span class="number">18</span>)</span><br><span class="line">    at <span class="title class_">Object</span>.<span class="property">gotAccum</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/reduce.<span class="property">js</span>:<span class="number">155</span>:<span class="number">25</span>)</span><br><span class="line">    at <span class="title class_">Object</span>.<span class="property">tryCatcher</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/util.<span class="property">js</span>:<span class="number">16</span>:<span class="number">23</span>)</span><br><span class="line">    at <span class="title class_">Promise</span>.<span class="property">_settlePromiseFromHandler</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/promise.<span class="property">js</span>:<span class="number">547</span>:<span class="number">31</span>)</span><br><span class="line">    at <span class="title class_">Promise</span>.<span class="property">_settlePromise</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/promise.<span class="property">js</span>:<span class="number">604</span>:<span class="number">18</span>)</span><br><span class="line">    at <span class="title class_">Promise</span>.<span class="property">_settlePromiseCtx</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/promise.<span class="property">js</span>:<span class="number">641</span>:<span class="number">10</span>)</span><br><span class="line">    at _drainQueueStep (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/<span class="keyword">async</span>.<span class="property">js</span>:<span class="number">97</span>:<span class="number">12</span>)</span><br><span class="line">    at _drainQueue (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/<span class="keyword">async</span>.<span class="property">js</span>:<span class="number">86</span>:<span class="number">9</span>)</span><br><span class="line">    at <span class="title class_">Async</span>.<span class="property">_drainQueues</span> (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/<span class="keyword">async</span>.<span class="property">js</span>:<span class="number">102</span>:<span class="number">5</span>)</span><br><span class="line">    at <span class="title class_">Immediate</span>.<span class="property">Async</span>.<span class="property">drainQueues</span> [<span class="keyword">as</span> _onImmediate] (<span class="regexp">/Users/</span>lionel/<span class="title class_">GitProjects</span>/blog/node_modules/bluebird/js/release/<span class="keyword">async</span>.<span class="property">js</span>:<span class="number">15</span>:<span class="number">14</span>)</span><br><span class="line">    at runCallback (timers.<span class="property">js</span>:<span class="number">705</span>:<span class="number">18</span>)</span><br><span class="line">    at tryOnImmediate (timers.<span class="property">js</span>:<span class="number">676</span>:<span class="number">5</span>)</span><br><span class="line">    at processImmediate (timers.<span class="property">js</span>:<span class="number">658</span>:<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>头疼的很，完全看不出来是标题引起的问题，只能一点点排查，最后定位问题。</p>
+<h3 id="Vuepress"><a href="#Vuepress" class="headerlink" title="Vuepress"></a>Vuepress</h3><mark class="label info">Vuepress</mark>更适合做文档，VueJs生态的产品都是使用它做的官网文档。它提供了一个自带的主题，适合写技术文档，也可以自己开发主题。
+
+<p>因为是基于<code>VueJs</code>的，调试起来比较方便，出现错误信息马上能定位位置，适合熟悉<code>VueJs</code>的人上手。</p>
+<mark class="label info">Vuepress</mark>内部集成了webpack，还有node的相关知识，感觉逼格挺高，弄起来确实要花点时间。
+
+<p>我在弄我的笔记的时候确实花了不少时间，看了很多遍的文档，也操作了很多遍。有时间想自己写写主题或者插件，都是基于vue的</p>
+<h3 id="Docsify"><a href="#Docsify" class="headerlink" title="Docsify"></a>Docsify</h3><div class="note success"><p>最大的优点就是不用生成html页面</p>
+</div>
+
+<mark class="label info">Vuepress</mark>更小巧吧，首页就是一个html页面，所有的配置都在这里面配置，直接写md页面就可以了。然后通过nginx指向这个首页就可以访问了，真的是很方便。因为我公司的笔记本无法公开，所以前面只能截了个图，大家可以看看官网，上手也是很快的。
+
+<h3 id="一些共同特点"><a href="#一些共同特点" class="headerlink" title="一些共同特点"></a>一些共同特点</h3><p>每一种静态网站生成器基本上都是一样的，我们只需要关心如何写作，其他的东西只要按照官方文档一步步来就可以了。</p>
+<p>除了基本的Markdown语法外，不同的生成器还会支持一些特有的语法，比如<code>lable</code>,<code>note</code>等等。大同小异，就是样式不一样罢了。所以每一种静态网站生成器都差不多，不要在这上面花太多时间。我就是在这上面浪费了比较多的时间，最后发现也没什么卵用。</p>
+<h2 id="如何选择适合你的"><a href="#如何选择适合你的" class="headerlink" title="如何选择适合你的"></a>如何选择适合你的</h2><div class="note danger"><p><strong>主题和插件</strong> 占据主导地位，然后就看个人喜好了</p>
+</div>
+
+<p>首先要明确一点，你搭建这个静态网站做什么用？是写博客，还是写技术文档，还是商业使用。明确了这一点后，才能选择适合你的。</p>
+<p>如果写文档我推荐使用<mark class="label info">Vuepress</mark>，毕竟<code>VueJs</code>还是比较流行的，大多数人都了解，或者使用<mark class="label info">Docsify</mark>，也适合写文档。如果是商业使用，我推荐使用Gatsby，搭建博客的话，还是选择国内使用比较多的，你遇到的问题基本上大家都遇到过，问题好解决，这样少走弯路，尽快达到目的。</p>
+<p>其次还要看你对前端哪块比较熟悉，如果你熟悉<code>React</code>那么肯定要选择基于<code>React</code>的系列(Gatsby，Next.js)，如果你熟悉<code>VueJs</code>，那么肯定选择基于<code>VueJs</code>的系列(Vuepress, Nuxt.js)，这样上手更加容易，事半功倍。</p>
+<p>我们最终的目的是搭建完成，既要考虑美观，也要考虑学习成本，尽快完成才是我们的目标。尽量不要给自己挖坑，最后半途而废！！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>搭建静态网站并不难，我们看到各种各样的<mark class="label info">静态网站生成器</mark>也不必感到无从下手，万变不离其中，所有的原理都是一样的。唯一不同的就是官方文档不同，只要你通读了官网文档，并且边看边做，你就学会了。</p>
+<p>最后要的就是你要用这个东西做什么事，不能说搭建完成就放在那里了，然后就荒废了。网站搭建完成只是一个开始，路漫漫其修远兮。最重要的是做事和坚持。</p>
+<p>最后来一句东北话，干就完了！！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/SSG/" rel="tag"># SSG</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2019/about-my-blog/" rel="prev" title="如何搭建个人博客">
+                  <i class="fa fa-chevron-left"></i> 如何搭建个人博客
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2019/hexo-next-post/" rel="next" title="使用Markdown写作的一些事">
+                  使用Markdown写作的一些事 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/next-boot.min.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

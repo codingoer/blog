@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/config.min.js"></script>
+
+    <meta name="description" content="背景当天晚上购物车项目所在的服务器CPU突然飙升，就在不久刚刚修复了一个线上的问题，难道是修复这个问题引起的吗？ 由于我没有线上服务器的登录权限，项目经理将线程栈信息导出来发给了我，最后定位了问题。是进入购物车列表这个操作引起的，找到问题并修复，最后CPU利用率也恢复了正常。 网上有很多关于定位CPU100%的文章，我关注了很多公众号，每个公众号几乎都推送过类似的文章。所以说，这是一项必会的本领，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线上服务器CPU100&amp;#37排查">
+<meta property="og:url" content="https://www.codingoer.top/2019/online-cpu-examine/index.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="背景当天晚上购物车项目所在的服务器CPU突然飙升，就在不久刚刚修复了一个线上的问题，难道是修复这个问题引起的吗？ 由于我没有线上服务器的登录权限，项目经理将线程栈信息导出来发给了我，最后定位了问题。是进入购物车列表这个操作引起的，找到问题并修复，最后CPU利用率也恢复了正常。 网上有很多关于定位CPU100%的文章，我关注了很多公众号，每个公众号几乎都推送过类似的文章。所以说，这是一项必会的本领，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205004550.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205004616.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205004637.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205004657.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205004721.jpg">
+<meta property="article:published_time" content="2019-10-12T20:16:33.000Z">
+<meta property="article:modified_time" content="2023-02-04T17:42:50.048Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="CPU">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.codingoer.top/blog/20230205004550.jpg">
+
+
+<link rel="canonical" href="https://www.codingoer.top/2019/online-cpu-examine/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/2019/online-cpu-examine/","path":"2019/online-cpu-examine/","title":"线上服务器CPU100&#37排查"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>线上服务器CPU100&#37排查 | Java技术分享</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">12</span></a></li><li class="menu-item menu-item-plugins"><a href="/blog/plugins/" rel="section"><i class="fa fa-flask fa-fw"></i>Plugins</a></li><li class="menu-item menu-item-website"><a href="https://www.codingoer.top/" rel="section"><i class="fa fa-house-laptop fa-fw"></i>Website</a></li><li class="menu-item menu-item-next-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Next Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%85%E6%99%AF%E5%86%8D%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">情景再现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">定位过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A7%E8%A1%8Ctop%E5%91%BD%E4%BB%A4"><span class="nav-number">3.1.</span> <span class="nav-text">执行top命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU%E5%88%A9%E7%94%A8%E7%8E%87%E6%9C%80%E9%AB%98%E7%9A%84%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.2.</span> <span class="nav-text">CPU利用率最高的线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E4%B8%BA16%E8%BF%9B%E5%88%B6"><span class="nav-number">3.3.</span> <span class="nav-text">转换为16进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88"><span class="nav-number">3.4.</span> <span class="nav-text">查看线程堆栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E5%87%BA%E7%BA%BF%E7%A8%8B%E5%A0%86%E6%A0%88"><span class="nav-number">3.5.</span> <span class="nav-text">导出线程堆栈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3"><span class="nav-number">4.</span> <span class="nav-text">如何解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/codingoer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.codingoer.top/2019/online-cpu-examine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/java-3.svg">
+      <meta itemprop="name" content="Lionel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Java技术分享">
+      <meta itemprop="description" content="Java Technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="线上服务器CPU100&#37排查 | Java技术分享">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          线上服务器CPU100&#37排查
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-10-12 20:16:33" itemprop="dateCreated datePublished" datetime="2019-10-12T20:16:33Z">2019-10-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">服务器</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>当天晚上<mark class="label info">购物车</mark>项目所在的服务器<mark class="label danger">CPU突然飙升</mark>，就在不久刚刚修复了一个线上的问题，难道是修复这个问题引起的吗？</p>
+<p>由于我没有<code>线上服务器</code>的登录权限，项目经理将线程栈信息导出来发给了我，最后定位了问题。是进入<mark class="label primary">购物车列表</mark>这个操作引起的，找到问题并修复，最后CPU利用率也恢复了正常。</p>
+<p>网上有很多关于定位CPU100%的文章，我关注了很多公众号，每个公众号几乎都推送过类似的文章。所以说，这是一项必会的本领，这里我自己总结下关于服务器CPU达到100%的原因以及如何解决这类的问题，就拿这次事件举例并分析。</p>
+<h2 id="情景再现"><a href="#情景再现" class="headerlink" title="情景再现"></a>情景再现</h2><div class="note primary"><p>本地机器复现线上情况</p>
+</div>
+
+<p>本地启动代码，修改<code>nginx</code>配置，将测试环境机器指向到我的本地电脑。模拟线上数据，开始做测试。</p>
+<p>进入购物车列表几次之后，本地CPU的利用率已经达到了100%，这时候机器已经很卡了。</p>
+<p><img src="https://image.codingoer.top/blog/20230205004550.jpg" alt="20230205004550"></p>
+<h2 id="定位过程"><a href="#定位过程" class="headerlink" title="定位过程"></a>定位过程</h2><div class="note info"><h3 id="执行top命令"><a href="#执行top命令" class="headerlink" title="执行top命令"></a>执行<code>top</code>命令</h3></div>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line marked">top -c</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.codingoer.top/blog/20230205004616.jpg" alt="20230205004616"></p>
+<p>因为线上一台服务器会部署很多应用，先确定是不是我们的Java程序。</p>
+<p>结果相吻合,就是<code>6560</code>的Java进程</p>
+<p><img src="https://image.codingoer.top/blog/20230205004637.jpg" alt="20230205004637"></p>
+<span id="more"></span>
+
+<div class="note info"><h3 id="CPU利用率最高的线程"><a href="#CPU利用率最高的线程" class="headerlink" title="CPU利用率最高的线程"></a>CPU利用率最高的<code>线程</code></h3></div>
+
+<p>找到CPU利用率最高的<code>线程</code>,看它做了什么事情,执行<code>top -Hp 6560</code>,按大写的<code>P</code>排序</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line marked">top -Hp 6560</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.codingoer.top/blog/20230205004657.jpg" alt="20230205004657"></p>
+<div class="note info"><h3 id="转换为16进制"><a href="#转换为16进制" class="headerlink" title="转换为16进制"></a>转换为16进制</h3></div>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span> <span class="string">&quot;0x%x\n&quot;</span> 6833</span><br></pre></td></tr></table></figure>
+
+<p>得到的结果是<code>0x2653</code></p>
+<div class="note info"><h3 id="查看线程堆栈"><a href="#查看线程堆栈" class="headerlink" title="查看线程堆栈"></a>查看线程堆栈</h3></div>
+
+<p>使用<code>jstack</code>,可以大概确定了位置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jstack 6560 | grep 0x2653 -A 30</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.codingoer.top/blog/20230205004721.jpg" alt="20230205004721"></p>
+<div class="note info"><h3 id="导出线程堆栈"><a href="#导出线程堆栈" class="headerlink" title="导出线程堆栈"></a>导出线程堆栈</h3></div>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jstack -l 6560 &gt; 6560.stack</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h2><p>首先来看一下问题代码，第五行代码那里出现了<mark class="label danger">死循环</mark>，从而导致了这次事件。</p>
+<p>这是一个计算分摊金额的方法，将<mark class="label info">cents</mark>参数的值，分摊到每个商品里面。</p>
+<figure class="highlight java"><figcaption><span>省略了部分代码</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">parsCents</span><span class="params">(<span class="type">long</span> cents, List&lt;ProductVo&gt; products, <span class="type">int</span> productStatus)</span> &#123;</span><br><span class="line">    Map&lt;ProductVo, AtomicInteger&gt; unionIdToCount = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">while</span> (cents &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (ProductVo productVo : products) &#123;</span><br><span class="line marked">            <span class="keyword">if</span> (productVo.getProductStatus() == productStatus) &#123;</span><br><span class="line marked">                <span class="keyword">continue</span>;</span><br><span class="line marked">            &#125;</span><br><span class="line">            <span class="type">int</span> <span class="variable">alloc</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">            <span class="type">AtomicInteger</span> <span class="variable">count</span> <span class="operator">=</span> unionIdToCount.get(productVo);</span><br><span class="line">            <span class="keyword">if</span>(count == <span class="literal">null</span>) &#123;</span><br><span class="line">                count = <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>(alloc);</span><br><span class="line">                unionIdToCount.put(productVo, count);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                count.addAndGet(alloc);</span><br><span class="line">            &#125;</span><br><span class="line">            cents -= alloc;</span><br><span class="line">            <span class="keyword">if</span> (cents == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后代码修改，将while循环中的continue代码删掉，在外部先过滤掉失效的商品</p>
+<figure class="highlight java"><figcaption><span>省略了部分代码</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">parsCents</span><span class="params">(<span class="type">long</span> cents, List&lt;ProductVo&gt; products, <span class="type">int</span> productStatus)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (CollectionUtils.isEmpty(products)) &#123;</span><br><span class="line">        log.error(<span class="string">&quot;Ignore parse cents, products is empty&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;ProductVo&gt; productVoList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(products.size());</span><br><span class="line">    <span class="keyword">for</span> (ProductVo product : products) &#123;</span><br><span class="line">        <span class="keyword">if</span> (product.getProductStatus() != productStatus) &#123;</span><br><span class="line">            productVoList.add(product);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Map&lt;ProductVo, AtomicInteger&gt; unionIdToCount = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    OUT:</span><br><span class="line">    <span class="keyword">while</span> (cents &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (ProductVo productVo : productVoList) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">alloc</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">            <span class="type">AtomicInteger</span> <span class="variable">count</span> <span class="operator">=</span> unionIdToCount.get(productVo);</span><br><span class="line">            <span class="keyword">if</span>(count == <span class="literal">null</span>) &#123;</span><br><span class="line">                count = <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>(alloc);</span><br><span class="line">                unionIdToCount.put(productVo, count);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                count.addAndGet(alloc);</span><br><span class="line">            &#125;</span><br><span class="line">            cents -= alloc;</span><br><span class="line">            <span class="keyword">if</span> (cents == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span> OUT;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><div class="note danger no-icon"><p>此次事件就是写代码不规范导致的</p>
+</div>
+
+<p>在写<code>while</code>循环的时候尤其要注意，看看有没有死循环出现的可能。如果不小心就会引发严重的后果</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/CPU/" rel="tag"># CPU</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2019/thread-local-clear/" rel="prev" title="记一次ThreadLocal导致的问题">
+                  <i class="fa fa-chevron-left"></i> 记一次ThreadLocal导致的问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2019/thread-local-param/" rel="next" title="多线程中ThreadLocal的传参">
+                  多线程中ThreadLocal的传参 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/next-boot.min.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/config.min.js"></script>
+
+    <meta name="description" content="我是在2018年10月份的时候，有想法想弄一个自己的网站，可以写写东西，发表一些好的文章。当时在网上看到了CrossoverJie的博客，我被深深的吸引了，下定决心弄一个自己的博客网站，希望自己可以成为像他一样的大神级别的人物。 有了目标后就可以行动起来了，但是过程可谓是一波三折，因为自己的拖延症，这件事拖了好久好久。但是当你搭建好之后，回头看整个过程你会发现很有成就感，同样也收获了很多。 下面说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何搭建个人博客">
+<meta property="og:url" content="https://www.codingoer.top/2019/about-my-blog/index.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="我是在2018年10月份的时候，有想法想弄一个自己的网站，可以写写东西，发表一些好的文章。当时在网上看到了CrossoverJie的博客，我被深深的吸引了，下定决心弄一个自己的博客网站，希望自己可以成为像他一样的大神级别的人物。 有了目标后就可以行动起来了，但是过程可谓是一波三折，因为自己的拖延症，这件事拖了好久好久。但是当你搭建好之后，回头看整个过程你会发现很有成就感，同样也收获了很多。 下面说">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205002749.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205002818.jpg">
+<meta property="article:published_time" content="2019-06-27T20:30:02.000Z">
+<meta property="article:modified_time" content="2023-02-04T17:42:50.048Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="SSG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.codingoer.top/blog/20230205002749.jpg">
+
+
+<link rel="canonical" href="https://www.codingoer.top/2019/about-my-blog/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/2019/about-my-blog/","path":"2019/about-my-blog/","title":"如何搭建个人博客"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>如何搭建个人博客 | Java技术分享</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">12</span></a></li><li class="menu-item menu-item-plugins"><a href="/blog/plugins/" rel="section"><i class="fa fa-flask fa-fw"></i>Plugins</a></li><li class="menu-item menu-item-website"><a href="https://www.codingoer.top/" rel="section"><i class="fa fa-house-laptop fa-fw"></i>Website</a></li><li class="menu-item menu-item-next-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Next Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%B0%E4%B8%80%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">买一台服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%B0%E4%B8%80%E4%B8%AA%E5%9F%9F%E5%90%8D"><span class="nav-number">2.</span> <span class="nav-text">买一个域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3"><span class="nav-number">3.</span> <span class="nav-text">网站配置相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E6%A1%88"><span class="nav-number">3.1.</span> <span class="nav-text">备案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%91%E8%A7%A3%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">云解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%81%E4%B9%A6"><span class="nav-number">3.3.</span> <span class="nav-text">证书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5%E7%94%9F%E6%88%90%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">静态网页生成器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">nginx服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E5%AD%98%E5%82%A8"><span class="nav-number">6.</span> <span class="nav-text">图片存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E7%9A%84%E6%94%B6%E8%8E%B7"><span class="nav-number">7.</span> <span class="nav-text">最后的收获</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/codingoer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.codingoer.top/2019/about-my-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/java-3.svg">
+      <meta itemprop="name" content="Lionel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Java技术分享">
+      <meta itemprop="description" content="Java Technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何搭建个人博客 | Java技术分享">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何搭建个人博客
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-27 20:30:02" itemprop="dateCreated datePublished" datetime="2019-06-27T20:30:02Z">2019-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>我是在<mark class="label info">2018年10月份</mark>的时候，有想法想弄一个自己的网站，可以写写东西，发表一些好的文章。当时在网上看到了<a target="_blank" rel="noopener" href="https://crossoverjie.top/">CrossoverJie的博客</a>，我被深深的吸引了，下定决心弄一个自己的博客网站，希望自己可以成为像他一样的<mark class="label primary">大神级别的人物</mark>。</p>
+<p>有了目标后就可以行动起来了，但是过程可谓是一波三折，因为自己的<mark class="label danger">拖延症</mark>，这件事拖了好久好久。但是当你搭建好之后，回头看整个过程你会发现<mark class="label success">很有成就感</mark>，同样也收获了很多。</p>
+<div class="note primary"><p>下面说明我搭建个人网站的<strong>详细过程</strong></p>
+</div>
+
+<h2 id="买一台服务器"><a href="#买一台服务器" class="headerlink" title="买一台服务器"></a>买一台服务器</h2><p>想要搭建自己的网站，首先得有一台<code>云服务器</code>，这是前提。我选择的是<mark class="label info">腾讯云</mark>。</p>
+<p>为什么选择<mark class="label info">腾讯云</mark>？因为我女朋友是在校大学生，当时有一个在校大学生的优惠活动，可以购买学生优惠的服务器，平均每个月是<mark class="label info">10块钱</mark>，一年下来就是<mark class="label info">120元</mark>。</p>
+<p>当时我也想买<mark class="label info">阿里云</mark>服务器，因为阿里云的学生认证失败了，所以没有买。因为当时阿里云也有同样的活动。</p>
+<p><strong>服务器配置</strong>的话就是最基本的，<mark>1核CPU 2GB内存 1Mbps带宽 50G硬盘</mark></p>
+<p>订单截图如下</p>
+<p><img src="https://image.codingoer.top/blog/20230205002749.jpg" alt="20230205002749"></p>
+<p>因为这个活动，最多可以选择<code>一年</code>时长，不然的话我真想一次买个五年的，哈哈。好在可以提前续费，但是遗憾的是最多可以续费两次。赶上这样的活动，我可不能浪费啊，所以我肯定把这两次机会用掉了，又续费了两次。</p>
+<p><img src="https://image.codingoer.top/blog/20230205002818.jpg" alt="20230205002818"></p>
+<p>这样服务器就弄好了，一共是<mark class="label primary">三年使用权</mark>。这样的服务器配置，足够我折腾的了。虽然前面浪费了很多时间，希望从今以后能把这台服务器利用起来，真的可以从中学到知识。</p>
+<h2 id="买一个域名"><a href="#买一个域名" class="headerlink" title="买一个域名"></a>买一个域名</h2><p>想要别人在浏览器中访问你的网站，首先你需要一个<mark class="label ">域名</mark>。</p>
+<p>用什么做我的域名呢？我想了很久，最后使用了<mark class="label warning">花离海</mark>的拼音，也就是<mark class="label warning">hualihai.cn</mark>。至于为什么选择这个，因为我女朋友的网名叫<mark class="label info">柚花离海</mark>，那时候我就想干脆用花离海吧，这个名字也挺好听的。为什么不选择.com，因为被别人占用了，在一个就是<code>.com</code>费用比较高，所以域名就定下来了。</p>
+<p>域名买了三年的，一共<code>90元</code></p>
+<span id="more"></span>
+
+<h2 id="网站配置相关"><a href="#网站配置相关" class="headerlink" title="网站配置相关"></a>网站配置相关</h2><p>配置这一块还是比较复杂的，要了解腾讯云如何使用，所以要看腾讯云的文档，了解网站所涉及的东西。比如下面这些的概念及配置</p>
+<ul>
+<li>云服务器</li>
+<li>安全组</li>
+<li>私有网络，子网</li>
+<li>云解析</li>
+<li>网站备案</li>
+<li>SSL证书</li>
+</ul>
+<p>下面我说几个比较重要的</p>
+<h3 id="备案"><a href="#备案" class="headerlink" title="备案"></a>备案</h3><p>备案整个过程都很麻烦，首先要通读一遍<mark class="label info">腾讯云文档</mark>，了解什么是备案，如何去备案。</p>
+<p>大概的步骤</p>
+<ul>
+<li>首先是要申请，填一些资料，打印文件，上传到腾讯云。</li>
+<li>然后腾讯云会邮寄一个幕布，你在这个幕布前拍照，再把这个照片上传。</li>
+<li>接下来就是等待的过程了，如果备案成功了会有电话和邮件通知。</li>
+</ul>
+<p>备案的地址一般就是户籍所在地，我老家是黑龙江的，所以我的是<mark class="label success">黑</mark>。</p>
+<h3 id="云解析"><a href="#云解析" class="headerlink" title="云解析"></a>云解析</h3><p>这部分就是控制台的操作，我使用的是免费解析套餐，这部分参考文档配置。</p>
+<p>比如，我的网站是<code>www.hualihai.cn</code>，在解析管理中要配置这样一条解析记录。如果以后想使用对象存储，可能会有<code>CNAME</code>类型的记录。因为我的图片是放到腾讯云的对象存储上面了，然后后配置了<mark class="label info">CND</mark>，所以我会用到<code>CNAME</code>，不了解CNAME的话可以到腾讯云文档上查看。</p>
+<table>
+<thead>
+<tr>
+<th align="center">主机记录</th>
+<th align="center">记录类型</th>
+<th align="center">记录值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">www</td>
+<td align="center">A</td>
+<td align="center">服务器ip地址</td>
+</tr>
+<tr>
+<td align="center">image</td>
+<td align="center">CNAME</td>
+<td align="center">cdn地址</td>
+</tr>
+</tbody></table>
+<h3 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h3><p>网站要支持https，就要有证书。我是申请的免费证书，有效期一年。</p>
+<p>证书申请成功后，先把证书下载下来，上传到服务器，修改nginx配置。可参考<a target="_blank" rel="noopener" href="https://cloud.tencent.com/document/product/400/35244">腾讯云文档</a>。</p>
+<p>到这里相关配置就完成了，可以在服务器上部署几个静态文件，通过nginx就可以访问了。</p>
+<h2 id="静态网页生成器"><a href="#静态网页生成器" class="headerlink" title="静态网页生成器"></a>静态网页生成器</h2><p>选择用什么当做博客模板的时候，我是非常纠结，上网Google了最流行的静态网站生成器，同时我也参考了很多大牛的博客，试了很多静态网站生成器，在这上面花了很多时间。</p>
+<p>看来看去，最终还是选择了<mark class="label danger">Hexo</mark>。</p>
+<p>选择<code>Hexo</code>的原因是文档简单，上手快，国内用的算是比较多吧。。</p>
+<p>主题的话选择了<mark class="label danger">Next</mark>。我也想过二次开发一些主题，但是试了一段时间后发现成本比较高，要补充前端知识。所以最后还是拿来直接用了，好在<mark class="label danger">Next</mark>主题也是我比较喜欢的。</p>
+<h2 id="nginx服务器"><a href="#nginx服务器" class="headerlink" title="nginx服务器"></a>nginx服务器</h2><p>服务器这块毫无疑问使用的是nginx，静态网站首选。</p>
+<p>部署的话，就是使用<mark class="label danger">Hexo</mark>生成静态<mark class="label success">html页面</mark>，然后打包放到服务器上。我自己写了一个脚本，感觉也很方便。</p>
+<h2 id="图片存储"><a href="#图片存储" class="headerlink" title="图片存储"></a>图片存储</h2><p>我使用的是腾讯云的<mark class="label info">对象存储</mark>，也可以换成阿里云的<mark class="label info">OSS</mark>。</p>
+<p>首先，我找了一个前端上传图片的开源框架 <a target="_blank" rel="noopener" href="https://uppy.io/">Uppy</a>, 然后写了一个后端服务，部署到服务器上，封装各个云厂商提供的SDK，做成了统一的接口，方便切换。如果以后阿里云OSS优惠大，我可以完美切换。</p>
+<p>目前是使用腾讯云的对象存储，又买了CDN。</p>
+<h2 id="最后的收获"><a href="#最后的收获" class="headerlink" title="最后的收获"></a>最后的收获</h2><p>整个搭建过程，短短的几分钟就看完了。但是真实的情况要远比这复杂的多，自己真正经历过后，写出来的都是轻描淡写。虽然这不是什么难的内容，但对于我，刚刚接触服务器配置来说，还是要花点功夫的。</p>
+<p>当你弄完整个流程后，发现一切都很清晰，从中不仅学到了很多东西，包括一些网站上的概念，一些后台配置等等。这对以后的工作还是很有帮助的，以后肯定要涉及到<mark class="label info">服务运维</mark>这块，要熟悉各个云厂商的服务器相关操作，还是很有帮助的。</p>
+<p>还有就是要改变自己的惰性，这很可怕。服务器明明早就买好了，一拖再拖，好久之后我才把网站搭起来。真的是太不应该了，如果以后不改变这个毛病，我相信我自己不会做成什么大事，所以一定要改！！！</p>
+<div class="note success"><p>总之，从无到有，这也是一种收获</p>
+</div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/blog/tags/SSG/" rel="tag"># SSG</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2019/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2019/static-website-compare/" rel="next" title="静态网站生成器对比">
+                  静态网站生成器对比 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/next-boot.min.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

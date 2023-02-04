@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/config.min.js"></script>
+
+    <meta name="description" content="DTS是数据传输服务，Data Transmission Service的简称Data Transmission Service Apache Avro官网地址 Apache Avro是一个序列化工具，其优点是二进制传输，简洁高效，主要用于RPC序列化等。 它的主要特点有：支持二进制序列化方式，可以便捷，快速地处理大量数据；动态语言友好，Avro提供的机制使动态语言可以方便地处理Avro数据。 S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里云DTS同步ES详解">
+<meta property="og:url" content="https://www.codingoer.top/2021/aliyun-dts/index.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="DTS是数据传输服务，Data Transmission Service的简称Data Transmission Service Apache Avro官网地址 Apache Avro是一个序列化工具，其优点是二进制传输，简洁高效，主要用于RPC序列化等。 它的主要特点有：支持二进制序列化方式，可以便捷，快速地处理大量数据；动态语言友好，Avro提供的机制使动态语言可以方便地处理Avro数据。 S">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204234335.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204012040.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204234605.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204234835.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204234938.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204235418.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204235437.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204235458.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204235517.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204235856.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230204235953.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205000015.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205000335.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205000405.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205000430.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205000441.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205000514.jpg">
+<meta property="article:published_time" content="2021-07-24T20:46:25.000Z">
+<meta property="article:modified_time" content="2023-02-04T17:42:50.048Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="Aliyun">
+<meta property="article:tag" content="ES">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.codingoer.top/blog/20230204234335.jpg">
+
+
+<link rel="canonical" href="https://www.codingoer.top/2021/aliyun-dts/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/2021/aliyun-dts/","path":"2021/aliyun-dts/","title":"阿里云DTS同步ES详解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>阿里云DTS同步ES详解 | Java技术分享</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">12</span></a></li><li class="menu-item menu-item-plugins"><a href="/blog/plugins/" rel="section"><i class="fa fa-flask fa-fw"></i>Plugins</a></li><li class="menu-item menu-item-website"><a href="https://www.codingoer.top/" rel="section"><i class="fa fa-house-laptop fa-fw"></i>Website</a></li><li class="menu-item menu-item-next-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Next Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-Avro"><span class="nav-number">1.</span> <span class="nav-text">Apache Avro</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Schemas"><span class="nav-number">1.1.</span> <span class="nav-text">Schemas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">对比其他系统的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%89%A9%E5%B1%95%EF%BC%88Protocol%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">相关扩展（Protocol）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DTS%E6%95%B0%E6%8D%AE%E8%AE%A2%E9%98%85Kafka%E5%AE%A2%E6%88%B7%E7%AB%AFDemo"><span class="nav-number">2.</span> <span class="nav-text">DTS数据订阅Kafka客户端Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">Demo代码结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%88%86%E6%9E%90"><span class="nav-number">3.1.</span> <span class="nav-text">线程分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text">启动流程分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E8%B4%B9%E4%BD%8D%E7%82%B9%E6%8F%90%E4%BA%A4"><span class="nav-number">3.3.</span> <span class="nav-text">消费位点提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="nav-number">3.4.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%8A%82%E7%82%B9"><span class="nav-number">3.5.</span> <span class="nav-text">数据节点</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/codingoer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.codingoer.top/2021/aliyun-dts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/java-3.svg">
+      <meta itemprop="name" content="Lionel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Java技术分享">
+      <meta itemprop="description" content="Java Technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="阿里云DTS同步ES详解 | Java技术分享">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          阿里云DTS同步ES详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-07-24 20:46:25" itemprop="dateCreated datePublished" datetime="2021-07-24T20:46:25Z">2021-07-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/ES/" itemprop="url" rel="index"><span itemprop="name">ES</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>DTS是数据传输服务，Data Transmission Service的简称Data Transmission Service<br><img src="https://image.codingoer.top/blog/20230204234335.jpg" alt="20230204234335"></p>
+<h2 id="Apache-Avro"><a href="#Apache-Avro" class="headerlink" title="Apache Avro"></a>Apache Avro</h2><p><a target="_blank" rel="noopener" href="https://avro.apache.org/docs/current/index.html">官网地址</a></p>
+<p>Apache Avro是一个序列化工具，其优点是二进制传输，简洁高效，主要用于RPC序列化等。</p>
+<p>它的主要特点有：支持二进制序列化方式，可以便捷，快速地处理大量数据；动态语言友好，Avro提供的机制使动态语言可以方便地处理Avro数据。</p>
+<h3 id="Schemas"><a href="#Schemas" class="headerlink" title="Schemas"></a>Schemas</h3><p>相关介绍可以看：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a5c0cbfbf608">https://www.jianshu.com/p/a5c0cbfbf608</a></p>
+<p><img src="https://image.codingoer.top/blog/20230204012040.jpg" alt="20230204012040"></p>
+<h3 id="对比其他系统的优点"><a href="#对比其他系统的优点" class="headerlink" title="对比其他系统的优点"></a>对比其他系统的优点</h3><p>当前市场上有很多类似的序列化系统，如Google的Protocol Buffers, Facebook的Thrift。</p>
+<p>DTS中数据订阅Kafka客户端为什么选择了Avro作为序列化工具？他相比其他序列化系统有什么好处呢？</p>
+<p>图片来源官网，看看就好！</p>
+<p><img src="https://image.codingoer.top/blog/20230204234605.jpg" alt="20230204234605"></p>
+<h3 id="相关扩展（Protocol）"><a href="#相关扩展（Protocol）" class="headerlink" title="相关扩展（Protocol）"></a>相关扩展（Protocol）</h3><p>Google protocol buffer是谷歌开源系列化工具，Google开源gRPC框架序列化工具</p>
+<p>定义proto文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// any.proto, api.proto, descriptor.proto, duration.proto, empty.proto, field_mask.proto, source_context.proto, struct.proto, timestamp.proto, type.proto, wrappers.proto</span><br><span class="line">syntax = &quot;proto3&quot;;</span><br><span class="line"> </span><br><span class="line">option java_multiple_files = true;</span><br><span class="line">option java_package = &quot;com.lionel.test.grpc.grpc&quot;;</span><br><span class="line">option java_outer_classname = &quot;OperationItfDescr&quot;;</span><br><span class="line">option objc_class_prefix = &quot;IOI&quot;;</span><br><span class="line"> </span><br><span class="line">import &quot;google/protobuf/any.proto&quot;;</span><br><span class="line">import &quot;google/protobuf/empty.proto&quot;;</span><br><span class="line">import &quot;google/protobuf/timestamp.proto&quot;;</span><br><span class="line"> </span><br><span class="line">package operationitf;</span><br><span class="line"> </span><br><span class="line">service OperationItf&#123;</span><br><span class="line">    rpc operate (OperateRequest) returns (google.protobuf.Empty) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">message OperationDto &#123;</span><br><span class="line">    enum Source &#123;</span><br><span class="line">        ORDER = 0;</span><br><span class="line">        CMS = 1;</span><br><span class="line">    &#125;</span><br><span class="line">    enum Type &#123;</span><br><span class="line">        LOCK = 0;</span><br><span class="line">        DEDUCT_LOCKED = 1;</span><br><span class="line">        DEDUCT = 2;</span><br><span class="line">    &#125;</span><br><span class="line">    int32 count = 1;</span><br><span class="line">    string descr = 2;</span><br><span class="line">    int64 goodsId = 3;</span><br><span class="line">    Source optSource = 4;</span><br><span class="line">    int64 skuId = 5;</span><br><span class="line">    bool sync = 6;</span><br><span class="line">    Type type = 7;</span><br><span class="line">    string uuid = 8;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">message OperateRequest &#123;</span><br><span class="line">    OperationDto arg0 = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用插件根据proto文件，生成客户端存根代码，实现rpc调用。</p>
+<h2 id="DTS数据订阅Kafka客户端Demo"><a href="#DTS数据订阅Kafka客户端Demo" class="headerlink" title="DTS数据订阅Kafka客户端Demo"></a>DTS数据订阅Kafka客户端Demo</h2><p>从Github上下载即可，在阿里云官方文档上有。</p>
+<h2 id="Demo代码结构"><a href="#Demo代码结构" class="headerlink" title="Demo代码结构"></a>Demo代码结构</h2><p>下载Demo工程后，导入IDEA，先看下目录结构</p>
+<p><img src="https://image.codingoer.top/blog/20230204234835.jpg" alt="20230204234835"></p>
+<ul>
+<li>avro目录<br>里面包含了反序列文件和工具</li>
+<li>javaimpl<br>Java实现代码</li>
+</ul>
+<span id="more"></span> 
+
+<p>现在就详细分析下Javaimpl目录下的代码，可以看到分为几个package</p>
+<p><img src="https://image.codingoer.top/blog/20230204234938.jpg" alt="20230204234938"></p>
+<ol>
+<li><p><strong>boot</strong><br>Boot.java：启动类，创建数据生产者和消费者，启动线程<br>MysqlRecordPrinter：将Avro定义的Record记录打印成mysql语句</p>
+</li>
+<li><p><strong>com.alibaba.dts.formats.avro</strong><br>这个包下面的所有类就是根据定义的Record.avsc生成的，也就是根据schema生成Java类。</p>
+</li>
+<li><p><strong>common</strong><br>CheckPoint：消费位点<br>Context：上下文信息，里面有生产者和消费者<br>RecordListener：数据消费监听接口，数据处理的地方<br>UserCommitCallBack：数据消费成功后，定义的监听接口<br>UserRecord：数据对象，最终我们使用这个对象解析数据<br>WorkThread：工作线程</p>
+</li>
+<li><p><strong>metastore【kafka消费位点处理】</strong></p>
+</li>
+</ol>
+<p>MetaStore：kafka消费者偏移量处理接口<br>LocalFileMetaStore：本地处理消费位点<br>KafkaMetaStore：kafka处理消费位点<br>MetaStoreCenter：相当于工厂类</p>
+<ol start="5">
+<li><strong>recordgenerator【生产者，kafka的consumer】</strong></li>
+</ol>
+<p>ClusterSwithListener：kafka集群切换，减少重复数据消费<br>ConsumerWrap：kafka消费者包装器，消息的来源<br>ConsumerWrapFactory：kafka消费者包装器工厂，获取kafka里面的消费者<br>Names：常亮，没什么说的<br>OffsetCommitCallBack：kafka消费偏移量提交回调接口<br>RecordGenerator：数据生产者，kafka里面的comsumer，线程</p>
+<ol start="6">
+<li><strong>recordprocessor【消费者】</strong></li>
+</ol>
+<p>AvroDeserializer：反序列化<br>EtlRecordProcessor：数据消费者<br>MysqlFieldConverter：数据转换用<br>FieldConverter：数据转换用<br>FieldValue：数据转换用</p>
+<h3 id="线程分析"><a href="#线程分析" class="headerlink" title="线程分析"></a>线程分析</h3><p>使用kafka客户端来订阅数据，一共有三个相关的线程。</p>
+<ul>
+<li>数据生产者，等同于kafka中的cosumer</li>
+<li>数据消费者</li>
+<li>数据消费者中的提交消费偏移量的线程</li>
+</ul>
+<p>本地启动Demo示例：</p>
+<p><img src="https://image.codingoer.top/blog/20230204235418.jpg" alt="20230204235418"></p>
+<p>注：Finalizer和Reference Hander是GC线程。</p>
+<p>从Spring Boot Admin中查看线程情况也是一样，可以看到涉及的三个线程。</p>
+<p><img src="https://image.codingoer.top/blog/20230204235437.jpg" alt="20230204235437"></p>
+<p><img src="https://image.codingoer.top/blog/20230204235458.jpg" alt="20230204235458"></p>
+<p><img src="https://image.codingoer.top/blog/20230204235517.jpg" alt="20230204235517"></p>
+<p><strong>RecordProcessor线程</strong></p>
+<p>数据消费者线程代码（中间省略了数据处理的部分，这里只说明线程情况）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (!existed) &#123;</span><br><span class="line">        ConsumerRecord&lt;<span class="type">byte</span>[], <span class="type">byte</span>[]&gt; toProcess = <span class="literal">null</span>;</span><br><span class="line">        <span class="type">Record</span> <span class="variable">record</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">fetchFailedCount</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">null</span> == (toProcess = toProcessRecord.peek()) &amp;&amp; !existed) &#123;</span><br><span class="line">                sleepMS(<span class="number">5</span>);</span><br><span class="line">                fetchFailedCount++;</span><br><span class="line">                <span class="keyword">if</span> (fetchFailedCount % <span class="number">1000</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                    log.info(<span class="string">&quot;EtlRecordProcessor: haven&#x27;t receive records from generator for  5s&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (existed) &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 省略数据处理代码。。。。</span></span><br><span class="line">            toProcessRecord.poll();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;EtlRecordProcessor: process record failed, raw consumer record [&quot;</span> + toProcess + <span class="string">&quot;], parsed record [&quot;</span> + record + <span class="string">&quot;], cause &quot;</span> + e.getMessage(), e);</span><br><span class="line">            existed = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面代码可以看出，当线程启动后会一直从数据消费队列中获取数据，如果没有数据，睡眠5毫秒，达到1000次后，也就是5秒还没有数据，打印一次日志。</p>
+<p><strong>RecordGenerator线程</strong></p>
+<p>数据生产者（也就是kafka消费者）线程。（中间省略了数据获取的部分，这里只说明线程情况）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">haveTryTime</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> <span class="string">&quot;first start&quot;</span>;</span><br><span class="line">    <span class="type">ConsumerWrap</span> <span class="variable">kafkaConsumerWrap</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">while</span> (!existed) &#123;</span><br><span class="line">        <span class="comment">// 从上下文中获取数据消费者，也就是数据处理者processor</span></span><br><span class="line">        <span class="type">EtlRecordProcessor</span> <span class="variable">recordProcessor</span> <span class="operator">=</span> context.getRecordProcessor();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            kafkaConsumerWrap = getConsumerWrap(message);</span><br><span class="line">            <span class="comment">// 省略kafka consumer获取数据........</span></span><br><span class="line">            <span class="keyword">while</span> (!existed) &#123;</span><br><span class="line">                    <span class="comment">// 数据进入队列</span></span><br><span class="line">                    <span class="keyword">while</span> (!recordProcessor.offer(<span class="number">1000</span>, TimeUnit.MILLISECONDS, record) &amp;&amp; !existed) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (++offerTryCount % <span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                            log.info(<span class="string">&quot;RecordGenerator: offer record has failed for a period (10s) [ &quot;</span> + record + <span class="string">&quot;]&quot;</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            <span class="keyword">if</span> (isErrorRecoverable(e) &amp;&amp; haveTryTime++ &lt; tryTime) &#123;</span><br><span class="line">                log.warn(<span class="string">&quot;RecordGenerator: error meet cause &quot;</span> + e.getMessage() + <span class="string">&quot;, recover time [&quot;</span> + haveTryTime + <span class="string">&quot;]&quot;</span>, e);</span><br><span class="line">                sleepMS(tryBackTimeMS);</span><br><span class="line">                message = <span class="string">&quot;reconnect&quot;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                log.error(<span class="string">&quot;RecordGenerator: unrecoverable error  &quot;</span> + e.getMessage() + <span class="string">&quot;, have try time [&quot;</span> + haveTryTime + <span class="string">&quot;]&quot;</span>, e);</span><br><span class="line">                <span class="built_in">this</span>.existed = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面代码可以看出，数据生产者当线程启动后，获取到kafkaConsumer后，一直拉取kafka中的消息，如果有数据放入消费者队列。<br>如果失败，可能是网络原因，线程睡眠10秒（可配置），进行重试。</p>
+<p><strong>RecordProcess#Commit</strong></p>
+<p>提交kafka消费位点线程</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> WorkThread <span class="title function_">getCommitThread</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">WorkThread</span> <span class="variable">workThread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">WorkThread</span>(<span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (!existed) &#123;</span><br><span class="line">                sleepMS(<span class="number">5000</span>);</span><br><span class="line">                commit();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="string">&quot;Record Processor Commit&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> workThread;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每五秒提交一次消费点位。</p>
+<p><strong>总结</strong></p>
+<p>以上，就是这三个线程来完成数据同步工作。总的来说就是：</p>
+<ol>
+<li>数据生产者线程（kafka消费者）获取到数据到，将数据加入数据消费者队列</li>
+<li>数据消费者线程从队列中获取数据，进行反序列化后处理处理，设置最新的消费位点</li>
+<li>提交偏移量的线程每五秒提交一次位点</li>
+</ol>
+<h3 id="启动流程分析"><a href="#启动流程分析" class="headerlink" title="启动流程分析"></a>启动流程分析</h3><p><img src="https://image.codingoer.top/blog/20230204235856.jpg" alt="20230204235856"></p>
+<p>从上面流程图来看，启动流程很简单，最终的部分在构建生产者和消费者两个线程。下面来分析一下</p>
+<p>创建生产者：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> RecordGenerator <span class="title function_">getRecordGenerator</span><span class="params">(Context context, Properties properties)</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="type">RecordGenerator</span> <span class="variable">recordGenerator</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RecordGenerator</span>(properties, context,</span><br><span class="line">            parseCheckpoint(properties.getProperty(INITIAL_CHECKPOINT_NAME)),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">ConsumerWrapFactory</span>.KafkaConsumerWrapFactory());</span><br><span class="line">    context.setStreamSource(recordGenerator);</span><br><span class="line">    <span class="keyword">return</span> recordGenerator;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建消费者</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> EtlRecordProcessor <span class="title function_">getEtlRecordProcessor</span><span class="params">(Context context, Properties properties, RecordGenerator recordGenerator)</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="type">EtlRecordProcessor</span> <span class="variable">etlRecordProcessor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EtlRecordProcessor</span>(<span class="keyword">new</span> <span class="title class_">OffsetCommitCallBack</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">commit</span><span class="params">(TopicPartition tp, <span class="type">long</span> timestamp, <span class="type">long</span> offset, String metadata)</span> &#123;</span><br><span class="line">            <span class="comment">// 回调之后设置信息消费点位</span></span><br><span class="line">            recordGenerator.setToCommitCheckpoint(<span class="keyword">new</span> <span class="title class_">Checkpoint</span>(tp, timestamp, offset, metadata));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, context);</span><br><span class="line">    context.setRecordProcessor(etlRecordProcessor);</span><br><span class="line">    <span class="keyword">return</span> etlRecordProcessor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建生产者和消费者都是通过构造方法，将一些属性赋值。下面分别看下生产者和消费者线程运行时的逻辑</p>
+<p><img src="https://image.codingoer.top/blog/20230204235953.jpg" alt="20230204235953"></p>
+<h3 id="消费位点提交"><a href="#消费位点提交" class="headerlink" title="消费位点提交"></a>消费位点提交</h3><p>消息成功消费后，需要告知Kafka，这部分是通过MetaStoreCenter来处理的。</p>
+<p><img src="https://image.codingoer.top/blog/20230205000015.jpg" alt="20230205000015"></p>
+<p>MetaStoreCenter里面维护了一个Map，在创建生产者的时候将LocalFileMetaStore注册到map中。</p>
+<p><strong>本地消费位点存储</strong></p>
+<p>通过文件来实现，定义了AtomicFileStore。</p>
+<p><strong>Kafka消费位点提交</strong></p>
+<p>使用的是commitAsync方法。</p>
+<h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>Demo示例中使用了回调接口</p>
+<ol>
+<li>UserRecord中的UserCommitCallBack接口，在用户处理数据时的回调</li>
+<li>生产者RecordProcessor中的OffsetCommitCallBack接口，在消费者处理消费位点时的回调，通知kafka消费者。</li>
+</ol>
+<p>在最外层创建了RecordListener接口（接口匿名实现），处理完数据后提交消费位点</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, RecordListener&gt; <span class="title function_">buildRecordListener</span><span class="params">()</span> &#123;</span><br><span class="line">     </span><br><span class="line">    <span class="type">RecordListener</span> <span class="variable">mysqlRecordPrintListener</span> <span class="operator">=</span> record -&gt; &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">ret</span> <span class="operator">=</span> MysqlRecordPrinter.recordToString(record.getRecord());</span><br><span class="line">        log.info(<span class="string">&quot;【Record Listener】 consume record is &#123;&#125;&quot;</span>, ret);</span><br><span class="line">        <span class="comment">// 处理数据逻辑省略</span></span><br><span class="line">        <span class="comment">// 提交消费位点</span></span><br><span class="line">        record.commit(String.valueOf(record.getRecord().getSourceTimestamp()));</span><br><span class="line">    &#125;;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">return</span> Collections.singletonMap(<span class="string">&quot;mysqlRecordPrinter&quot;</span>, mysqlRecordPrintListener);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>UserRecord中定义了UserCommitCallBack接口，而接口的实现是在创建消费者中定义的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">record = fastDeserializer.deserialize(consumerRecord.value());</span><br><span class="line"><span class="keyword">for</span> (RecordListener recordListener : recordListeners.values()) &#123;</span><br><span class="line">    recordListener.consume(<span class="keyword">new</span> <span class="title class_">UserRecord</span>(<span class="keyword">new</span> <span class="title class_">TopicPartition</span>(consumerRecord.topic(), consumerRecord.partition()), consumerRecord.offset(), record, <span class="keyword">new</span> <span class="title class_">UserCommitCallBack</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">commit</span><span class="params">(TopicPartition tp, Record commitRecord, <span class="type">long</span> offset, String metadata)</span> &#123;</span><br><span class="line">            commitCheckpoint = <span class="keyword">new</span> <span class="title class_">Checkpoint</span>(tp, commitRecord.getSourceTimestamp(), offset, metadata);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RecordProcessor中定义了OffsetCommitCallBack接口，接口的实现是在创建消费者时定义，将值传递给了生产者。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> EtlRecordProcessor <span class="title function_">getEtlRecordProcessor</span><span class="params">(Context context, Properties properties, RecordGenerator recordGenerator)</span> &#123;</span><br><span class="line">    <span class="type">EtlRecordProcessor</span> <span class="variable">etlRecordProcessor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">EtlRecordProcessor</span>(<span class="keyword">new</span> <span class="title class_">OffsetCommitCallBack</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">commit</span><span class="params">(TopicPartition tp, <span class="type">long</span> timestamp, <span class="type">long</span> offset, String metadata)</span> &#123;</span><br><span class="line">            recordGenerator.setToCommitCheckpoint(<span class="keyword">new</span> <span class="title class_">Checkpoint</span>(tp, timestamp, offset, metadata));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, context);</span><br><span class="line">    context.setRecordProcessor(etlRecordProcessor);</span><br><span class="line">    <span class="keyword">return</span> etlRecordProcessor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样通过一层层回调函数，将消费位点传给了KafkaConsumer。这种设计思想可以学习。</p>
+<h3 id="数据节点"><a href="#数据节点" class="headerlink" title="数据节点"></a>数据节点</h3><ol>
+<li>kafkaConsumer.poll</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ConsumerRecords&lt;<span class="type">byte</span>[], <span class="type">byte</span>[]&gt; records = kafkaConsumerWrap.poll();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.codingoer.top/blog/20230205000335.jpg" alt="20230205000335"></p>
+<p><img src="https://image.codingoer.top/blog/20230205000405.jpg" alt="20230205000405"></p>
+<ol start="2">
+<li>Avro Record</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Record</span> <span class="variable">record</span> <span class="operator">=</span> fastDeserializer.deserialize(consumerRecord.value());</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.codingoer.top/blog/20230205000430.jpg" alt="20230205000430"></p>
+<p><img src="https://image.codingoer.top/blog/20230205000441.jpg" alt="20230205000441"></p>
+<ol start="3">
+<li>UserRecord</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">recordListener.consume(<span class="keyword">new</span> <span class="title class_">UserRecord</span>(<span class="keyword">new</span> <span class="title class_">TopicPartition</span>(consumerRecord.topic(), consumerRecord.partition()), consumerRecord.offset(), record, <span class="keyword">new</span> <span class="title class_">UserCommitCallBack</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">commit</span><span class="params">(TopicPartition tp, Record commitRecord, <span class="type">long</span> offset, String metadata)</span> &#123;</span><br><span class="line">        commitCheckpoint = <span class="keyword">new</span> <span class="title class_">Checkpoint</span>(tp, commitRecord.getSourceTimestamp(), offset, metadata);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://image.codingoer.top/blog/20230205000514.jpg" alt="20230205000514"></p>
+<ol start="4">
+<li>MysqlRecordPrinter.recordToString</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">recordID [521705329]source [&#123;&quot;sourceType&quot;: &quot;MySQL&quot;, &quot;version&quot;: &quot;5.6.47-log&quot;&#125;]dbTable [null.null]recordType [BEGIN]recordTimestamp [1624467825]extra tags [&#123;Q_SQL_MODE_CODE=1075838976, Q_CHARSET_CODE=45, GTID=9d437549-9a4c-11ea-9659-9efc635af2ae:558572086, thread_id=55153591, readerThroughoutTime=1624467825852, Q_FLAGS2_CODE=0&#125;,]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">recordID [521754300]source [&#123;&quot;sourceType&quot;: &quot;MySQL&quot;, &quot;version&quot;: &quot;5.6.47-log&quot;&#125;]dbTable [dcr.t_dcr_rectify]recordType [UPDATE]recordTimestamp [1624468556]extra tags [&#123;pk_uk_info=&#123;&quot;PRIMARY&quot;:[&quot;id&quot;]&#125;, thread_id=55156706, readerThroughoutTime=1624468556441&#125;,]</span><br><span class="line">Field [id]Before [66]After [66]</span><br><span class="line">Field [rectify_no]Before [RE1381622516602527744]After [RE1381622516602527744]</span><br><span class="line">Field [rectify_process_id]Before [605]After [605]</span><br><span class="line">Field [contract_id]Before [710919]After [710919]</span><br><span class="line">Field [status]Before [7]After [7]</span><br><span class="line">Field [handle_bd_code]Before [GSZN11468]After [GSZN11468]</span><br><span class="line">Field [bd_department_whole_id]Before [10124-50563001642-50563003553-10061]After [10124-50563001642-50563003553-10061]</span><br><span class="line">Field [bd_channel_whole_id]Before []After []</span><br><span class="line">Field [distribute_bd_code]Before [GSZN5150]After [GSZN5150]</span><br><span class="line">Field [distribute_bd_department_whole_id]Before [10124-10036-50563003549-10009-50563002040-50563006677]After [10124-10036-50563003549-10009-50563002040-50563006677]</span><br><span class="line">Field [distribute_bd_channel_whole_id]Before []After []</span><br><span class="line">Field [distribute_time]Before [2021-04-12 22:57:32]After [2021-04-12 22:57:32]</span><br><span class="line">Field [remark]Before [测试同步啊a]After [测试同步啊aaa]</span><br><span class="line">Field [is_deleted]Before [0]After [0]</span><br><span class="line">Field [gmt_create]Before [2021-04-12 22:57:31]After [2021-04-12 22:57:31]</span><br><span class="line">Field [gmt_modify]Before [2021-06-24 01:15:48]After [2021-06-24 01:15:56]</span><br><span class="line">Field [stop_push_terminate_rectify]Before [0]After [0]</span><br><span class="line">Field [stop_push_terminate_rectify_time]Before [1618239451.000000]After [1618239451.000000]</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Aliyun/" rel="tag"># Aliyun</a>
+              <a href="/blog/tags/ES/" rel="tag"># ES</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2020/spring-transaction-propagation/" rel="prev" title="记录一次Spring事务分析过程">
+                  <i class="fa fa-chevron-left"></i> 记录一次Spring事务分析过程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/next-boot.min.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
