@@ -245,12 +245,12 @@ excerpt_description: true
 # If true, the read more button will be displayed in excerpt section.
 read_more_btn: true
 
-# Post meta display settings
+# Post meta display settings 文档meta展示设置
 post_meta:
   item_text: true
   created_at: true
-  updated_at:
-    enable: true
+  updated_at: 
+    enable: true # 是否展示最近修改日期
     another_day: true
   categories: true
 
