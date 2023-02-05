@@ -85,7 +85,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">12</span></a></li><li class="menu-item menu-item-plugins"><a href="/blog/plugins/" rel="section"><i class="fa fa-flask fa-fw"></i>Plugins</a></li><li class="menu-item menu-item-website"><a href="https://www.codingoer.top/" rel="section"><i class="fa fa-house-laptop fa-fw"></i>Website</a></li><li class="menu-item menu-item-next-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Next Docs</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a></li><li class="menu-item menu-item-plugins"><a href="/blog/plugins/" rel="section"><i class="fa fa-flask fa-fw"></i>Plugins</a></li><li class="menu-item menu-item-website"><a href="https://www.codingoer.top/" rel="section"><i class="fa fa-house-laptop fa-fw"></i>Website</a></li><li class="menu-item menu-item-next-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Next Docs</a></li>
   </ul>
 </nav>
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -183,6 +183,378 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.codingoer.top/2019/thread-local-clear/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/java-3.svg">
+      <meta itemprop="name" content="Lionel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Java技术分享">
+      <meta itemprop="description" content="Java Technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Java技术分享">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2019/thread-local-clear/" class="post-title-link" itemprop="url">记一次ThreadLocal导致的问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-08-07 18:02:58" itemprop="dateCreated datePublished" datetime="2019-08-07T18:02:58Z">2019-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>当天测试反馈一个<mark class="label danger">Bug</mark>🐞，是我们APP首页有一个模型，正常情况是要根据每个用户浏览的商品来推荐一些相关的商品。首页的这个模型默认展示前两个商品，点进去会进入到推荐商品列表页,看下图</p>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="https://image-m.1haitao.com/m/50881151504359879833.png" class=""></div><div class="group-picture-column"><img src="https://image.codingoer.top/blog/20230205011447.jpg" class=""></div></div></div>
+
+<p>测试发现，每次刷新首页的时候，这两个商品有时候会变化，与点击进去的列表页的头两个商品对不上。</p>
+<h2 id="定位问题"><a href="#定位问题" class="headerlink" title="定位问题"></a>定位问题</h2><div class="note warning"><p>出现问题不要慌,要找准问题的关键点.</p>
+</div>
+
+<p>首先,这个模型展示的商品是根据<mark class="label info">用户</mark>来决定的,不同的用户所看到的商品是不一样的.进入列表页之后看到的商品列表也是根据<mark class="label info">用户</mark>来决定的.</p>
+<p>那现在出现的问题是</p>
+<ol>
+<li>首页这个模型上展示的商品,刷新首页会不停变化</li>
+<li>进入到列表页和列表页的商品对不上.</li>
+</ol>
+<p>经过上面的分析之后,可以大概知道是根据用户ID查询的数据出现了问题.多半就是由于这个用户ID引起的,要不为什么数据会变化呢??有可能首页的模型数据是别的用户的,而列表页的数据是自己的.</p>
+<p>所以就按照这个方向来定位问题,那么就开始检查代码吧,先看下存储用户信息的这部分代码</p>
+<p>因为我们的服务部署在<mark class="label success">Tomcat</mark>服务器上,<mark class="label info">Tomcat</mark>又是基于<code>线程</code>的.所以我们后端服务将用户信息放在了<mark class="label success">ThreadLocal</mark>中.</p>
+<figure class="highlight java"><figcaption><span>用户工具类伪代码</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServletUtils</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ThreadLocal&lt;User&gt; userCache = <span class="keyword">new</span> <span class="title class_">ThreadLocal</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> User <span class="title function_">user</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userCache.get();</span><br><span class="line">        <span class="keyword">if</span> (user != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> user;</span><br><span class="line">        &#125;</span><br><span class="line">        user = ucenterService.user();</span><br><span class="line">        <span class="keyword">if</span> (user != <span class="literal">null</span>) &#123;</span><br><span class="line">            userCache.set(user);</span><br><span class="line">            <span class="keyword">return</span> user;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样用户的信息就<strong>贯穿整个请求</strong>,后面用到用户信息就直接工具类获取,代码写起来<strong>更简单</strong>.<br>但是这样用户信息就和当前线程绑定了,随着线程而消亡,这点非常重要,所以我们每次请求之后都会清空本地线程栈的信息</p>
+<figure class="highlight java"><figcaption><span>servlet伪代码</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DispatcherServlet</span> <span class="keyword">extends</span> <span class="title class_">ContextDispatcherServlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doService</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="built_in">super</span>.doService(request, response);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> e;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            UserServletUtils.clear();</span><br><span class="line">            <span class="built_in">super</span>.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2019/thread-local-clear/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.codingoer.top/2019/hexo-next-post/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/java-3.svg">
+      <meta itemprop="name" content="Lionel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Java技术分享">
+      <meta itemprop="description" content="Java Technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Java技术分享">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2019/hexo-next-post/" class="post-title-link" itemprop="url">使用Markdown写作的一些事</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-18 20:30:02" itemprop="dateCreated datePublished" datetime="2019-07-18T20:30:02Z">2019-07-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>因为我是使用<mark class="label info">hexo</mark> + <mark class="label success">next</mark>构建的网站，所以在这里我总结下<mark class="label info">hexo</mark>和<mark class="label success">next</mark>支持的一些语法特性。</p>
+<h2 id="基础的Markdown语法"><a href="#基础的Markdown语法" class="headerlink" title="基础的Markdown语法"></a>基础的Markdown语法</h2><p><a target="_blank" rel="noopener" href="https://daringfireball.net/projects/markdown/basics">官方网站</a><br><a target="_blank" rel="noopener" href="https://markdown-it.github.io/">在线demo</a></p>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>一共是两种语法，我一般就使用<mark class="label primary">#</mark></p>
+<ul>
+<li><strong>Setext-style</strong> - 标示样式</li>
+</ul>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">A First Level Header</span></span><br><span class="line"><span class="section">====================</span></span><br><span class="line"></span><br><span class="line"><span class="section">A Second Level Header</span></span><br><span class="line"><span class="section">---------------------</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>atx-style</strong> - #样式</li>
+</ul>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line"><span class="section"># header1</span></span><br><span class="line"></span><br><span class="line"><span class="section">## header2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h3><p>直接写文字就可以了，如果要换行就空一行呗。</p>
+<p>好吧，那我换一行开始，随便你吧。</p>
+<p>如果处理换行，输入两个或以上的空格就可以了。</p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><figure class="highlight md"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; This is a blockquote.</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>This is a blockquote.</p>
+</blockquote>
+<h3 id="短语加强"><a href="#短语加强" class="headerlink" title="短语加强"></a>短语加强</h3><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">Some of these words <span class="emphasis">*are emphasized*</span>.</span><br><span class="line">Some of these words <span class="emphasis">_are emphasized also_</span>.</span><br><span class="line">Use two asterisks for <span class="strong">**strong emphasis**</span>.</span><br><span class="line">Or, if you prefer, <span class="strong">__use two underscores instead__</span>.</span><br></pre></td></tr></table></figure>
+<p><em>italic</em>   <strong>bold</strong><br><em>italic</em>   <strong>bold</strong></p>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表可以分成<mark class="label info">无序</mark>和<mark class="label info">有序</mark>。</p>
+<p>无序列表有三种<code>*</code>,<code>+</code>,<code>-</code></p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span>   Candy.</span><br><span class="line"><span class="bullet">*</span>   Gum.</span><br><span class="line"><span class="bullet">*</span>   Booze.</span><br><span class="line"></span><br><span class="line"><span class="bullet">+</span>   Candy.</span><br><span class="line"><span class="bullet">+</span>   Gum.</span><br><span class="line"><span class="bullet">+</span>   Booze.</span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span>   Candy.</span><br><span class="line"><span class="bullet">-</span>   Gum.</span><br><span class="line"><span class="bullet">-</span>   Booze.</span><br></pre></td></tr></table></figure>
+
+<p>有序列表</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span>  Red</span><br><span class="line"><span class="bullet">2.</span>  Green</span><br><span class="line"><span class="bullet">3.</span>  Blue</span><br></pre></td></tr></table></figure>
+
+<p>如果列表中加入p元素，看下面</p>
+<ul>
+<li><p>A list item.</p>
+<p>With multiple paragraphs.</p>
+</li>
+<li><p>Another item in the list.</p>
+</li>
+</ul>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接有两种样式，<mark class="label info">内联式</mark>和<mark class="label info">引用式</mark></p>
+<ul>
+<li>内联式</li>
+</ul>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">An [<span class="string">example</span>](<span class="link">http://url.com/ &quot;Title&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>引用式</li>
+</ul>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">An [<span class="string">example</span>][<span class="symbol">id</span>]. Then, anywhereelse in the doc, define the link:</span><br><span class="line"></span><br><span class="line">[<span class="symbol">id</span>]: <span class="link">http://example.com/  &quot;Title&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>图片有两种样式，一种是内联式，一种是引用的。我一般就使用内联式</p>
+<ol>
+<li>内联式</li>
+</ol>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">![<span class="string">alt text</span>](<span class="link">/path/to/img.jpg &quot;Title&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>引用的</li>
+</ol>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">![<span class="string">alt text</span>][<span class="symbol">id</span>]</span><br><span class="line"></span><br><span class="line">[<span class="symbol">id</span>]: <span class="link">/path/to/img.jpg &quot;Title&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>四个空格或者一个tab</p>
+<p>This is a normal paragraph:</p>
+<pre><code>This is a code block.
+</code></pre>
+<p>Here is an example of AppleScript:</p>
+<pre><code>tell application &quot;Foo&quot;
+    beep
+end tell
+</code></pre>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>使用反引号，或者多个的到引号</p>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">Use the <span class="code">`printf()`</span> function.</span><br></pre></td></tr></table></figure>
+
+<p>Use the <code>printf()</code> function.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.println(<span class="string">&quot;Hello Word!!!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="水平线"><a href="#水平线" class="headerlink" title="水平线"></a>水平线</h3><p>水平线就三种</p>
+<hr>
+<hr>
+<hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2019/hexo-next-post/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.codingoer.top/2019/static-website-compare/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/java-3.svg">
+      <meta itemprop="name" content="Lionel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Java技术分享">
+      <meta itemprop="description" content="Java Technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Java技术分享">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2019/static-website-compare/" class="post-title-link" itemprop="url">静态网站生成器对比</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-07-14 16:18:06" itemprop="dateCreated datePublished" datetime="2019-07-14T16:18:06Z">2019-07-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Website/" itemprop="url" rel="index"><span itemprop="name">Website</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最开始因为<a href="/2019/06/28/about-my-blog/">搭建博客</a>，上网查阅了很多关于<mark class="label info">静态网站生成器</mark>的相关文章，后续自己又尝试了几款不同的静态网站生成器，并对其有了一定的了解。</p>
+<ul>
+<li>我的博客是用<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a>搭建的</li>
+<li>我的笔记本是用<a target="_blank" rel="noopener" href="https://vuepress.vuejs.org/">Vuepress</a>搭建的</li>
+<li>公司的笔记本是用<a target="_blank" rel="noopener" href="https://docsify.js.org/#/">Docsify</a>搭建的</li>
+</ul>
+<p>先截图看下</p>
+<div class="tabs" id="ssgs-example"><ul class="nav-tabs"><li class="tab active"><a href="#ssgs-example-1">Hexo</a></li><li class="tab"><a href="#ssgs-example-2">Vuepress</a></li><li class="tab"><a href="#ssgs-example-3">Docsify</a></li></ul><div class="tab-content"><div class="tab-pane active" id="ssgs-example-1"><img src="https://image.codingoer.top/blog/20230205012356.jpg" class=""></div><div class="tab-pane" id="ssgs-example-2"><img src="https://image.codingoer.top/blog/20230205012446.jpg" class=""></div><div class="tab-pane" id="ssgs-example-3"><img src="https://image.codingoer.top/blog/20230205012525.jpg" class=""></div></div></div>
+
+<div class="note primary no-icon"><p>下面主要介绍下静态网站生成器，并主要说明我试过的这几个，做一下对比</p>
+</div>
+
+<h2 id="什么是静态网站生成器"><a href="#什么是静态网站生成器" class="headerlink" title="什么是静态网站生成器"></a>什么是静态网站生成器</h2><blockquote>
+<p>静态网站 - static site<br><strong>静态网站</strong> 是包含html页面的集合</p>
+</blockquote>
+<blockquote>
+<p>静态网站生成器 - static site generator(SSG)<br><strong>静态网站生成器</strong> 使用原始数据（比如Markdown文件）和模板，产生Html页面的工具。</p>
+</blockquote>
+<p>我个人的理解，主要是将<mark class="label danger">markdown</mark>渲染成<code>html</code>页面，并根据<code>模板</code>生成一些静态页面。</p>
+<p>找了一张网络上的图片，很形象</p>
+<p><img src="https://image.codingoer.top/blog/20230205012245.jpg" alt="20230205012245"></p>
+<p>从图片上我们不难理解，将一些资源文件，这些文件包括<code>布局</code>,<code>javascript</code>,<code>css</code>,<code>image</code>,<code>md文件</code>等等，最终生成<code>html页面</code>.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2019/static-website-compare/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

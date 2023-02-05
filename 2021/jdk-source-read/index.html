@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/config.min.js"></script>
+
+    <meta name="description" content="搭建环境要想阅读JDK源码，首先要知道源码在哪，一般我们安装完JDK后，源码都会在安装目录里面。 Mac系统 IDEA中选择Project Structure  进入如上目录，src.zip就是JDK的源码。  在自己的github上创建一个仓库（有个记录），将src.zip解压，然后拷贝到项目中。修改项目源码路径。  修改编译内存，改大一点  修改断点调试设置  现在就可以编写代码调试了。。。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阅读JDK源码技巧">
+<meta property="og:url" content="https://www.codingoer.top/2021/jdk-source-read/index.html">
+<meta property="og:site_name" content="Java技术分享">
+<meta property="og:description" content="搭建环境要想阅读JDK源码，首先要知道源码在哪，一般我们安装完JDK后，源码都会在安装目录里面。 Mac系统 IDEA中选择Project Structure  进入如上目录，src.zip就是JDK的源码。  在自己的github上创建一个仓库（有个记录），将src.zip解压，然后拷贝到项目中。修改项目源码路径。  修改编译内存，改大一点  修改断点调试设置  现在就可以编写代码调试了。。。。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205213855.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205213910.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205213923.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205213939.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205213953.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205214017.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205214356.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205214426.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205215215.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205220130.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205220150.jpg">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230205220207.jpg">
+<meta property="article:published_time" content="2021-08-31T20:26:25.000Z">
+<meta property="article:modified_time" content="2023-02-05T14:14:40.845Z">
+<meta property="article:author" content="Lionel">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.codingoer.top/blog/20230205213855.jpg">
+
+
+<link rel="canonical" href="https://www.codingoer.top/2021/jdk-source-read/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/2021/jdk-source-read/","path":"2021/jdk-source-read/","title":"阅读JDK源码技巧"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>阅读JDK源码技巧 | Java技术分享</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/blog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Java技术分享</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Blog For Java</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">15</span></a></li><li class="menu-item menu-item-plugins"><a href="/blog/plugins/" rel="section"><i class="fa fa-flask fa-fw"></i>Plugins</a></li><li class="menu-item menu-item-website"><a href="https://www.codingoer.top/" rel="section"><i class="fa fa-house-laptop fa-fw"></i>Website</a></li><li class="menu-item menu-item-next-docs"><a href="/blog/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Next Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">搭建环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91OpenJDK11%EF%BC%88Mac%E7%B3%BB%E7%BB%9F%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">编译OpenJDK11（Mac系统）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenJDK%E4%B8%8EOracleJDK%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E8%81%94%E7%B3%BB"><span class="nav-number">2.1.</span> <span class="nav-text">OpenJDK与OracleJDK的区别和联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-number">2.2.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E5%85%B7"><span class="nav-number">2.3.</span> <span class="nav-text">准备工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCC-GNU-Compiler-Collection"><span class="nav-number">2.4.</span> <span class="nav-text">GCC - GNU Compiler Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-GNU"><span class="nav-number">2.4.1.</span> <span class="nav-text">What is GNU?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-is-GCC"><span class="nav-number">2.4.2.</span> <span class="nav-text">What is GCC?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clang%E4%B8%8ELLVM"><span class="nav-number">2.4.3.</span> <span class="nav-text">Clang与LLVM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure"><span class="nav-number">2.5.</span> <span class="nav-text">Configure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#make"><span class="nav-number">2.5.1.</span> <span class="nav-text">make</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE"><span class="nav-number">2.6.</span> <span class="nav-text">项目配置</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Lionel"
+      src="/blog/images/java-3.svg">
+  <p class="site-author-name" itemprop="name">Lionel</p>
+  <div class="site-description" itemprop="description">Java Technology</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/blog/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/blog/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/blog/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/codingoer" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;codingoer" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:codingoer@gmail.com" title="E-Mail → mailto:codingoer@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/big/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/codingoer" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://www.codingoer.top/2021/jdk-source-read/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/java-3.svg">
+      <meta itemprop="name" content="Lionel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Java技术分享">
+      <meta itemprop="description" content="Java Technology">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="阅读JDK源码技巧 | Java技术分享">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          阅读JDK源码技巧
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-08-31 20:26:25" itemprop="dateCreated datePublished" datetime="2021-08-31T20:26:25Z">2021-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/blog/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><p>要想阅读JDK源码，首先要知道源码在哪，一般我们安装完JDK后，源码都会在安装目录里面。</p>
+<p><strong>Mac系统</strong></p>
+<p>IDEA中选择Project Structure</p>
+<p><img src="https://image.codingoer.top/blog/20230205213855.jpg" alt="20230205213855"></p>
+<p>进入如上目录，src.zip就是JDK的源码。</p>
+<p><img src="https://image.codingoer.top/blog/20230205213910.jpg" alt="20230205213910"></p>
+<p>在自己的github上创建一个仓库（有个记录），将src.zip解压，然后拷贝到项目中。修改项目源码路径。</p>
+<p><img src="https://image.codingoer.top/blog/20230205213923.jpg" alt="20230205213923"></p>
+<p>修改编译内存，改大一点</p>
+<p><img src="https://image.codingoer.top/blog/20230205213939.jpg" alt="20230205213939"></p>
+<p>修改断点调试设置</p>
+<p><img src="https://image.codingoer.top/blog/20230205213953.jpg" alt="20230205213953"></p>
+<p>现在就可以编写代码调试了。。。。</p>
+<p>注意点：</p>
+<p>在写注释的时候只能在行尾添加注释，不能改变源码的行结构，否则会出现断点错乱的问题。</p>
+<p><img src="https://image.codingoer.top/blog/20230205214017.jpg" alt="20230205214017"></p>
+<h1 id="编译OpenJDK11（Mac系统）"><a href="#编译OpenJDK11（Mac系统）" class="headerlink" title="编译OpenJDK11（Mac系统）"></a>编译OpenJDK11（Mac系统）</h1><p>上面这种 方法在写注释或者调试的时候有些局限性，比如多线程调试的时候效果不是很好，接下来就介绍下编译自己的JDK。</p>
+<span id="more"></span> 
+
+<h2 id="OpenJDK与OracleJDK的区别和联系"><a href="#OpenJDK与OracleJDK的区别和联系" class="headerlink" title="OpenJDK与OracleJDK的区别和联系"></a>OpenJDK与OracleJDK的区别和联系</h2><p>谷歌一下或者参考OpenJDK FAQ <a target="_blank" rel="noopener" href="http://openjdk.java.net/faq/">http://openjdk.java.net/faq/</a></p>
+<p>深入理解Java虚拟机第2版：</p>
+<p>OpenJDK是sun在2006年末把Java开源而形成的项目，Oracle JDK采用了商业实现，而OpenJDK使用的是开源的FreeType。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>首先要下载OpenJDK11的源码。</p>
+<p><img src="https://image.codingoer.top/blog/20230205214356.jpg" alt="20230205214356"></p>
+<p>或者从Github上下载或Fork到自己的仓库。（网速不好要翻墙）<a target="_blank" rel="noopener" href="https://github.com/openjdk/">https://github.com/openjdk/</a><br>解压缩后的目录</p>
+<p><img src="https://image.codingoer.top/blog/20230205214426.jpg" alt="20230205214426"></p>
+<p>src目录是源码。。build目录是编译成功后的JDK成品。</p>
+<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><ol>
+<li>Xcode Command Line Tools</li>
+</ol>
+<p>Xcode是一套来自苹果系统的大型软件开发工具和库。Xcode Command Line Tools是Xcode的一部分。</p>
+<p>许多常见的基于unix的工具的安装需要GCC编译器，Xcode Command Line Tools包括GCC编辑器，Apple LLVM compiler, linker, and Make等等。所以，不需要安装全部的Xcode套件。</p>
+<p>检测是否已安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">xcode-select -p</span><br></pre></td></tr></table></figure>
+
+<p>如果已经安装会提示：&#x2F;Library&#x2F;Developer&#x2F;CommandLineTools</p>
+<p>安装Xcode Command Line Tools</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+
+<p>安装完成</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">clang --version</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>HomeBrew</li>
+</ol>
+<p>HomeBrew是安装macOS中没有的UNIX工具的最简单、最灵活的方法。</p>
+<p>安装完成后</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="GCC-GNU-Compiler-Collection"><a href="#GCC-GNU-Compiler-Collection" class="headerlink" title="GCC - GNU Compiler Collection"></a>GCC - GNU Compiler Collection</h2><h3 id="What-is-GNU"><a href="#What-is-GNU" class="headerlink" title="What is GNU?"></a>What is GNU?</h3><p><a target="_blank" rel="noopener" href="https://www.gnu.org/">官网</a></p>
+<p>GNU是一个操作系统项目, 名字是一个递归的GNU’s Not Unix!的缩写.Linux只是一个系统内核，GNU&#x2F;Linux一起打包。</p>
+<p>如果一台用Linux的计算机是一台汽车</p>
+<ul>
+<li><p>计算机硬件<br>轮胎，车架，发动机等等的部件</p>
+</li>
+<li><p>Linux<br>传动杆，变速箱，各种传感器和行车电脑。负责让发动机的能量传到轮胎上，并能获取车辆运行状态的系统部件</p>
+</li>
+<li><p>GNU<br>油门&#x2F;刹车踏板、挂档杆、方向盘、仪表、车门什么的，让司机能够开和用的部件。</p>
+</li>
+</ul>
+<p>知乎传送：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/319783573/answer/656033035">https://www.zhihu.com/question/319783573/answer/656033035</a></p>
+<h3 id="What-is-GCC"><a href="#What-is-GCC" class="headerlink" title="What is GCC?"></a>What is GCC?</h3><p><a target="_blank" rel="noopener" href="https://www.gnu.org/software/gcc/">官网</a></p>
+<p><img src="https://image.codingoer.top/blog/20230205215215.jpg" alt="20230205215215"></p>
+<p>GNU编译器集合包括C、c++、Objective-C、Fortran、Ada、Go和D的前端，以及这些语言的库(libstdc++，…)。GCC最初是作为GNU操作系统的编译器编写的。</p>
+<ul>
+<li>gcc 是GCC中的 GUN C Compiler（C 编译器）</li>
+<li>g++ 是GCC中的 GUN C++ Compiler（C++编译器）</li>
+</ul>
+<h3 id="Clang与LLVM"><a href="#Clang与LLVM" class="headerlink" title="Clang与LLVM"></a>Clang与LLVM</h3><p>LLVM官网：<a target="_blank" rel="noopener" href="https://llvm.org/">https://llvm.org/</a></p>
+<p>LLVM项目是模块化和可重用的编译器和工具链技术的集合。</p>
+<p>Clang官网：<a target="_blank" rel="noopener" href="https://clang.llvm.org/">https://clang.llvm.org/</a></p>
+<p>Clang是一个C语言、C++、Objective-C语言的轻量级编译器,基于LLVM的C&#x2F;C++&#x2F;Objective-C编译器.</p>
+<p>Clang项目为LLVM项目提供了C语言家族(C、c++、Objective C&#x2F; c++、OpenCL、CUDA和RenderScript)的语言前端和工具基础设施。</p>
+<p>GCC是在linux下使用的编译器，Clang是在mac上使用的编译器。对于苹果iOS，使用的编译器是LLVM，相比于xcode 5版本前使用的GCC编译速度提高很多。</p>
+<p>相关连接：</p>
+<p>GCC，LLVM，Clang：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/aa27c51c74fb">https://www.jianshu.com/p/aa27c51c74fb</a></p>
+<p>Clang比GCC好在哪里：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20235742">https://www.zhihu.com/question/20235742</a></p>
+<h2 id="Configure"><a href="#Configure" class="headerlink" title="Configure"></a>Configure</h2><p>进入到解压后的目录，找到doc目录，找到里面的building.md，仔细阅读。</p>
+<p>执行下面命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash configure --with-toolchain-type=clang --with-debug-level=slowdebug --enable-dtrace --with-jvm-variants=server --with-target-bits=64 --enable-ccache --with-num-cores=8 --with-memory-size=8000 --disable-warnings-as-errors --with-sysroot=/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk --with-boot-jdk=/Users/lionel/Environment/openjdk10/jdk-10.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+
+<p>几个重要的点：</p>
+<ol>
+<li>boot-jdk</li>
+<li>toolchain选择clang</li>
+<li>使用homebrew安装缺少的工具，提示少什么就按照什么</li>
+<li>with-sysroot指定SDKs地址</li>
+</ol>
+<p>我再编译时安装到的工具：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">brew install autoconf</span><br><span class="line">brew install ccache</span><br></pre></td></tr></table></figure>
+
+<h3 id="make"><a href="#make" class="headerlink" title="make"></a>make</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make all</span><br></pre></td></tr></table></figure>
+
+<p>Build all images(product, docs and test)<br>我的电脑CPU配置： 2.7 GHz Intel Core i7，使用八核编译，13分钟完成。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make images</span><br></pre></td></tr></table></figure>
+
+<p>Build the JDK image</p>
+<h2 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h2><ol>
+<li><p>选择编译完成的JDK<br><img src="https://image.codingoer.top/blog/20230205220130.jpg" alt="20230205220130"></p>
+</li>
+<li><p>修改源代码路径<br><img src="https://image.codingoer.top/blog/20230205220150.jpg" alt="20230205220150"></p>
+</li>
+<li><p>修改源码后重新编译<br><img src="https://image.codingoer.top/blog/20230205220207.jpg" alt="20230205220207"></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2021/java-future-task/" rel="prev" title="Java中的异步任务">
+                  <i class="fa fa-chevron-left"></i> Java中的异步任务
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">黑ICP备 2021006860号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lionel</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div><div class="footer-custom">
+Website source code <span class="exturl theme-link" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hleG8tbmV4dC9oZXhvLW5leHQuZ2l0aHViLmlv">here</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/next-boot.min.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
