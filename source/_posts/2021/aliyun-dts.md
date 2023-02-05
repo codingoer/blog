@@ -3,7 +3,6 @@ title: 阿里云DTS同步ES详解
 date: "2021/7/24 20:46:25"
 tags: [Aliyun, ES]
 categories: ES
-
 ---
 
 DTS是数据传输服务，Data Transmission Service的简称Data Transmission Service
