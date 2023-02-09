@@ -21,28 +21,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.codingoer.top","root":"/blog/","images":"/blog/images","scheme":"Gemini","darkmode":true,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.11.0/config.min.js"></script>
 
-    <meta name="description" content="APP客户端发起Http请求，服务端这边执行业务方法。将一些信息比如参数等放入ThreadLocal中保存，后续的方法可以随时获取这个参数，这样对代码的侵入性很小。 如果在业务方法中，使用线程池来处理其他业务，加速服务端相应时间。那么在线程池中如何获取到Http线程中存放的参数呢。 可以通过Callable + Future来实现   代码实现App发起请求，进入业务方法，此时已经将参数放入Thr">
-<meta property="og:type" content="article">
-<meta property="og:title" content="多线程中ThreadLocal的传参">
-<meta property="og:url" content="https://www.codingoer.top/2019/thread-local-param/index.html">
+    <meta name="description" content="1分钟 英语自我介绍   毕业  专业   哪一年参加工作    第二家  第三家    爱好。 约时间    您好，我叫刘强，来自黑龙江省鹤岗市。我毕业于哈尔滨大学，专业是软件工程，2016年毕业。毕业后我来到了上海，第一份工作是2016年到2018年，在上海慧银科技有限公司。第二份工作是2018年八月到2021年2月，在上海子丑六合科技有限公司，从事电商相关的工作。为了更好的发展，于2021年">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Java技术分享">
+<meta property="og:url" content="https://www.codingoer.top/about/self-introduction.html">
 <meta property="og:site_name" content="Java技术分享">
-<meta property="og:description" content="APP客户端发起Http请求，服务端这边执行业务方法。将一些信息比如参数等放入ThreadLocal中保存，后续的方法可以随时获取这个参数，这样对代码的侵入性很小。 如果在业务方法中，使用线程池来处理其他业务，加速服务端相应时间。那么在线程池中如何获取到Http线程中存放的参数呢。 可以通过Callable + Future来实现   代码实现App发起请求，进入业务方法，此时已经将参数放入Thr">
+<meta property="og:description" content="1分钟 英语自我介绍   毕业  专业   哪一年参加工作    第二家  第三家    爱好。 约时间    您好，我叫刘强，来自黑龙江省鹤岗市。我毕业于哈尔滨大学，专业是软件工程，2016年毕业。毕业后我来到了上海，第一份工作是2016年到2018年，在上海慧银科技有限公司。第二份工作是2018年八月到2021年2月，在上海子丑六合科技有限公司，从事电商相关的工作。为了更好的发展，于2021年">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2019-11-21T18:12:09.000Z">
+<meta property="article:published_time" content="2023-02-09T15:13:22.368Z">
 <meta property="article:modified_time" content="2023-02-09T15:13:22.368Z">
 <meta property="article:author" content="Lionel">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Java,spring,spring boot,spring cloud">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://www.codingoer.top/2019/thread-local-param/">
+<link rel="canonical" href="https://www.codingoer.top/about/self-introduction">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/2019/thread-local-param/","path":"2019/thread-local-param/","title":"多线程中ThreadLocal的传参"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"en","comments":true,"permalink":"https://www.codingoer.top/about/self-introduction.html","path":"about/self-introduction.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>多线程中ThreadLocal的传参 | Java技术分享</title>
+<title> | Java技术分享
+</title>
   
 
 
@@ -105,7 +106,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -118,7 +119,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">注意点</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -185,114 +185,42 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner page posts-expand">
 
 
-  
+    
+    
+    
+    <div class="post-block" lang="en"><header class="post-header">
 
+<h1 class="post-title" itemprop="name headline">
+</h1>
 
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://www.codingoer.top/2019/thread-local-param/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/java-3.svg">
-      <meta itemprop="name" content="Lionel">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Java技术分享">
-      <meta itemprop="description" content="Java Technology">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="多线程中ThreadLocal的传参 | Java技术分享">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          多线程中ThreadLocal的传参
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2019-11-21 18:12:09" itemprop="dateCreated datePublished" datetime="2019-11-21T18:12:09Z">2019-11-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/blog/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
+<div class="post-meta-container">
 </div>
 
-        </div>
-      </header>
+</header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p>APP客户端发起Http请求，服务端这边执行业务方法。将一些信息比如参数等放入<code>ThreadLocal</code>中保存，后续的方法可以随时获取这个参数，这样对代码的侵入性很小。</p>
-<p>如果在业务方法中，使用<mark class="label info">线程池</mark>来处理其他业务，加速服务端相应时间。那么在线程池中如何获取到<code>Http线程</code>中存放的参数呢。</p>
-<div class="note primary"><p>可以通过<mark class="label success"><strong>Callable + Future</strong></mark>来实现</p>
-</div>
+      
+      
+      <div class="post-body">
+          <p>1分钟 英语自我介绍   毕业  专业   哪一年参加工作    第二家  第三家    爱好。</p>
+<p>约时间   </p>
+<p>您好，我叫刘强，来自黑龙江省鹤岗市。我毕业于哈尔滨大学，专业是软件工程，2016年毕业。<br>毕业后我来到了上海，第一份工作是2016年到2018年，在上海慧银科技有限公司。<br>第二份工作是2018年八月到2021年2月，在上海子丑六合科技有限公司，从事电商相关的工作。为了更好的发展，于2021年3月到了怪兽充电，一直到现在。<br>我是一个开朗乐观的人，业余爱好是打篮球，也比较喜欢骑车。谢谢。</p>
+<p>Hello, my name is Liu Qiang, I come from Hegang City, Heilongjiang Province. I graduated from Harbin University, majoring in software engineering, and graduated in 2016. </p>
+<p>After graduation, I came to Shanghai, and my first job was in Shanghai Huiyin Technology Co., Ltd. from 2016 to 2018.</p>
+<p>The second job is from August 2018 to February 2021, in Shanghai Zichou Liuhe Technology Co., Ltd., engaged in e-commerce related work.</p>
+<p>In order to develop better, I went to the Monster Charge in March 2021, and it has been until now.</p>
+<p>I am a cheerful and optimistic person. My hobby is playing basketball, and I also like cycling. Thank you.</p>
 
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>App发起请求，进入业务方法，此时已经将参数放入<code>ThreadLocal</code>中</p>
-<figure class="highlight java"><figcaption><span>service方法</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> List&lt;Module&gt; <span class="title function_">getModuleByIds</span><span class="params">(Long[] moduleIds)</span> &#123;</span><br><span class="line">    List&lt;ModulePage&gt; modulePages = dao.get(moduleIds);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        List&lt;Callable&lt;Module&gt;&gt; callables = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(modulePages.size());</span><br><span class="line">        modulePages.forEach(modulePage -&gt; &#123;</span><br><span class="line">            callables.add(<span class="keyword">new</span> <span class="title class_">ModuleCallable</span>(modulePage));</span><br><span class="line">        &#125;);</span><br><span class="line">        List&lt;Module&gt; rModuleList = PoolUtils.execute(callables);</span><br><span class="line">        TimeCountUtils.escape(<span class="string">&quot;execute&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        ThreadLocalUtils.clear();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> modules;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>创建一个<code>ModuleCallable</code>对象，实现<code>Callable</code>接口，构造方法中从Http线程中获取参数并赋值。</p>
-<figure class="highlight java"><figcaption><span>ModuleCallable对象代码实现</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ModuleCallable</span> <span class="keyword">implements</span> <span class="title class_">Callable</span>&lt;Module&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; requestHeaders;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ModuleCallable</span><span class="params">(ModulePage modulePage)</span> &#123;</span><br><span class="line">        requestHeaders = HttpRequestUtils.requestHeaders();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Module <span class="title function_">call</span><span class="params">()</span> &#123;</span><br><span class="line">        HttpRequestUtils.requestHeaders(requestHeaders);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> ModuleParseUtils.parse(modulePage);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            HttpRequestUtils.clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在执行<code>call</code>回调方法中，将本地参数赋值到线程池中的线程的<code>ThreadLocal</code>中，这样就可以在后续方法中，再次获取到这个参数。</p>
-<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>无论是在http请求中还是在线程池中，处理完业务最终都要释放<code>ThreadLocal</code>中的参数，以免被其他线程复用，导致业务错误。</p>
-
+      </div>
+      
+      
+      
     </div>
 
     
     
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/blog/tags/Java/" rel="tag"># Java</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/blog/2019/online-cpu-examine/" rel="prev" title="线上服务器CPU100&#37排查">
-                  <i class="fa fa-chevron-left"></i> 线上服务器CPU100&#37排查
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/blog/2020/2019-summary/" rel="next" title="2019年终总结">
-                  2019年终总结 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
-
-
-
-
 
 
 </div>
