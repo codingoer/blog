@@ -31,10 +31,11 @@
 <meta property="og:image" content="https://image.codingoer.top/blog/20230226235705.png">
 <meta property="og:image" content="https://image.codingoer.top/blog/20230227002407.png">
 <meta property="og:image" content="https://image.codingoer.top/blog/20230227004630.png">
+<meta property="og:image" content="https://image.codingoer.top/blog/20230228015209.png">
 <meta property="og:image" content="https://image.codingoer.top/blog/20230227010623.png">
 <meta property="og:image" content="https://image.codingoer.top/blog/20230227011413.png">
 <meta property="article:published_time" content="2023-02-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-02-27T14:36:42.340Z">
+<meta property="article:modified_time" content="2023-02-27T18:19:56.921Z">
 <meta property="article:author" content="Lionel">
 <meta property="article:tag" content="Java,spring,spring boot,spring cloud">
 <meta name="twitter:card" content="summary">
@@ -223,8 +224,8 @@
 <p>访问端包括APP、PC、小程序，用户请求依次经过WAF防火墙，Nginx负载均衡，API网关层。然后到达BFF层，BFF层调用各个领域Service完成用户相关操作。</p>
 <ol>
 <li>使用Nginx能够对Http做分流策略，承担<strong>高负载</strong>压力，</li>
-<li>API网关可以对HTTP请求做<strong>限流</strong>，身份验证，配置黑白名单等。根据业务领域划分了多个网关，对应多个BFF，在流量很高时，将流量进行分流。</li>
-<li>BFF的作用就是，完成接口聚合，屏蔽后端实现细节，保证接口规范。作为流量的入口，BFF使用<code>sentinal</code>做限流，根据业务场景合并接口请求。同时针对热点接口做<mark class="label primary">redis缓存</mark>，使用<mark class="label primary">多线程</mark>的方式调用各个领域微服务完成接口聚合。针对一些耗时接口采用异步的方式提供给前端，前端进行轮训。BFF通过RPC或者Fegin的方式调用各个service。</li>
+<li>API网关对接流量的入口，可以对HTTP请求做<strong>限流</strong>，身份验证，配置黑白名单等。根据业务领域划分了多个网关，对应多个BFF，在流量很高时，将流量进行分流。</li>
+<li>BFF的作用就是，完成接口聚合，屏蔽后端实现细节，保证接口规范，起到串联前后端的作用。作为流量的入口，BFF使用<code>sentinal</code>做限流，根据业务场景合并接口请求。同时针对热点接口做<mark class="label primary">redis缓存</mark>，使用<mark class="label primary">多线程</mark>的方式调用各个领域微服务完成接口聚合。针对一些耗时接口采用异步的方式提供给前端，前端进行轮训。BFF通过RPC或者Fegin的方式调用各个service。</li>
 </ol>
 <p>API网关关键词：HTTP限流、鉴权<br>BFF关键词：限流、异步、合并请求、Redis缓存、接口聚合、屏蔽后端细节、接口规范。</p>
 <h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><p><img src="https://image.codingoer.top/blog/20230227002407.png" alt="20230227002407"></p>
@@ -251,15 +252,40 @@
 </div>
 
 <p>各个service之间的调用是通过Fegin来实现的，使用eruka作为注册中心。使用apollo作为配置中心。</p>
-<h3 id="TOB业务"><a href="#TOB业务" class="headerlink" title="TOB业务"></a>TOB业务</h3><h3 id="TOC业务"><a href="#TOC业务" class="headerlink" title="TOC业务"></a>TOC业务</h3><p>我主要负责订单中心，</p>
-<ol>
-<li>下单首先校验定价策略是否有效、验证和价格计算，调用分布式ID服务生成订单ID，采用雪花算法生成订单ID，生成订单。</li>
-<li>订单状态</li>
-</ol>
-<h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><ul>
-<li>机器数：网关、BFF 10台，service 6台 </li>
-<li>QPS：5000</li>
+<h3 id="TOB业务"><a href="#TOB业务" class="headerlink" title="TOB业务"></a>TOB业务</h3><h3 id="TOC业务"><a href="#TOC业务" class="headerlink" title="TOC业务"></a>TOC业务</h3><p>我主要负责订单中心，包括下单、订单状态流转、订单查询等。</p>
+<p><img src="https://image.codingoer.top/blog/20230228015209.png" alt="20230228015209"></p>
+<div class="note info"><p><mark class="label primary">多个网关和多个BFF的作用</mark></p>
+<p>为了避免小程序BFF的慢接口把小程序支付宝&#x2F;微信的网关线程池打满，导致小程序支付宝BFF&#x2F;微信BFF的请求失败，用户无法下单。提供一个单独的APA网关，将其从下单链路中剥离出来，小程序辅助BFF的接口均走该网关</p>
+</div>
+
+<ul>
+<li>下单</li>
 </ul>
+<p>首先构建下单上下文，基础信息校验，获取<code>分布式锁</code>并进入订单下单主流程：</p>
+<ol>
+<li>创建订单前核心校验，未完结订单异步取消、进行算价</li>
+<li>同步保存订单主信息，异步保存订单次要信息。</li>
+<li>如果有担保凭证则弹宝，加分布式锁（防止订单取消，同时弹宝）</li>
+<li>支付申请、下单后处理</li>
+</ol>
+<p>订单的ID通过分布式ID服务生成，使用雪花算法，单个Bean支持每秒最多1024个id.对于生成的id是64个bit位的数据。分布式ID生成服务部署5台机器。一秒最多可生成5000个订单。订单系统落库时使用ShardingJdbc进行分库。</p>
+<ul>
+<li>订单状态流转</li>
+</ul>
+<p>查询订单通过MySQL的for update加锁，然后判断状态，更新订单状态。</p>
+<ul>
+<li>订单查询</li>
+</ul>
+<p>订单查询分为后台查询，用户侧查询。订单列表和订单详情。</p>
+<p>后台查询订单数据是通关订单数据同步服务，同步到ES中，在数据同步服务中使用了阿里云的DTS组件。原理合canal一样，监听binlog，将变更转发到Kafka中。<br>用户侧查询订单使用Redis缓存，因为用户会频繁查看订单。比如会缓存用户第一页的订单列表，如果缓存没有的话查询数据库。比如用户第一页的订单列表都是查询缓存的。</p>
+<h3 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h3><ul>
+<li>机器数（日常）：</li>
+</ul>
+<p>网关：每个网关是3台机器<br>BFF：每个BFF是3-4台<br>分布式ID生成服务：5台<br>下单服务：5台<br>其他服务：2-3台</p>
+<ul>
+<li>QPS：</li>
+</ul>
+<p>网关：每个网关平均500，历史最高4000<br>BFF：每个平均500<br>分布式ID生成服务：平均500<br>下单服务：平均500</p>
 <h2 id="系统架构-1haitao"><a href="#系统架构-1haitao" class="headerlink" title="系统架构 - 1haitao"></a>系统架构 - 1haitao</h2><div class="note danger"><ol>
 <li>我负责了那些功能模块？背景是什么？</li>
 <li>先概括到具体、从总到细，逻辑要清晰</li>
@@ -332,7 +358,7 @@
 <li>《使用召唤》手游早上10点发布，提醒预约用户领取礼包。</li>
 <li>春节刷一刷领红包，晚上8:05开始，提醒用户订阅参与。</li>
 </ol>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>https:&#x2F;&#x2F;&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;7197955458961965117</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7197955458961965117">https://juejin.cn/post/7197955458961965117</a></p>
 <h2 id="高并发系统设计"><a href="#高并发系统设计" class="headerlink" title="高并发系统设计"></a>高并发系统设计</h2><h2 id="高并发、高可用"><a href="#高并发、高可用" class="headerlink" title="高并发、高可用"></a>高并发、高可用</h2>
       </div>
       
