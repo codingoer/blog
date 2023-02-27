@@ -20,7 +20,7 @@ Hello everyone. My name is LiuQiang. I come from Hegang City, Heilongjiang provi
 
 ### BFF之前
 
-![20230226235705](https:image.codingoer.top/blog/20230226235705.png)
+![20230226235705](https://image.codingoer.top/blog/20230226235705.png)
 
 访问端包括APP、PC、小程序，用户请求依次经过WAF防火墙，Nginx负载均衡，API网关层。然后到达BFF层，BFF层调用各个领域Service完成用户相关操作。
 
@@ -33,7 +33,7 @@ BFF关键词：限流、异步、合并请求、Redis缓存、接口聚合、屏
 
 ### Service
 
-![20230227002407](https:image.codingoer.top/blog/20230227002407.png)
+![20230227002407](https://image.codingoer.top/blog/20230227002407.png)
 
 基础服务也就是service负责具体业务实现，下层对接一些公共服务、数据库、缓存、ES等，上层承接BFF的请求。服务之间相互依赖相关调用。
 
@@ -47,7 +47,7 @@ Service关键词：熔断、解耦、缓存、异步。
 
 ### 基础组件
 
-![20230227004630](https:image.codingoer.top/blog/20230227004630.png)
+![20230227004630](https://image.codingoer.top/blog/20230227004630.png)
 
 1. MySQL读写分离，针对数据量大的场景做分库分表。核心流程走写库，一般查询走读库。
 2. APP、PC列表查询走ES。MySQL达到一定的数据量的时候出现瓶颈
@@ -66,6 +66,8 @@ Service关键词：熔断、解耦、缓存、异步。
 ### TOB业务
 
 ### TOC业务
+
+
 
 我主要负责订单中心，
 
@@ -91,7 +93,7 @@ Service关键词：熔断、解耦、缓存、异步。
 
 ### 爬虫
 
-![20230227010623](https:image.codingoer.top/blog/20230227010623.png)
+![20230227010623](https://image.codingoer.top/blog/20230227010623.png)
 
 因为是海淘业务，所以商品是经过爬虫爬取国外网站后入库的。爬虫分为前置节点、执行节点、下发节点三个模块。
 
@@ -109,7 +111,7 @@ Service关键词：熔断、解耦、缓存、异步。
 
 ### 商品库&搜索
 
-![20230227011413](https:image.codingoer.top/blog/20230227011413.png)
+![20230227011413](https://image.codingoer.top/blog/20230227011413.png)
 
 在商品服务中可以通过定时任务Job批量爬取商品入库，也支持对已有商品的更新。商品更新会调用爬虫，然后更新MySQL，最后更新ES。入库或更新均采用多线程异步的方式。商品表包含主表和其他属性表，按需写入和查询，降低复杂度，提高查询效率。
 
@@ -182,7 +184,7 @@ QQ服务了大量的移动互联网用户，订阅提醒功能超大流量。
 
 ### 分析
 
-https://juejin.cn/post/7197955458961965117
+https:////juejin.cn/post/7197955458961965117
 
 
 ## 高并发系统设计
