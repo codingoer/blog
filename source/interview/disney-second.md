@@ -9,6 +9,9 @@ sidebar: false
 
 Hello everyone. My name is LiuQiang. I come from Hegang City, Heilongjiang province. I graduated {% label warning@ /ˈɡrædʒueɪtɪd/ %} from Harbin university, majoring in software engineering {% label warning@ /ˌendʒɪˈnɪrɪŋ/ %}. And graduated in 2016 {% label warning@ tow thousand and sixteen %}. After graduation {% label warning@ /ˌɡrædʒuˈeɪʃ(ə)n/ %}, I came to ShangHai. I have been working for more than six years now, as a Java development engineer. In order to develop better, I went to the Monster Charge in March 2021 {% label warning@ tow thousand and twenty one %}, and it has been until now. I am a cheerful and optimistic person. In my spare time, I like playing basketball and I also like riding bikes. Thank you for this oppotunity for interview. Thank you all !
 
+Sorry, I'm a little nervous {%label warning @ /ˈnɜːrvəs/ %}. Let me say it again
+
+Can you repeat that ？ I beg your pardon ?
 
 ## 系统架构 - 通用
 
@@ -295,7 +298,7 @@ MySQL的行锁是针对索引加的锁，否则，InnoDB将使用表锁。
 
 ### QQ订阅推送场景
 
-[原文链接](https://juejin.cn/post/7197955458961965117)
+[原文链接](https://juejin.cn/post/7197955458961965117)，先概括，再细分。
 
 ### 场景
 
